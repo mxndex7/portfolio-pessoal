@@ -12,7 +12,7 @@ export default function Projects() {
   return (
     <section id="projetos" className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
       <h2 className="sr-only">Projetos</h2>
-      <p className="max-w-xl font-serif text-3xl italic sm:text-4xl">
+      <p className="max-w-xl font-serif text-3xl sm:text-4xl">
         O que venho construindo
       </p>
 

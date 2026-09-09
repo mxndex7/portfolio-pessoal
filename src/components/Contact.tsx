@@ -20,7 +20,7 @@ export default function Contact() {
 
       <div className="relative mx-auto max-w-5xl px-6 py-16 text-center sm:py-20">
         <h2 className="sr-only">Contato</h2>
-        <h3 className="mx-auto max-w-xl font-serif text-4xl italic sm:text-5xl">
+        <h3 className="mx-auto max-w-xl font-serif text-4xl sm:text-5xl">
           {contato.chamada}
         </h3>
         <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-muted-foreground">

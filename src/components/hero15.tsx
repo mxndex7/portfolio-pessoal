@@ -16,13 +16,30 @@ import {
   SiGit,
 } from 'react-icons/si';
 
-const stars = Array.from({ length: 50 }).map((_, i) => ({
-  left: (i * 37) % 100,
-  top: (i * 53) % 62,
-  size: 1 + (i % 3),
-  duration: 2.4 + (i % 5) * 0.5,
-  delay: (i % 10) * 0.35,
-}));
+function seededRandom(seed: number) {
+  let x = Math.imul(seed ^ 0x9e3779b9, 0x85ebca6b);
+  x ^= x >>> 13;
+  x = Math.imul(x, 0xc2b2ae35);
+  x ^= x >>> 16;
+  return (x >>> 0) / 4294967296;
+}
+
+const stars = Array.from({ length: 60 }).map((_, i) => {
+  const r1 = seededRandom(i * 4 + 1);
+  const r2 = seededRandom(i * 4 + 2);
+  const r3 = seededRandom(i * 4 + 3);
+  const r4 = seededRandom(i * 4 + 4);
+  const size = Number((1 + r3 * 1.6).toFixed(2));
+  const warm = r1 > 0.82;
+  return {
+    left: Number((r1 * 100).toFixed(2)),
+    top: Number((r2 * 62).toFixed(2)),
+    size,
+    duration: Number((2.4 + r4 * 2.8).toFixed(2)),
+    delay: Number(((r1 * 0.6 + r2 * 0.4) * 6).toFixed(2)),
+    color: warm ? "200, 220, 255" : "255, 255, 255",
+  };
+});
 
 const techIcons = [
   { Icon: SiPython, label: 'Python' },
@@ -130,13 +147,16 @@ export default function Hero15({
           {stars.map((star, i) => (
             <span
               key={i}
-              className="absolute rounded-full bg-white"
+              className="absolute rounded-full"
               style={{
                 left: `${star.left}%`,
                 top: `${star.top}%`,
                 width: star.size,
                 height: star.size,
-                animation: `twinkle ${star.duration}s ease-in-out ${star.delay}s infinite`,
+                backgroundColor: `rgb(${star.color})`,
+                boxShadow: `0 0 ${(star.size * 2.2).toFixed(1)}px rgba(${star.color}, 0.65)`,
+                opacity: 0.08,
+                animation: `twinkle ${star.duration}s ease-in-out ${star.delay}s infinite backwards`,
               }}
             />
           ))}
@@ -167,7 +187,7 @@ export default function Hero15({
           >
             <h1 className="text-[clamp(2.9rem,6.1vw,6.55rem)] leading-[0.98] font-light tracking-normal text-balance text-white/95">
               <span className="block">{headingLine1}</span>
-              <span className="mt-1 block font-serif text-[1.06em] leading-[0.92] font-normal text-white italic">
+              <span className="mt-1 block font-serif text-[1.06em] leading-[0.92] font-normal text-white">
                 {headingLine2}
               </span>
             </h1>
