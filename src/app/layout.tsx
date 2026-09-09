@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
-import { Montserrat, Fraunces } from "next/font/google";
+import { Archivo, Domine } from "next/font/google";
 import "./globals.css";
 import { perfil } from "@/data/portfolio";
 
-const montserrat = Montserrat({
+const archivo = Archivo({
   variable: "--font-sans",
   weight: ["400", "500", "600", "700", "800"],
-  style: ["normal", "italic"],
   subsets: ["latin"],
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+const domine = Domine({
+  variable: "--font-domine",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -26,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${montserrat.variable} ${fraunces.variable} dark h-full antialiased`}
+      className={`${archivo.variable} ${domine.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
