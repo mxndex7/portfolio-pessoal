@@ -119,6 +119,49 @@ export const resultadosOtimizacao: ResultadoOtimizacao[] = [
   },
 ];
 
+export type DexTweaksMenuItem = { key: string; label: string };
+
+// Dados reais do meu projeto Dex Tweaks (github.com/mxndex7/Dex-Tweaks).
+export const dexTweaks = {
+  nome: "Dex Tweaks",
+  arquivo: "Dex-Tweaks.bat",
+  descricao:
+    "Painel de otimização para Windows 10 e 11 que eu mesmo desenvolvo em Batch — diagnóstico, backup automático e ajustes de CPU, GPU, rede, memória e privacidade num único arquivo, sem instalação.",
+  repositorio: "https://github.com/mxndex7/Dex-Tweaks",
+  menu: [
+    { key: "1", label: "Dashboard" },
+    { key: "2", label: "Profiles" },
+    { key: "3", label: "Optimizations" },
+    { key: "4", label: "Hardware" },
+    { key: "5", label: "Windows" },
+    { key: "6", label: "Privacy" },
+    { key: "7", label: "Advanced" },
+    { key: "8", label: "Change Center" },
+    { key: "9", label: "Backup / Restore" },
+    { key: "A", label: "System Health" },
+    { key: "B", label: "Benchmark" },
+    { key: "C", label: "Global Search" },
+    { key: "D", label: "History" },
+    { key: "E", label: "Restart Center" },
+  ] satisfies DexTweaksMenuItem[],
+};
+
+export type StatOtimizacao = { valor: string; label: string; detalhe: string };
+
+// Números reais medidos numa instalação feita com meu autounattend.xml + Dex Tweaks.
+export const statsOtimizacao: StatOtimizacao[] = [
+  {
+    valor: "16%",
+    label: "de RAM em repouso",
+    detalhe: "2,6 GB de 15,9 GB em uso logo após a instalação, sem nada aberto",
+  },
+  {
+    valor: "40+",
+    label: "itens removidos na instalação",
+    detalhe: "Copilot, Cortana, Xbox, Teams, OneDrive e outros apps de fábrica, fora",
+  },
+];
+
 export type IconeServico = "hard-drive" | "zap" | "wrench";
 
 export type Servico = {
@@ -134,13 +177,13 @@ export const servicos: Servico[] = [
   {
     titulo: "Sistema Operacional Otimizado",
     descricao:
-      "Instalação de uma versão do Windows modificada por mim mesmo, bem mais leve, sem bloatware e com menos processos rodando em segundo plano.",
+      "Instalação automatizada de Windows 10/11 que eu mesmo configurei, mais o Dex Tweaks — meu painel próprio de otimização — pra deixar a máquina leve, previsível e sem monitoramento por trás.",
     preco: "Sob consulta",
     recursos: [
-      "Remoção de bloatware e apps pré-instalados",
-      "Menos serviços e processos em segundo plano",
-      "Ajustes de energia, rede e privacidade",
-      "Resumo das modificações incluso",
+      "Instalação desassistida: Chrome como padrão, Edge removido de verdade",
+      "Mais de 40 apps e serviços de fábrica fora (Copilot, Cortana, Xbox, Teams...)",
+      "Telemetria, indexação e hibernação desativadas desde o primeiro boot",
+      "Backup e ponto de restauração antes de qualquer ajuste no Dex Tweaks",
     ],
     icon: "hard-drive",
   },
