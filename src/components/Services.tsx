@@ -33,7 +33,7 @@ export default function Services() {
         <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground/70">
           Resultados reais
         </p>
-        <h3 className="mt-2 max-w-xl font-medium text-xl sm:text-2xl">
+        <h3 className="mt-2 max-w-xl font-medium text-lg sm:text-xl">
           Antes e depois das otimizações que eu mesmo fiz
         </h3>
 
@@ -56,9 +56,6 @@ export default function Services() {
                         sizes="(min-width: 640px) 50vw, 100vw"
                         className="object-cover"
                       />
-                      <span className="absolute left-3 top-3 rounded-full bg-black/70 px-3.5 py-1.5 text-sm font-medium text-white/90 backdrop-blur">
-                        Antes · {resultado.antes.fps} FPS
-                      </span>
                     </div>
                   </div>
                   <div>
@@ -70,9 +67,6 @@ export default function Services() {
                         sizes="(min-width: 640px) 50vw, 100vw"
                         className="object-cover"
                       />
-                      <span className="absolute left-3 top-3 rounded-full bg-brand-green/90 px-3.5 py-1.5 text-sm font-medium text-black">
-                        Depois · {resultado.depois.fps} FPS
-                      </span>
                     </div>
                   </div>
                 </div>
