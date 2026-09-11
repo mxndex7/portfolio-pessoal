@@ -1,55 +1,60 @@
 import { Mail } from "lucide-react";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { contato, perfil, redesSociais } from "@/data/portfolio";
 
 const iconesRedes: Record<string, IconType> = {
   GitHub: FaGithub,
   LinkedIn: FaLinkedin,
-  Instagram: FaInstagram,
 };
 
+/**
+ * Não usa <Section> de propósito: é a última seção antes do rodapé e ganha um
+ * ritmo próprio, maior, para fechar a página.
+ *
+ * Os blobs `blur-[120px]` coloridos que existiam aqui saíram junto com a
+ * paleta antiga.
+ */
 export default function Contact() {
   return (
-    <section id="contato" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-80">
-        <div className="absolute left-1/4 bottom-0 h-64 w-64 -translate-x-1/2 rounded-full bg-brand-green/8 blur-[120px]" />
-        <div className="absolute left-1/2 bottom-0 h-64 w-64 -translate-x-1/2 rounded-full bg-brand-blue/8 blur-[120px]" />
-        <div className="absolute right-1/4 bottom-0 h-64 w-64 translate-x-1/2 rounded-full bg-brand-yellow/8 blur-[120px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-5xl px-6 py-16 text-center sm:py-20">
-        <h2 className="sr-only">Contato</h2>
-        <h3 className="mx-auto max-w-xl font-serif text-4xl sm:text-5xl">
+    <section id="contato" className="border-t border-rule">
+      <div className="mx-auto w-full max-w-6xl px-5 py-28 sm:px-8 sm:py-40 lg:px-10 lg:py-52">
+        <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-foreground-dim">
+          Contato
+        </p>
+        <h2 className="mt-4 max-w-3xl font-display text-4xl uppercase leading-[0.92] tracking-[-0.035em] text-foreground sm:text-6xl lg:text-7xl">
           {contato.chamada}
-        </h3>
-        <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+        </h2>
+        <p className="mt-7 max-w-lg text-base leading-relaxed text-foreground-muted sm:text-lg">
           {contato.texto}
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href={`mailto:${perfil.email}`}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl transition-all duration-200 hover:border-white/25 hover:bg-white/10 active:scale-[0.97]"
-          >
-            <Mail className="size-4" strokeWidth={1.75} />
-            {perfil.email}
-          </a>
+
+        <a
+          href={`mailto:${perfil.email}`}
+          className="mt-12 inline-flex min-h-11 items-center gap-3 border-b border-control pb-2 text-lg font-semibold text-foreground transition-colors duration-150 hover:border-foreground sm:text-2xl"
+        >
+          <Mail aria-hidden="true" className="size-5 shrink-0" />
+          {perfil.email}
+        </a>
+
+        <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3 border-t border-hairline pt-8">
           {redesSociais.map((rede) => {
             const Icone = iconesRedes[rede.nome];
             return (
-              <a
-                key={rede.nome}
-                href={rede.url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-sm font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all duration-200 hover:border-white/25 hover:bg-white/10 active:scale-[0.97]"
-              >
-                {Icone && <Icone className="size-4" />}
-                {rede.nome}
-              </a>
+              <li key={rede.nome}>
+                <a
+                  href={rede.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim transition-colors duration-150 hover:text-foreground"
+                >
+                  {Icone ? <Icone aria-hidden="true" className="size-4" /> : null}
+                  {rede.nome}
+                </a>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -1,201 +1,222 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* `dark:` continua compilando (components/ui/button.tsx usa). A página em si
+   não alterna tema — a paleta é uma só. */
 @custom-variant dark (&:is(.dark *));
 
+/* ===============================================================
+   ESCALA MONOCROMÁTICA
+   Contraste medido contra --background (#0a0a0a):
+
+     950 #fafafa  18,97:1   AAA
+     900 #f5f5f5  18,16:1   AAA
+     800 #e5e5e5  15,72:1   AAA
+     700 #d4d4d4  13,36:1   AAA
+     600 #a3a3a3   7,85:1   AAA
+     500 #8a8a8a   5,73:1   AA    <- PISO DO TEXTO
+     ------------------------------------------------------------
+     400 #525252   2,53:1   reprova — nunca texto
+     300 #373737   1,66:1   reprova — régua
+     200 #262626   1,31:1   reprova — fio de card
+     100 #171717   1,10:1   reprova — superfície
+
+   REGRA: nada abaixo de --gray-500 carrega texto.
+   =============================================================== */
+
 :root {
-  --brand-green: #00e676;
-  --brand-blue: #2f7bff;
-  --brand-yellow: #ffc61a;
-  --muted: oklch(0.97 0 0);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --gray-0:   #000000;
+  --gray-50:  #0a0a0a;
+  --gray-100: #171717;
+  --gray-200: #262626;
+  --gray-300: #373737;
+  --gray-400: #525252;
+  --gray-500: #8a8a8a;
+  --gray-600: #a3a3a3;
+  --gray-700: #d4d4d4;
+  --gray-800: #e5e5e5;
+  --gray-900: #f5f5f5;
+  --gray-950: #fafafa;
+
+  /* --- papéis --------------------------------------------------- */
+  --background:       var(--gray-50);
+  --surface:          var(--gray-100);
+
+  --foreground:       var(--gray-950);  /* título, texto primário   */
+  --foreground-muted: var(--gray-700);  /* leitura longa            */
+  --foreground-dim:   var(--gray-600);  /* secundário, eyebrow      */
+  --foreground-floor: var(--gray-500);  /* piso — só >=14px         */
+
+  --hairline:         var(--gray-200);  /* fio decorativo de card   */
+  --rule:             var(--gray-300);  /* régua de seção           */
+  --control-border:   var(--gray-500);  /* WCAG 1.4.11 — 5,73:1     */
+  --ring:             var(--gray-950);  /* foco — 18,97:1           */
+
+  --watermark:        #101010;          /* 改善 — 1,04:1, sentido   */
+
+  /* --- compat shadcn (components/ui/button.tsx) ------------------ */
+  --card:                 var(--surface);
+  --card-foreground:      var(--foreground);
+  --popover:              var(--surface);
+  --popover-foreground:   var(--foreground);
+  --primary:              var(--gray-950);
+  --primary-foreground:   var(--gray-50);
+  --secondary:            var(--gray-200);
+  --secondary-foreground: var(--foreground);
+  --muted:                var(--gray-200);
+  --muted-foreground:     var(--foreground-dim);
+  --accent:               var(--gray-200);
+  --accent-foreground:    var(--foreground);
+  --destructive:          var(--gray-700);
+  --border:               var(--hairline);
+  --input:                var(--control-border);
+
+  /* Cantos retos. Pílula só em chips. */
+  --radius: 0rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-brand-green: var(--brand-green);
-  --color-brand-blue: var(--brand-blue);
-  --color-brand-yellow: var(--brand-yellow);
-  --font-display: var(--font-sans);
-  --font-sans: var(--font-sans);
-  --font-heading: var(--font-sans);
-  --font-serif: var(--font-domine);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-gray-0:   var(--gray-0);
+  --color-gray-50:  var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+  --color-gray-950: var(--gray-950);
+
+  --color-background:       var(--background);
+  --color-surface:          var(--surface);
+  --color-foreground:       var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-dim:   var(--foreground-dim);
+  --color-foreground-floor: var(--foreground-floor);
+  --color-hairline:         var(--hairline);
+  --color-rule:             var(--rule);
+  --color-control:          var(--control-border);
+  --color-watermark:        var(--watermark);
+
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-destructive:          var(--destructive);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
 
-html {
-  scroll-behavior: smooth;
-}
+  --font-sans:    var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo-black), var(--font-archivo), sans-serif;
+  --font-jp:      "Noto Sans JP", "Yu Gothic", "Hiragino Sans", Meiryo, sans-serif;
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --radius-none: 0;
+  --radius-pill: 9999px;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  *,
+  ::before,
+  ::after {
+    border-color: var(--hairline);
   }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Alvo de âncora não gruda na borda do topo. */
+  section[id] {
+    scroll-margin-block-start: 2rem;
+  }
+
+  ::selection {
+    background: var(--gray-950);
+    color: var(--gray-50);
+  }
+
+  /* Antes não existia estilo de foco em lugar nenhum. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* ===============================================================
+   MOVIMENTO
+   Uma entrada, uma vez, no carregamento. Nada dispara no scroll e
+   nada roda em loop. Hover muda cor, nunca posição.
+   =============================================================== */
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: reveal 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-1 { animation-delay: 60ms; }
+.reveal-2 { animation-delay: 120ms; }
+.reveal-3 { animation-delay: 180ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
   html {
-    @apply font-sans;
+    scroll-behavior: auto;
   }
 }
 
-@keyframes glow-green {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 6px 0 rgba(0, 230, 118, 0.55);
-  }
-  50% {
-    opacity: 0.65;
-    box-shadow: 0 0 16px 2px rgba(0, 230, 118, 0.9);
-  }
+/* ===============================================================
+   WORDMARK
+   O tamanho é medido contra a largura do contêiner (cqw), não da
+   viewport — assim MENDES encosta nas duas margens em qualquer
+   largura e com qualquer padding. 24cqw é o ponto de partida:
+   ajuste no olho se trocar a fonte ou o tracking.
+   =============================================================== */
+
+.wordmark-box {
+  container-type: inline-size;
 }
 
-@keyframes glow-blue {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 6px 0 rgba(47, 123, 255, 0.55);
-  }
-  50% {
-    opacity: 0.65;
-    box-shadow: 0 0 16px 2px rgba(47, 123, 255, 0.9);
-  }
-}
-
-@keyframes glow-yellow {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 6px 0 rgba(255, 230, 0, 0.55);
-  }
-  50% {
-    opacity: 0.65;
-    box-shadow: 0 0 16px 2px rgba(255, 230, 0, 0.9);
-  }
-}
-
-.glow-green {
-  animation: glow-green 2.6s ease-in-out infinite;
-}
-
-.glow-blue {
-  animation: glow-blue 2.6s ease-in-out infinite;
-}
-
-.glow-yellow {
-  animation: glow-yellow 2.6s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.08;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.2);
-  }
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 24cqw;
+  line-height: 0.78;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--foreground);
 }

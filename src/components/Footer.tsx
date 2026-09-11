@@ -2,16 +2,16 @@ import { perfil } from "@/data/portfolio";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-green via-brand-blue to-brand-yellow opacity-[0.08] blur-2xl"
-      />
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-8 text-sm text-muted-foreground sm:flex-row sm:justify-between">
+    <footer className="border-t border-rule">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 py-10 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-foreground-dim sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
         <p>
-          © {new Date().getFullYear()} {perfil.nome}. Todos os direitos reservados.
+          &copy; {new Date().getFullYear()} {perfil.nome}
         </p>
-        <a href="#" className="transition-colors hover:text-foreground">
+        {/* Antes apontava para href="#", que não volta ao topo de forma confiável. */}
+        <a
+          href="#topo"
+          className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-foreground sm:min-h-0"
+        >
           Voltar ao topo
         </a>
       </div>

@@ -2,13 +2,17 @@
 
 export const perfil = {
   nome: "Guilherme Mendes",
-  idade: 19,
+  // O hero usa só o sobrenome. Seis letras cabem em qualquer largura.
+  sobrenome: "Mendes",
+  monograma: "GM",
   titulo: "Desenvolvedor & Técnico de TI",
-  heroLinha1: "Do Código à",
-  heroLinha2: "Máquina Certa",
+  local: "Recife — PE",
+  // Usado na metadata da página (título da aba e descrição no Google).
   resumo:
-    "Transformo ideias em sistemas funcionais e computadores em máquinas otimizadas — da criação de sites à performance da sua máquina.",
-  email: "seuemail@exemplo.com",
+    "Desenvolvedor e técnico de TI em Recife. Sistemas web, otimização de Windows e montagem de máquinas.",
+  // Linha embaixo do MENDES.
+  posicionamento: "Do primeiro commit ao último serviço desativado.",
+  email: "mendex.dev@gmail.com",
 };
 
 export const heroNav = {
@@ -18,72 +22,38 @@ export const heroNav = {
     { label: "Serviços", href: "#servicos" },
     { label: "Contato", href: "#contato" },
   ],
-  primaryCtaLabel: "Ver projetos",
-  secondaryCtaLabel: "Fale comigo",
-};
+} as const;
 
 export const redesSociais = [
-  { nome: "GitHub", url: "https://github.com/seu-usuario" },
-  { nome: "LinkedIn", url: "https://linkedin.com/in/seu-usuario" },
-  { nome: "Instagram", url: "https://instagram.com/seu-usuario" },
+  { nome: "GitHub", url: "https://github.com/mxndex7" },
+  { nome: "LinkedIn", url: "https://www.linkedin.com/in/guilhermemendes7/" },
 ] as const;
 
 export const sobre = {
-  texto: `Sou Guilherme Mendes, tenho 19 anos e sou tecnólogo formado em Análise
-e Desenvolvimento de Sistemas (ADS). Atualmente estou cursando bacharelado
-em Engenharia de Software, aprofundando meus conhecimentos em construção
-de sistemas robustos e boas práticas de desenvolvimento.
+  titulo: "As duas pontas",
+  texto: `Tecnólogo em Análise e Desenvolvimento de Sistemas, cursando bacharelado
+em Engenharia de Software. 19 anos, Recife.
 
-Do lado prático, atuo tanto no desenvolvimento de software quanto no
-suporte e otimização de hardware — uma combinação que me permite entender
-o problema de ponta a ponta, do código à máquina que roda ele.`,
+Escrevo o software e mexo na máquina que roda ele. São duas rotinas diferentes
+— uma termina em deploy, a outra em benchmark — mas o trabalho é o mesmo:
+achar o que está no caminho e tirar.`,
 };
-
-export type IconeHabilidade =
-  | "code"
-  | "database"
-  | "monitor"
-  | "cpu"
-  | "wrench"
-  | "terminal";
 
 export type Habilidade = {
   titulo: string;
   descricao: string;
-  icon: IconeHabilidade;
 };
 
 export const habilidades: Habilidade[] = [
-  {
-    titulo: "Desenvolvimento Web",
-    descricao: "React, Next.js, Tailwind CSS",
-    icon: "code",
-  },
-  {
-    titulo: "Backend & APIs",
-    descricao: "Node.js, PostgreSQL, APIs REST",
-    icon: "database",
-  },
+  { titulo: "Desenvolvimento Web", descricao: "React, Next.js, Tailwind CSS" },
+  { titulo: "Backend & APIs", descricao: "Node.js, PostgreSQL, APIs REST" },
   {
     titulo: "Sistemas Operacionais",
     descricao: "Windows e Linux configurados sem bloatware",
-    icon: "monitor",
   },
-  {
-    titulo: "Hardware",
-    descricao: "Montagem e upgrade de computadores",
-    icon: "cpu",
-  },
-  {
-    titulo: "Manutenção",
-    descricao: "Diagnóstico e otimização de performance",
-    icon: "wrench",
-  },
-  {
-    titulo: "Linguagens",
-    descricao: "TypeScript, JavaScript, Python, SQL",
-    icon: "terminal",
-  },
+  { titulo: "Hardware", descricao: "Montagem e upgrade de computadores" },
+  { titulo: "Manutenção", descricao: "Diagnóstico e otimização de performance" },
+  { titulo: "Linguagens", descricao: "TypeScript, JavaScript, Python, SQL" },
 ];
 
 export type Projeto = {
@@ -93,41 +63,31 @@ export type Projeto = {
   imagem?: string;
   link?: string;
   repositorio?: string;
-  destaque?: boolean;
 };
 
-// Deixe vazio por enquanto — adicione seus projetos aqui quando estiverem prontos.
+// Projetos externos entram aqui conforme forem ficando prontos.
+// O Dex Tweaks é renderizado separado, como destaque da seção.
 export const projetos: Projeto[] = [];
 
-export type ResultadoOtimizacao = {
-  jogo: string;
-  antes: { imagem: string; fps: number };
-  depois: { imagem: string; fps: number };
-};
-
-// Prints reais de antes/depois de otimizações feitas — troque ou adicione novos jogos aqui.
-export const resultadosOtimizacao: ResultadoOtimizacao[] = [
-  {
-    jogo: "Red Dead Redemption 2",
-    antes: { imagem: "/resultados/rdr2-antes.png", fps: 62 },
-    depois: { imagem: "/resultados/rdr2-depois.png", fps: 104 },
-  },
-  {
-    jogo: "Spider-Man 2",
-    antes: { imagem: "/resultados/spiderman-antes.png", fps: 54 },
-    depois: { imagem: "/resultados/spiderman-depois.png", fps: 114 },
-  },
+// Slots de produção. Com o Dex Tweaks no destaque, três slots fecham a grade
+// de quatro. Cada projeto que entrar em `projetos` toma o lugar de um slot.
+export const projetosEmProducao = [
+  { rotulo: "Em produção" },
+  { rotulo: "Em produção" },
+  { rotulo: "Em produção" },
 ];
 
 export type DexTweaksMenuItem = { key: string; label: string };
 
-// Dados reais do meu projeto Dex Tweaks (github.com/mxndex7/Dex-Tweaks).
 export const dexTweaks = {
   nome: "Dex Tweaks",
-  arquivo: "Dex-Tweaks.bat",
+  arquivo: "Dex-Tweeks.bat",
   descricao:
-    "Painel de otimização para Windows 10 e 11 que eu mesmo desenvolvo em Batch — diagnóstico, backup automático e ajustes de CPU, GPU, rede, memória e privacidade num único arquivo, sem instalação.",
-  repositorio: "https://github.com/mxndex7/Dex-Tweaks",
+    "Painel administrativo em Batch para Windows 10 e 11, num arquivo só, sem instalação. Seis perfis prontos — Safe, Balanced, Competitive, Streaming, Laptop e Privacy — mais ajustes de CPU, GPU, rede, memória, serviços e privacidade.",
+  metodologia:
+    "Toda alteração passa por prévia, snapshot e verificação antes de ser gravada. BCD e Defender ficam atrás de um Modo Especialista, com confirmação extra.",
+  repositorio: "https://github.com/mxndex7/Dex-Tweeks",
+  tecnologias: ["Batch", "PowerShell", "Windows 10/11"],
   menu: [
     { key: "1", label: "Dashboard" },
     { key: "2", label: "Profiles" },
@@ -148,7 +108,7 @@ export const dexTweaks = {
 
 export type StatOtimizacao = { valor: string; label: string; detalhe: string };
 
-// Números reais medidos numa instalação feita com meu autounattend.xml + Dex Tweaks.
+// Números reais medidos numa instalação feita com o autounattend.xml + Dex Tweaks.
 export const statsOtimizacao: StatOtimizacao[] = [
   {
     valor: "16%",
@@ -158,65 +118,95 @@ export const statsOtimizacao: StatOtimizacao[] = [
   {
     valor: "40+",
     label: "itens removidos na instalação",
-    detalhe: "Copilot, Cortana, Xbox, Teams, OneDrive e outros apps de fábrica, fora",
+    detalhe:
+      "Copilot, Cortana, Xbox, Teams, OneDrive e outros apps de fábrica, fora",
   },
 ];
 
-export type IconeServico = "hard-drive" | "zap" | "wrench";
+export type ResultadoOtimizacao = {
+  jogo: string;
+  // Descreve a cena capturada. Com a mesma cena nos dois lados, o par vira
+  // prova; com cenas diferentes, vira só duas capturas.
+  cena?: string;
+  antes: { imagem: string; fps: number };
+  depois: { imagem: string; fps: number };
+};
+
+export const resultadosOtimizacao: ResultadoOtimizacao[] = [
+  {
+    jogo: "Red Dead Redemption 2",
+    antes: { imagem: "/resultados/rdr2-antes.png", fps: 62 },
+    depois: { imagem: "/resultados/rdr2-depois.png", fps: 104 },
+  },
+  {
+    jogo: "Spider-Man 2",
+    antes: { imagem: "/resultados/spiderman-antes.png", fps: 54 },
+    depois: { imagem: "/resultados/spiderman-depois.png", fps: 114 },
+  },
+];
+
+export const provaOtimizacao = {
+  eyebrow: "Resultados reais",
+  titulo: "Mesma máquina, mesmo jogo, antes e depois",
+};
 
 export type Servico = {
   titulo: string;
   descricao: string;
   preco: string;
+  precoNota?: string;
   recursos: string[];
-  icon: IconeServico;
 };
 
-// Preços como "Sob consulta" — troque pelos seus valores reais quando definir.
+/*
+  Preços como âncora ("a partir de"), não como tabela fechada.
+  Referência de mercado 2026: formatação + Windows + drivers fica em
+  R$ 100–200 e limpeza + otimização em R$ 150–300, com teto de mercado
+  perto de R$ 600. O que sai dessa faixa é o Dex Tweaks e a instalação
+  desassistida própria — ninguém mais entrega isso por R$ 150.
+*/
 export const servicos: Servico[] = [
   {
     titulo: "Sistema Operacional Otimizado",
     descricao:
-      "Instalação automatizada de Windows 10/11 que eu mesmo configurei, mais o Dex Tweaks — meu painel próprio de otimização — pra deixar a máquina leve, previsível e sem monitoramento por trás.",
-    preco: "Sob consulta",
+      "Instalação desassistida de Windows 10/11 que eu mesmo configurei, mais o Dex Tweaks aplicado por perfil. A máquina sai leve, previsível e sem telemetria — e com ponto de restauração antes de qualquer ajuste.",
+    preco: "R$ 280",
     recursos: [
       "Instalação desassistida: Chrome como padrão, Edge removido de verdade",
       "Mais de 40 apps e serviços de fábrica fora (Copilot, Cortana, Xbox, Teams...)",
       "Telemetria, indexação e hibernação desativadas desde o primeiro boot",
-      "Backup e ponto de restauração antes de qualquer ajuste no Dex Tweaks",
+      "Perfil do Dex Tweaks escolhido pelo uso da máquina",
+      "Snapshot e ponto de restauração antes de gravar qualquer alteração",
     ],
-    icon: "hard-drive",
   },
   {
     titulo: "Otimização & Overclock",
     descricao:
-      "Ajustes na BIOS e overclock seguro pra extrair o máximo de performance do seu PC, com foco em desempenho nos jogos.",
-    preco: "Sob consulta",
+      "Ajuste de BIOS e overclock de CPU e memória, com teste de estabilidade antes de entregar. Benchmark antes e depois, pra você ver o que mudou em número.",
+    preco: "R$ 180",
     recursos: [
-      "Ajustes de BIOS",
-      "Overclock de CPU/RAM com testes de estabilidade",
-      "Ganho de FPS em jogos",
-      "Diagnóstico de gargalos de performance",
+      "Ajustes de BIOS e curva de energia",
+      "Overclock de CPU/RAM com teste de estabilidade",
+      "Benchmark antes e depois, registrado",
+      "Diagnóstico de gargalo: onde a máquina está presa e por quê",
     ],
-    icon: "zap",
   },
   {
     titulo: "Montagem de PC",
     descricao:
-      "Montagem organizada e segura da sua máquina, da escolha das peças ao cabeamento final.",
-    preco: "Sob consulta",
+      "Montagem da máquina, da escolha das peças ao cabeamento. Inclui a instalação do sistema já otimizado.",
+    preco: "R$ 200",
+    precoNota: "Mão de obra. Peças à parte.",
     recursos: [
       "Escolha de peças compatíveis pro seu orçamento",
       "Montagem organizada e cabeamento limpo",
-      "Testes de estabilidade e temperatura",
-      "Instalação do sistema incluída",
+      "Teste de estabilidade e temperatura sob carga",
+      "Sistema operacional otimizado já incluso",
     ],
-    icon: "wrench",
   },
 ];
 
 export const contato = {
-  chamada: "Vamos conversar",
-  texto:
-    "Precisa de um site, quer otimizar seu computador ou montar uma máquina nova? Me chama.",
+  chamada: "O que precisa ser resolvido?",
+  texto: "Site, sistema, máquina lenta ou PC novo. Manda o caso.",
 };
