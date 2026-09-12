@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Archivo, Archivo_Black } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import { perfil } from "@/data/portfolio";
 
+/*
+  Uma família só, dois eixos.
+
+  O Archivo é variável e tem eixo de largura (wdth, 62 a 125). Pedindo o eixo
+  aqui, o display deixa de precisar do Archivo Black: vira o mesmo Archivo em
+  peso 900 e largura 125 — literalmente "a mesma fonte, esticada".
+
+  `axes` exige fonte variável, então não se passa `weight` junto: vem a faixa
+  inteira de pesos.
+*/
 const archivo = Archivo({
   variable: "--font-archivo",
-  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  display: "swap",
-});
-
-const archivoBlack = Archivo_Black({
-  variable: "--font-archivo-black",
-  weight: "400",
-  subsets: ["latin"],
+  axes: ["wdth"],
   display: "swap",
 });
 
@@ -35,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${archivo.variable} ${archivoBlack.variable} h-full`}
+      className={`${archivo.variable} h-full`}
       // O script acima mexe no data-theme antes da hidratação, então o HTML do
       // servidor e o do cliente divergem de propósito.
       suppressHydrationWarning

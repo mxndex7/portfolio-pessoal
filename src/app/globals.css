@@ -134,11 +134,33 @@
   --color-terminal-line: var(--terminal-line);
 
   --font-sans:    var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-archivo-black), var(--font-archivo), sans-serif;
   --font-jp:      "Noto Sans JP", "Yu Gothic", "Hiragino Sans", Meiryo, sans-serif;
 
   --radius-none: 0;
   --radius-pill: 9999px;
+}
+
+/* ===============================================================
+   DISPLAY
+
+   `font-family` sozinho não seleciona a face esticada — precisa de
+   peso e largura junto. Por isso o utilitário `font-display` é
+   redefinido aqui para carregar os três de uma vez. Os componentes
+   continuam escrevendo só `font-display`, sem saber disso.
+
+   --display-wdth é o ponto de ajuste: 125 é o máximo do eixo do
+   Archivo. 112,5 (semi-expanded) se ficar largo demais.
+   =============================================================== */
+
+:root {
+  --display-wdth: 125;
+  --display-wght: 900;
+}
+
+@utility font-display {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--display-wght);
+  font-stretch: calc(var(--display-wdth) * 1%);
 }
 
 @layer base {
@@ -217,7 +239,7 @@
    WORDMARK
    Tamanho medido contra a largura do contêiner (cqw), não da
    viewport — assim MENDES encosta nas duas margens em qualquer
-   largura e com qualquer padding. 24cqw é o ponto de partida.
+   largura e com qualquer padding.
    =============================================================== */
 
 .wordmark-box {
@@ -225,8 +247,17 @@
 }
 
 .wordmark {
-  font-family: var(--font-display);
-  font-size: 24cqw;
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--display-wght);
+  font-stretch: calc(var(--display-wdth) * 1%);
+  /*
+    CALIBRADO. 24cqw era o valor da Archivo Black em largura normal; a face
+    esticada (font-stretch 125%) ocupa mais por caractere, então 18cqw é o
+    valor medido em que MENDES encosta nas duas margens sem estourar —
+    testado de 320px a 1440px de viewport. Se trocar --display-wdth ou o
+    texto do wordmark, recalibrar de 0,5 em 0,5 com o dev server aberto.
+  */
+  font-size: 18cqw;
   line-height: 0.78;
   letter-spacing: -0.045em;
   text-transform: uppercase;

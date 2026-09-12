@@ -53,9 +53,23 @@ textual. Para eyebrow e rótulo pequeno use `--foreground-dim`.
 - O rótulo é palavra, não ícone de sol e lua. A nav inteira é texto em
   caixa-alta pequena; um ícone seria o único da página.
 
-**Tipografia**
-- `font-display` = Archivo Black. Títulos e números grandes.
+**Tipografia — uma família só, dois eixos**
+
+O Archivo é variável e tem eixo de largura (`wdth`, 62–125). O `layout.tsx`
+pede `axes: ["wdth"]`, e o display é o **mesmo Archivo esticado**: peso 900,
+largura 125. Archivo Black saiu — não é mais necessário.
+
+- `font-display` = Archivo 900 em `font-stretch: 125%`. Títulos e números.
+  É um `@utility` no `globals.css`, não um token de `@theme`, porque
+  `font-family` sozinho não seleciona a face esticada: precisa de peso e
+  largura junto. Componente continua escrevendo só `font-display`.
+- Ajuste a largura em `--display-wdth` (125 = máximo; 112.5 = semi-expanded).
 - `font-sans` = Archivo. Texto.
+- **`.wordmark` calibrado em 18cqw.** A face esticada (font-stretch 125%)
+  ocupa mais por caractere que a Archivo Black (24cqw). Medido de 320px a
+  1440px de viewport: MENDES encosta nas duas margens sem estourar. Se trocar
+  `--display-wdth` ou o texto do wordmark, recalibrar de 0,5 em 0,5 com o dev
+  server aberto.
 - `font-mono` = eyebrows, rótulos, dados tabulares (`tabular-nums`).
 - `font-jp` = Noto Sans JP 900, **só** para os dois glifos de 改善 no hero.
   Carregado por `<link>` com subset `&text=` no `layout.tsx` — não trocar por
