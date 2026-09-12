@@ -1,72 +1,121 @@
 @import "tailwindcss";
 
 /* ===============================================================
-   ESCALA MONOCROMÁTICA
-   Contraste medido contra --background (#0a0a0a):
+   TEMA
 
-     950 #fafafa  18,97:1   AAA
-     900 #f5f5f5  18,16:1   AAA
-     800 #e5e5e5  15,72:1   AAA
-     700 #d4d4d4  13,36:1   AAA
-     600 #a3a3a3   7,85:1   AAA
-     500 #8a8a8a   5,73:1   AA    <- PISO DO TEXTO
-     ------------------------------------------------------------
-     400 #525252   2,53:1   reprova — nunca texto
-     300 #373737   1,66:1   reprova — régua
-     200 #262626   1,31:1   reprova — fio de card
-     100 #171717   1,10:1   reprova — superfície
+   Nenhum componente usa a variante `dark:`. Tudo lê token de papel
+   (--foreground, --hairline, --control-border...), então trocar de
+   tema é trocar o valor dos papéis aqui — componente não muda.
 
-   REGRA: nada abaixo de --gray-500 carrega texto.
+   As duas escalas ficam sempre declaradas. O que troca é só a
+   atribuição dos papéis, no fim deste bloco.
+
+   Estados possíveis:
+     sem atributo + SO claro   -> claro   (:root)
+     sem atributo + SO escuro  -> escuro  (@media)
+     data-theme="light"        -> claro   (o :not() no @media protege)
+     data-theme="dark"         -> escuro  (regra explícita)
    =============================================================== */
 
 :root {
-  --gray-0:   #000000;
-  --gray-50:  #0a0a0a;
-  --gray-100: #171717;
-  --gray-200: #262626;
-  --gray-300: #373737;
-  --gray-400: #525252;
-  --gray-500: #8a8a8a;
-  --gray-600: #a3a3a3;
-  --gray-700: #d4d4d4;
-  --gray-800: #e5e5e5;
-  --gray-900: #f5f5f5;
-  --gray-950: #fafafa;
+  color-scheme: light dark;
 
-  /* --- papéis --------------------------------------------------- */
-  --background:       var(--gray-50);
-  --surface:          var(--gray-100);
+  /* --- escala CLARA (referência) ------------------------------- */
+  --l-0:   #ffffff;
+  --l-50:  #fafafa;
+  --l-100: #f5f5f5;
+  --l-200: #e5e5e5;
+  --l-300: #d4d4d4;
+  --l-400: #a3a3a3;
+  --l-500: #737373;
+  --l-600: #525252;
+  --l-700: #404040;
+  --l-800: #262626;
+  --l-900: #171717;
+  --l-950: #0a0a0a;
 
-  --foreground:       var(--gray-950);  /* título, texto primário   */
-  --foreground-muted: var(--gray-700);  /* leitura longa            */
-  --foreground-dim:   var(--gray-600);  /* secundário, eyebrow      */
-  --foreground-floor: var(--gray-500);  /* piso — só >=14px         */
+  /* --- escala ESCURA (referência) ------------------------------ */
+  --d-0:   #000000;
+  --d-50:  #0a0a0a;
+  --d-100: #171717;
+  --d-200: #262626;
+  --d-300: #373737;
+  --d-400: #525252;
+  --d-500: #8a8a8a;
+  --d-600: #a3a3a3;
+  --d-700: #d4d4d4;
+  --d-800: #e5e5e5;
+  --d-900: #f5f5f5;
+  --d-950: #fafafa;
 
-  --hairline:         var(--gray-200);  /* fio decorativo de card   */
-  --rule:             var(--gray-300);  /* régua de seção           */
-  --control-border:   var(--gray-500);  /* WCAG 1.4.11 — 5,73:1     */
-  --ring:             var(--gray-950);  /* foco — 18,97:1           */
+  /* --- terminal: escuro nos dois temas -------------------------
+     O mock do Dex Tweaks representa um console do Windows. Console
+     é escuro. Inverter ele no tema claro seria inventar uma coisa
+     que não existe. --------------------------------------------- */
+  --terminal-bg:     #000000;
+  --terminal-fg:     #d4d4d4;
+  --terminal-dim:    #8a8a8a;
+  --terminal-line:   #262626;
 
-  --watermark:        #101010;          /* 改善 — 1,04:1, sentido   */
+  /* ===== PAPÉIS — claro é o padrão do documento ================
+     Contraste medido contra #fafafa:
+       950 #0a0a0a  18,97:1  AAA
+       700 #404040   9,93:1  AAA
+       600 #525252   7,49:1  AAA
+       500 #737373   4,54:1  AA   <- PISO DO TEXTO (apertado)
+       400 #a3a3a3   2,42:1  reprova — nunca texto
+     ============================================================ */
+  --background:       var(--l-50);
+  --surface:          var(--l-100);
+  --foreground:       var(--l-950);
+  --foreground-muted: var(--l-700);
+  --foreground-dim:   var(--l-600);
+  --foreground-floor: var(--l-500);
+  --hairline:         var(--l-200);
+  --rule:             var(--l-300);
+  --control-border:   var(--l-500);
+  --ring:             var(--l-950);
+  --watermark:        #f2f2f2;
 
-  /* Cantos retos. Pílula só em chips. */
   --radius: 0rem;
 }
 
-@theme inline {
-  --color-gray-0:   var(--gray-0);
-  --color-gray-50:  var(--gray-50);
-  --color-gray-100: var(--gray-100);
-  --color-gray-200: var(--gray-200);
-  --color-gray-300: var(--gray-300);
-  --color-gray-400: var(--gray-400);
-  --color-gray-500: var(--gray-500);
-  --color-gray-600: var(--gray-600);
-  --color-gray-700: var(--gray-700);
-  --color-gray-800: var(--gray-800);
-  --color-gray-900: var(--gray-900);
-  --color-gray-950: var(--gray-950);
+/* Sistema no escuro, sem escolha explícita de claro. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background:       var(--d-50);
+    --surface:          var(--d-100);
+    --foreground:       var(--d-950);
+    --foreground-muted: var(--d-700);
+    --foreground-dim:   var(--d-600);
+    --foreground-floor: var(--d-500);
+    --hairline:         var(--d-200);
+    --rule:             var(--d-300);
+    --control-border:   var(--d-500);
+    --ring:             var(--d-950);
+    --watermark:        #101010;
+  }
+}
 
+/* Escolha explícita de escuro — vence o sistema em claro. */
+:root[data-theme="dark"] {
+  --background:       var(--d-50);
+  --surface:          var(--d-100);
+  --foreground:       var(--d-950);
+  --foreground-muted: var(--d-700);
+  --foreground-dim:   var(--d-600);
+  --foreground-floor: var(--d-500);
+  --hairline:         var(--d-200);
+  --rule:             var(--d-300);
+  --control-border:   var(--d-500);
+  --ring:             var(--d-950);
+  --watermark:        #101010;
+}
+
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+
+@theme inline {
   --color-background:       var(--background);
   --color-surface:          var(--surface);
   --color-foreground:       var(--foreground);
@@ -76,8 +125,13 @@
   --color-hairline:         var(--hairline);
   --color-rule:             var(--rule);
   --color-control:          var(--control-border);
-  --color-watermark:        var(--watermark);
   --color-ring:             var(--ring);
+  --color-watermark:        var(--watermark);
+
+  --color-terminal:      var(--terminal-bg);
+  --color-terminal-fg:   var(--terminal-fg);
+  --color-terminal-dim:  var(--terminal-dim);
+  --color-terminal-line: var(--terminal-line);
 
   --font-sans:    var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-archivo-black), var(--font-archivo), sans-serif;
@@ -105,17 +159,15 @@
     color: var(--foreground);
   }
 
-  /* Alvo de âncora não gruda na borda do topo. */
   section[id] {
     scroll-margin-block-start: 2rem;
   }
 
   ::selection {
-    background: var(--gray-950);
-    color: var(--gray-50);
+    background: var(--foreground);
+    color: var(--background);
   }
 
-  /* Antes não existia estilo de foco em lugar nenhum. */
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
@@ -163,10 +215,9 @@
 
 /* ===============================================================
    WORDMARK
-   O tamanho é medido contra a largura do contêiner (cqw), não da
+   Tamanho medido contra a largura do contêiner (cqw), não da
    viewport — assim MENDES encosta nas duas margens em qualquer
-   largura e com qualquer padding. 24cqw é o ponto de partida:
-   ajuste no olho se trocar a fonte ou o tracking.
+   largura e com qualquer padding. 24cqw é o ponto de partida.
    =============================================================== */
 
 .wordmark-box {

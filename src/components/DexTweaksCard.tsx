@@ -13,12 +13,12 @@ export default function DexTweaksCard() {
     <article className="border border-hairline">
       <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr]">
         {/* Mock do painel */}
-        <div className="border-b border-hairline bg-gray-0 lg:border-b-0 lg:border-r">
-          <div className="flex items-center gap-3 border-b border-hairline px-5 py-3.5">
-            <span className="font-mono text-[0.7rem] text-foreground-floor">
+        <div className="border-b border-hairline bg-terminal lg:border-b-0 lg:border-r">
+          <div className="flex items-center gap-3 border-b border-terminal-line px-5 py-3.5">
+            <span className="font-mono text-[0.7rem] text-terminal-dim">
               {dexTweaks.arquivo}
             </span>
-            <span className="ml-auto font-mono text-[0.7rem] uppercase tracking-[0.16em] text-foreground-floor">
+            <span className="ml-auto font-mono text-[0.7rem] uppercase tracking-[0.16em] text-terminal-dim">
               Painel principal
             </span>
           </div>
@@ -26,16 +26,16 @@ export default function DexTweaksCard() {
             {dexTweaks.menu.map((item) => (
               <div
                 key={item.key}
-                className="flex items-baseline gap-2 font-mono text-[0.8rem] text-foreground-muted"
+                className="flex items-baseline gap-2 font-mono text-[0.8rem] text-terminal-fg"
               >
-                <span className="text-foreground-floor">[{item.key}]</span>
+                <span className="text-terminal-dim">[{item.key}]</span>
                 <span className="truncate">{item.label}</span>
               </div>
             ))}
           </div>
-          <div className="border-t border-hairline px-5 py-3.5 font-mono text-[0.8rem] text-foreground-dim sm:px-6">
+          <div className="border-t border-terminal-line px-5 py-3.5 font-mono text-[0.8rem] text-terminal-dim sm:px-6">
             Escolha uma opção
-            <span className="ml-1 inline-block h-[1em] w-[0.5em] translate-y-[0.12em] bg-foreground-dim" />
+            <span className="ml-1 inline-block h-[1em] w-[0.5em] translate-y-[0.12em] bg-terminal-dim" />
           </div>
         </div>
 

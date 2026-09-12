@@ -11,18 +11,47 @@ uma delas, diga qual é e por quê.
 
 ## Design system
 
-**Cor — monocromático total. Não existe cor na página.**
-Escala de cinza em `globals.css`, com os contrastes medidos comentados no
-arquivo. A regra que governa tudo:
+**Cor — monocromático total. Não existe cor na página, em nenhum dos temas.**
 
-> Sobre `--background` (#0a0a0a), nada abaixo de `--gray-500` (#8a8a8a, 5,73:1)
-> carrega texto. Do 400 pra baixo os tons só desenham limite e superfície.
+Duas escalas de cinza (`--l-*` clara, `--d-*` escura), ambas sempre declaradas
+em `globals.css`. O que troca entre temas é só a **atribuição dos papéis**.
 
-- Texto: `--foreground` (18,97:1) · `--foreground-muted` (13,36:1) ·
-  `--foreground-dim` (7,85:1) · `--foreground-floor` (5,73:1, piso)
-- Borda de controle e anel de foco: ≥3:1 por WCAG 1.4.11 —
-  `--control-border` e `--ring`
+> **Nenhum componente usa a variante `dark:`.** Tudo lê token de papel, então
+> trocar de tema é trocar valores num arquivo só. Se você se pegar escrevendo
+> `dark:alguma-coisa`, parou — o token certo já existe.
+
+Papéis e contraste medido contra o fundo de cada tema:
+
+| papel | escuro s/ #0a0a0a | claro s/ #fafafa |
+|---|---|---|
+| `--foreground` | #fafafa 18,97:1 | #0a0a0a 18,97:1 |
+| `--foreground-muted` | #d4d4d4 13,36:1 | #404040 9,93:1 |
+| `--foreground-dim` | #a3a3a3 7,85:1 | #525252 7,49:1 |
+| `--foreground-floor` | #8a8a8a 5,73:1 | #737373 **4,54:1** |
+| `--control-border` | #8a8a8a 5,73:1 | #737373 4,54:1 |
+
+**Atenção ao piso no tema claro:** 4,54:1 passa em AA por uma margem mínima.
+Só use `--foreground-floor` em texto de 14px ou mais, ou em elemento não
+textual. Para eyebrow e rótulo pequeno use `--foreground-dim`.
+
 - Nunca usar `text-white/70`, `border-white/10` e afins. Só tokens.
+- Terminal do Dex Tweaks usa `--terminal-*`, que **não** trocam de tema.
+  Console é escuro nos dois; inverter seria inventar algo que não existe.
+
+**Mecânica do tema**
+- Claro é o padrão do `:root`. `@media (prefers-color-scheme: dark)` com
+  `:root:not([data-theme="light"])` cobre o SO escuro. `:root[data-theme="dark"]`
+  cobre a escolha explícita.
+- O script inline no `<head>` do `layout.tsx` roda **antes da primeira pintura**
+  e é obrigatório. Sem ele a página pinta no tema errado e vira depois da
+  hidratação — com 19:1 de contraste esse flash é violento. Não mova para um
+  `useEffect` nem para arquivo externo.
+- `suppressHydrationWarning` no `<html>` é proposital: o script diverge o HTML
+  do servidor do cliente de propósito.
+- O controle tem três estados (Auto / Claro / Escuro), não dois. Auto respeita
+  o SO, que é o que a maioria quer sem tocar em nada.
+- O rótulo é palavra, não ícone de sol e lua. A nav inteira é texto em
+  caixa-alta pequena; um ícone seria o único da página.
 
 **Tipografia**
 - `font-display` = Archivo Black. Títulos e números grandes.
@@ -103,16 +132,17 @@ PC" escreve, e é por isso que ninguém acredita.
 Antes de qualquer remoção: **`git commit` do estado atual.** É o mesmo
 princípio do snapshot no Dex Tweaks — dá pra voltar.
 
-**Remoções**
-- [ ] `src/components/hero15.tsx` — bloco de template não adaptado, com defaults
-      em inglês. Nada importa dele. Era o achado nº 1 do diagnóstico e só fecha
-      quando o arquivo deixa de existir.
-- [ ] `public/resultados/` — 9,7 MB de PNG sem nenhuma referência no código.
-- [ ] Opcional: `src/components/ui/button.tsx` e `src/lib/utils.ts` não são
-      importados em lugar nenhum. Se saírem, sai junto o `@import
-      "shadcn/tailwind.css"` do `globals.css`, o bloco "compat shadcn" dos
-      tokens, o `components.json` e a dependência `shadcn` do `package.json`
-      — que aliás está em `dependencies` sendo uma CLI, o lugar errado.
+**Remoções — FEITAS e commitadas**
+
+`hero15.tsx`, `public/resultados/`, `ui/button.tsx`, `lib/utils.ts` e
+`components.json` foram apagados. O `package.json` ficou com cinco
+dependências: `next`, `react`, `react-dom`, `lucide-react`, `react-icons`.
+
+> **Ao editar `globals.css`, leia o arquivo atual antes de reescrever.**
+> Uma reescrita feita a partir de cópia antiga já reintroduziu o
+> `@import "shadcn/tailwind.css"` depois do pacote ter saído do
+> `package.json` — o build quebra e o erro não é óbvio.
+> A regra vale para qualquer arquivo aqui: ler, depois escrever.
 
 **Conteúdo**
 - [ ] `medicaoRepouso.antes` está vazio, esperando a medição de RAM em repouso

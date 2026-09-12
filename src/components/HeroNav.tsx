@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 type NavLink = { label: string; href: string };
 
@@ -42,18 +43,21 @@ export default function HeroNav({
       </a>
 
       {/* Desktop */}
-      <ul className="hidden items-center gap-8 md:flex">
-        {links.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim transition-colors duration-150 hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="hidden items-center gap-8 md:flex">
+        <ul className="flex items-center gap-8">
+          {links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim transition-colors duration-150 hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <ThemeToggle className="border-l border-hairline pl-8" />
+      </div>
 
       {/* Mobile — antes a navegação simplesmente não existia abaixo de md. */}
       <button
@@ -113,6 +117,13 @@ export default function HeroNav({
             </li>
           ))}
         </ul>
+
+        <div className="mt-auto flex items-center justify-between border-t border-hairline pt-6">
+          <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim">
+            Tema
+          </span>
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );

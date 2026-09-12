@@ -22,13 +22,26 @@ export const metadata: Metadata = {
   description: perfil.resumo,
 };
 
+/*
+  Roda antes da primeira pintura, de forma bloqueante. Sem isso a página
+  pinta no tema errado e vira pro escolhido só depois que o React hidrata —
+  num design de 19:1 de contraste esse flash é violento.
+
+  Precisa ser inline. Um script externo (ou um useEffect) já chega tarde.
+*/
+const scriptTema = `(function(){try{var t=localStorage.getItem('tema');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
       className={`${archivo.variable} ${archivoBlack.variable} h-full`}
+      // O script acima mexe no data-theme antes da hidratação, então o HTML do
+      // servidor e o do cliente divergem de propósito.
+      suppressHydrationWarning
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: scriptTema }} />
         {/*
           Noto Sans JP só para os dois glifos de 改善 (U+6539 U+5584).
           O parâmetro `text` devolve um arquivo de poucos KB em vez da
