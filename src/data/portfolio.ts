@@ -123,31 +123,163 @@ export const statsOtimizacao: StatOtimizacao[] = [
   },
 ];
 
-export type ResultadoOtimizacao = {
-  jogo: string;
-  // Descreve a cena capturada. Com a mesma cena nos dois lados, o par vira
-  // prova; com cenas diferentes, vira só duas capturas.
-  cena?: string;
-  antes: { imagem: string; fps: number };
-  depois: { imagem: string; fps: number };
+/*
+  "O QUE VOCÊ GANHA"
+
+  Sem as capturas de jogo, a seção corre o risco de virar promessa. A defesa
+  contra isso é uma regra de escrita: cada item tem uma AÇÃO (o que eu faço na
+  máquina, verificável) e um EFEITO (o que muda pra quem usa).
+
+  Nenhum item pode existir só com o efeito. "Máquina mais rápida" sem a ação ao
+  lado é exatamente o que todo "otimizador de PC" escreve — e é por isso que
+  ninguém acredita mais.
+*/
+
+export type Ganho = { acao: string; efeito: string };
+export type BlocoGanho = { titulo: string; resumo: string; itens: Ganho[] };
+
+export const ganhos = {
+  eyebrow: "O que você ganha",
+  titulo: "Tudo que eu mexo, você consegue desfazer",
+  intro:
+    "Existe muito otimizador de PC que promete dobrar FPS e não diz o que faz. Aqui é o contrário: cada alteração é listada, medida e reversível. Se algo não compensar na sua máquina, eu falo antes de mexer.",
+  blocos: [
+    {
+      titulo: "Windows sem o que sobra",
+      resumo:
+        "Não é limpeza depois. É uma instalação que nunca chega a ter o que atrapalha.",
+      itens: [
+        {
+          acao: "Mais de 40 apps de fábrica fora já na instalação",
+          efeito:
+            "Copilot, Cortana, Xbox, Teams e OneDrive nunca chegam a existir na máquina. Não tem o que desinstalar depois.",
+        },
+        {
+          acao: "Telemetria desligada desde o primeiro boot",
+          efeito:
+            "Nada coletando e enviando dados em segundo plano enquanto você joga ou trabalha.",
+        },
+        {
+          acao: "Indexação de busca desativada",
+          efeito: "O disco para de trabalhar sozinho no meio da partida.",
+        },
+        {
+          acao: "Hibernação desativada",
+          efeito:
+            "Devolve o espaço do hiberfil.sys, que ocupa o tamanho da sua memória RAM.",
+        },
+        {
+          acao: "Edge removido de verdade, Chrome como padrão",
+          efeito: "Sem o navegador voltando sozinho a cada atualização.",
+        },
+      ],
+    },
+    {
+      titulo: "O painel que eu desenvolvo",
+      resumo:
+        "Dex Tweaks não é script achado na internet. Toda alteração passa por prévia, snapshot e verificação antes de ser gravada.",
+      itens: [
+        {
+          acao: "Seis perfis prontos",
+          efeito:
+            "A máquina é ajustada pro que você faz — competitivo, streaming, notebook ou privacidade — em vez de receber uma configuração genérica.",
+        },
+        {
+          acao: "Snapshot antes de cada alteração",
+          efeito:
+            "Deu ruim, volta. É o que separa isso de um otimizador que você baixa e reza.",
+        },
+        {
+          acao: "Histórico de alterações",
+          efeito:
+            "Você vê exatamente o que foi mexido na sua máquina, item por item.",
+        },
+        {
+          acao: "Modo Especialista para BCD e Defender",
+          efeito:
+            "O que é arriscado fica atrás de uma trava, com confirmação. Nada perigoso é aplicado escondido.",
+        },
+        {
+          acao: "Benchmark integrado",
+          efeito:
+            "O ganho é medido antes e depois, na sua máquina. Não é promessa minha, é número seu.",
+        },
+      ],
+    },
+    {
+      titulo: "Ajuste de BIOS",
+      resumo:
+        "A configuração de fábrica é conservadora de propósito. Ela protege a placa, não o seu desempenho.",
+      itens: [
+        {
+          acao: "Perfil de memória ativado",
+          efeito:
+            "Muita RAM vendida como 3200 MHz roda a 2133 direto da caixa. Ativar o perfil é desempenho que você já pagou e não está usando.",
+        },
+        {
+          acao: "Curva de energia da CPU",
+          efeito:
+            "A CPU deixa de ser segurada por um limite conservador de fábrica.",
+        },
+        {
+          acao: "Overclock com teste de estabilidade",
+          efeito: "Ganho que trava não é ganho. Só entrego o que passou no teste.",
+        },
+        {
+          acao: "Diagnóstico de gargalo antes de mexer",
+          efeito:
+            "Onde a máquina está presa — e se compensa mexer. Às vezes a resposta é não, e eu digo.",
+        },
+      ],
+    },
+  ] satisfies BlocoGanho[],
 };
 
-export const resultadosOtimizacao: ResultadoOtimizacao[] = [
-  {
-    jogo: "Red Dead Redemption 2",
-    antes: { imagem: "/resultados/rdr2-antes.png", fps: 62 },
-    depois: { imagem: "/resultados/rdr2-depois.png", fps: 104 },
-  },
-  {
-    jogo: "Spider-Man 2",
-    antes: { imagem: "/resultados/spiderman-antes.png", fps: 54 },
-    depois: { imagem: "/resultados/spiderman-depois.png", fps: 114 },
-  },
-];
+/*
+  Medição de memória em repouso. É a prova mais honesta que existe aqui:
+  mesma máquina, mesmo momento depois do boot, nada aberto. Não tem cena,
+  clima nem placa de vídeo pra atrapalhar — só medir duas vezes.
 
-export const provaOtimizacao = {
-  eyebrow: "Resultados reais",
-  titulo: "Mesma máquina, mesmo jogo, antes e depois",
+  Preencha `antes` com o valor medido ANTES da otimização (restaure o snapshot
+  pelo Dex Tweaks, reinicie, e olhe o Gerenciador de Tarefas). Enquanto estiver
+  vazio, o bloco não renderiza.
+*/
+export const medicaoRepouso = {
+  rotulo: "Memória em uso após o boot, sem nada aberto",
+  antes: "",
+  depois: "2,6 GB",
+  total: "15,9 GB",
+  nota: "Medido numa instalação feita com o autounattend.xml + Dex Tweaks.",
+};
+
+/*
+  PROVA VISUAL — desligada até existir captura legítima.
+
+  Renderiza só quando as duas imagens estiverem preenchidas. O slot já está
+  montado e posicionado; é só apontar os arquivos.
+
+  O que a captura precisa ter, pra valer como prova em vez de ilustração:
+
+  1. MESMA CENA nos dois lados. Use o benchmark integrado do RDR2 — cinco
+     cenas, sendo a quinta (assalto + cavalgada pela cidade, 130s) a única
+     pesada e a única representativa. Clima, horário e câmera ficam travados.
+  2. MESMO INSTANTE da sequência. Grave as duas rodadas em vídeo e extraia o
+     frame do mesmo timestamp — acertar o print na mão não funciona.
+  3. DOIS ARQUIVOS separados, não uma imagem composta. O layout empilha no
+     celular e separa no desktop.
+  4. Sem lupa no print. O número grande vive aqui na interface; o contador
+     pequeno do jogo fica na imagem como comprovante.
+  5. Preset e resolução no campo `cena`, pra fechar a brecha do "e se ele
+     baixou os gráficos?".
+
+  Pra ter o estado "antes": restaure o snapshot pelo Backup/Restore do próprio
+  Dex Tweaks, rode o benchmark, aplique o perfil, rode de novo.
+*/
+export const provaVisual = {
+  jogo: "Red Dead Redemption 2",
+  cena: "", // ex.: "Benchmark integrado · cena 5 · Preset Alto · 1080p"
+  antes: { imagem: "", fps: 0 },
+  depois: { imagem: "", fps: 0 },
 };
 
 export type Servico = {

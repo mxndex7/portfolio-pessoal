@@ -1,9 +1,17 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
-import { provaOtimizacao, resultadosOtimizacao, servicos } from "@/data/portfolio";
+import {
+  ganhos,
+  medicaoRepouso,
+  provaVisual,
+  servicos,
+} from "@/data/portfolio";
 import Section from "./Section";
 
 export default function Services() {
+  const temProvaVisual =
+    provaVisual.antes.imagem !== "" && provaVisual.depois.imagem !== "";
+
   return (
     <Section id="servicos" eyebrow="Serviços" titulo="O que eu resolvo">
       {/*
@@ -62,82 +70,156 @@ export default function Services() {
         ))}
       </div>
 
-      {/* A prova, depois da oferta. */}
-      <div className="mt-20 border-t border-rule pt-14">
+      {/* O que você ganha — ação de um lado, efeito do outro. */}
+      <div className="mt-24 border-t border-rule pt-16">
         <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-foreground-dim">
-          {provaOtimizacao.eyebrow}
+          {ganhos.eyebrow}
         </p>
-        <h3 className="mt-3 max-w-xl font-display text-2xl uppercase leading-[0.95] tracking-[-0.02em] text-foreground sm:text-3xl">
-          {provaOtimizacao.titulo}
+        <h3 className="mt-3 max-w-2xl font-display text-3xl uppercase leading-[0.95] tracking-[-0.03em] text-foreground sm:text-4xl">
+          {ganhos.titulo}
         </h3>
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground-muted">
+          {ganhos.intro}
+        </p>
 
-        <div className="mt-10 flex flex-col gap-8">
-          {resultadosOtimizacao.map((resultado) => {
-            const ganho = resultado.depois.fps - resultado.antes.fps;
-            return (
-              <figure key={resultado.jogo} className="border border-hairline">
-                <figcaption className="flex flex-wrap items-baseline justify-between gap-3 border-b border-hairline px-6 py-4">
-                  <span className="font-display text-base uppercase tracking-[-0.01em] text-foreground">
-                    {resultado.jogo}
-                    {resultado.cena ? (
-                      <span className="ml-3 font-sans text-xs font-normal normal-case tracking-normal text-foreground-dim">
-                        {resultado.cena}
+        {medicaoRepouso.antes ? (
+          <div className="mt-12 flex flex-col gap-6 border border-hairline p-7 sm:flex-row sm:items-end sm:justify-between sm:p-9">
+            <div>
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-foreground-dim">
+                {medicaoRepouso.rotulo}
+              </p>
+              <p className="mt-2 max-w-md text-xs leading-relaxed text-foreground-dim">
+                {medicaoRepouso.nota}
+              </p>
+            </div>
+            <div className="flex shrink-0 items-end gap-5 sm:gap-8">
+              <div>
+                <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-foreground-dim">
+                  Antes
+                </p>
+                <p className="mt-1 font-display text-3xl leading-none tabular-nums text-foreground-dim sm:text-4xl">
+                  {medicaoRepouso.antes}
+                </p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="pb-2 font-display text-2xl leading-none text-foreground-floor"
+              >
+                →
+              </span>
+              <div>
+                <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-foreground-dim">
+                  Depois
+                </p>
+                <p className="mt-1 font-display text-3xl leading-none tabular-nums text-foreground sm:text-4xl">
+                  {medicaoRepouso.depois}
+                </p>
+                <p className="mt-1 font-mono text-[0.6rem] text-foreground-dim">
+                  de {medicaoRepouso.total}
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        {/*
+          Prova visual. O slot já está montado — renderiza assim que as duas
+          imagens existirem em `provaVisual`. Ver o comentário no portfolio.ts
+          para o que a captura precisa ter.
+        */}
+        {temProvaVisual ? (
+          <figure className="mt-6 border border-hairline">
+            <figcaption className="flex flex-wrap items-baseline justify-between gap-3 border-b border-hairline px-6 py-4">
+              <span className="font-display text-base uppercase tracking-[-0.01em] text-foreground">
+                {provaVisual.jogo}
+              </span>
+              {provaVisual.cena ? (
+                <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-foreground-dim">
+                  {provaVisual.cena}
+                </span>
+              ) : null}
+            </figcaption>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              {(
+                [
+                  ["Antes", provaVisual.antes],
+                  ["Depois", provaVisual.depois],
+                ] as const
+              ).map(([rotulo, dados], i) => (
+                <div
+                  key={rotulo}
+                  className={
+                    i === 0
+                      ? "border-b border-hairline sm:border-b-0 sm:border-r"
+                      : ""
+                  }
+                >
+                  {/*
+                    O número vive na interface, em tipo grande — não dentro da
+                    imagem. É por isso que a lupa não precisa existir: o
+                    contador do jogo fica no print como comprovante, e a
+                    leitura fica aqui, no tamanho que a gente quiser.
+                  */}
+                  <div className="flex items-end justify-between gap-4 px-6 pt-5">
+                    <span className="pb-1 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-foreground-dim">
+                      {rotulo}
+                    </span>
+                    <span className="font-display text-4xl leading-none tabular-nums text-foreground">
+                      {dados.fps}
+                      <span className="ml-1.5 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-foreground-dim">
+                        FPS
                       </span>
-                    ) : null}
-                  </span>
-                  <span className="font-mono text-sm tabular-nums text-foreground-muted">
-                    {resultado.antes.fps} → {resultado.depois.fps} FPS
-                    <span className="ml-3 text-foreground">+{ganho}</span>
-                  </span>
-                </figcaption>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2">
-                  {(
-                    [
-                      ["Antes", resultado.antes],
-                      ["Depois", resultado.depois],
-                    ] as const
-                  ).map(([rotulo, dados], i) => (
-                    <div
-                      key={rotulo}
-                      className={
-                        i === 0
-                          ? "border-b border-hairline sm:border-b-0 sm:border-r"
-                          : ""
-                      }
-                    >
-                      {/*
-                        O número vive na interface, em tipo grande — não dentro
-                        da imagem. É por isso que a lupa não precisa existir: o
-                        contador do jogo continua no print como comprovante, e
-                        a leitura fica aqui, no tamanho que a gente quiser.
-                      */}
-                      <div className="flex items-end justify-between gap-4 px-6 pt-5">
-                        <span className="pb-1 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-foreground-dim">
-                          {rotulo}
-                        </span>
-                        <span className="font-display text-4xl leading-none tabular-nums text-foreground">
-                          {dados.fps}
-                          <span className="ml-1.5 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-foreground-dim">
-                            FPS
-                          </span>
-                        </span>
-                      </div>
-                      <div className="relative m-6 aspect-video overflow-hidden bg-surface">
-                        <Image
-                          src={dados.imagem}
-                          alt={`${resultado.jogo} ${rotulo.toLowerCase()} da otimização — ${dados.fps} FPS`}
-                          fill
-                          sizes="(min-width: 640px) 50vw, 100vw"
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    </span>
+                  </div>
+                  <div className="relative m-6 aspect-video overflow-hidden bg-surface">
+                    <Image
+                      src={dados.imagem}
+                      alt={`${provaVisual.jogo}, ${rotulo.toLowerCase()} da otimização — ${dados.fps} FPS`}
+                      fill
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-              </figure>
-            );
-          })}
+              ))}
+            </div>
+          </figure>
+        ) : null}
+
+        <div className="mt-14 flex flex-col gap-14">
+          {ganhos.blocos.map((bloco) => (
+            <div
+              key={bloco.titulo}
+              className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16"
+            >
+              <div>
+                <h4 className="font-display text-xl uppercase leading-tight tracking-[-0.02em] text-foreground">
+                  {bloco.titulo}
+                </h4>
+                <p className="mt-3 text-sm leading-relaxed text-foreground-dim">
+                  {bloco.resumo}
+                </p>
+              </div>
+
+              {/* Ação à esquerda (verificável), efeito à direita (o que se sente). */}
+              <dl className="border-t border-hairline">
+                {bloco.itens.map((item) => (
+                  <div
+                    key={item.acao}
+                    className="grid grid-cols-1 gap-2 border-b border-hairline py-5 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-8"
+                  >
+                    <dt className="text-sm font-semibold leading-snug text-foreground">
+                      {item.acao}
+                    </dt>
+                    <dd className="text-sm leading-relaxed text-foreground-dim">
+                      {item.efeito}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))}
         </div>
       </div>
     </Section>
