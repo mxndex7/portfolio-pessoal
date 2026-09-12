@@ -244,18 +244,56 @@
 
 .wordmark-box {
   container-type: inline-size;
+  /* Contêiner de posicionamento do kanji: é daqui que a distância é medida. */
+  position: relative;
+}
+
+/* ---------------------------------------------------------------
+   改善
+
+   Ancorado no RODAPÉ DO WORDMARK (`top: 100%`), não na altura da
+   viewport. Antes era `top: 66%` da tela — por isso no celular, com
+   852px de altura, ele descia muito e abria um vão enorme: a
+   distância não era medida a partir do nome.
+
+   Tamanho em `cqw` pelo mesmo motivo: escala junto com o MENDES, que
+   também é cqw. A trava em `svh` só evita que ele estoure a tela em
+   viewport baixa e larga.
+
+   A 40cqw os dois glifos ocupam ~80% da largura do contêiner, então
+   cabem numa linha só em qualquer tela — não precisa quebrar no
+   celular.
+   --------------------------------------------------------------- */
+.kanji-mark {
+  position: absolute;
+  top: calc(100% + clamp(10px, 3cqw, 44px));
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: min(40cqw, 38svh);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--watermark);
+  pointer-events: none;
+  user-select: none;
 }
 
 .wordmark {
+  /* Fica acima do kanji na ordem de pintura. */
+  position: relative;
   font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   font-weight: var(--display-wght);
   font-stretch: calc(var(--display-wdth) * 1%);
   /*
-    CALIBRADO. 24cqw era o valor da Archivo Black em largura normal; a face
-    esticada (font-stretch 125%) ocupa mais por caractere, então 18cqw é o
-    valor medido em que MENDES encosta nas duas margens sem estourar —
-    testado de 320px a 1440px de viewport. Se trocar --display-wdth ou o
-    texto do wordmark, recalibrar de 0,5 em 0,5 com o dev server aberto.
+    18cqw é o maior valor que não estoura a margem — medido com Range API
+    (a caixa de texto real, não a largura de bloco de .wordmark) em 326px,
+    400px e 1440px de viewport. 19cqw parece OK no olho porque o hero tem
+    overflow-hidden e o excesso só é cortado, mas mede ~3,5% de estouro em
+    qualquer largura (é cqw — a proporção não muda com o viewport).
+    (24cqw era da Archivo Black; a face esticada ocupa mais por letra.)
+    Se trocar a fonte ou o tracking, recalibre de 0,5 em 0,5 com o dev
+    server aberto e confira com getBoundingClientRect, não só no olho.
   */
   font-size: 18cqw;
   line-height: 0.78;
