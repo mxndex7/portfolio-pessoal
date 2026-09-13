@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Check } from "lucide-react";
 import {
   ganhos,
   medicaoRepouso,
@@ -15,8 +14,9 @@ export default function Services() {
   return (
     <Section id="servicos" eyebrow="Serviços" titulo="O que eu resolvo">
       {/*
-        Cards antes da prova. Antes a seção abria com gráficos de FPS, ou seja,
-        mostrava a evidência antes de dizer o que estava sendo oferecido.
+        O card faz o trabalho de comparação: nome, descrição, preço, botão.
+        A lista de recursos saiu — ela repetia item por item o que a seção
+        "O que você ganha" diz logo abaixo.
       */}
       <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
         {servicos.map((servico) => (
@@ -27,27 +27,11 @@ export default function Services() {
             <h3 className="font-display text-lg uppercase leading-tight tracking-[-0.02em] text-foreground">
               {servico.titulo}
             </h3>
-            <p className="mt-4 text-sm leading-relaxed text-foreground-dim">
+            <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground-dim">
               {servico.descricao}
             </p>
 
-            <ul className="mt-7 flex-1 space-y-3 border-t border-hairline pt-6">
-              {servico.recursos.map((recurso) => (
-                <li
-                  key={recurso}
-                  className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground-dim"
-                >
-                  <Check
-                    aria-hidden="true"
-                    className="mt-0.5 size-4 shrink-0 text-foreground-floor"
-                    strokeWidth={2}
-                  />
-                  {recurso}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-7 border-t border-hairline pt-6">
+            <div className="mt-8 border-t border-hairline pt-6">
               <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-foreground-dim">
                 A partir de
               </p>
@@ -70,7 +54,7 @@ export default function Services() {
         ))}
       </div>
 
-      {/* O que você ganha — ação de um lado, efeito do outro. */}
+      {/* O que você ganha — ação em cima, efeito embaixo. */}
       <div className="mt-24 border-t border-rule pt-16">
         <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-foreground-dim">
           {ganhos.eyebrow}
@@ -157,9 +141,7 @@ export default function Services() {
                 >
                   {/*
                     O número vive na interface, em tipo grande — não dentro da
-                    imagem. É por isso que a lupa não precisa existir: o
-                    contador do jogo fica no print como comprovante, e a
-                    leitura fica aqui, no tamanho que a gente quiser.
+                    imagem. O contador do jogo fica no print como comprovante.
                   */}
                   <div className="flex items-end justify-between gap-4 px-6 pt-5">
                     <span className="pb-1 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-foreground-dim">
@@ -187,32 +169,28 @@ export default function Services() {
           </figure>
         ) : null}
 
-        <div className="mt-14 flex flex-col gap-14">
-          {ganhos.blocos.map((bloco) => (
-            <div
-              key={bloco.titulo}
-              className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16"
-            >
-              <div>
-                <h4 className="font-display text-xl uppercase leading-tight tracking-[-0.02em] text-foreground">
-                  {bloco.titulo}
-                </h4>
-                <p className="mt-3 text-sm leading-relaxed text-foreground-dim">
-                  {bloco.resumo}
-                </p>
-              </div>
+        {/*
+          Três grupos lado a lado, agrupados por VERBO (sai / ajusto / volta) e
+          não por produto. Empilhados em linhas, a seção ocupava cerca de três
+          vezes esta altura para dizer o mesmo — e cada bloco arrastava uma
+          coluna esquerda vazia.
 
-              {/* Ação à esquerda (verificável), efeito à direita (o que se sente). */}
-              <dl className="border-t border-hairline">
-                {bloco.itens.map((item) => (
-                  <div
-                    key={item.acao}
-                    className="grid grid-cols-1 gap-2 border-b border-hairline py-5 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-8"
-                  >
-                    <dt className="text-sm font-semibold leading-snug text-foreground">
+          O título de grupo é mono com fio embaixo: lê como cabeçalho de coluna,
+          na mesma língua dos rótulos técnicos do resto da página.
+        */}
+        <div className="mt-16 grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {ganhos.grupos.map((grupo) => (
+            <div key={grupo.titulo}>
+              <h4 className="border-b border-hairline pb-3 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-foreground">
+                {grupo.titulo}
+              </h4>
+              <dl className="mt-6 flex flex-col gap-7">
+                {grupo.itens.map((item) => (
+                  <div key={item.acao}>
+                    <dt className="text-[0.95rem] font-semibold leading-snug text-foreground">
                       {item.acao}
                     </dt>
-                    <dd className="text-sm leading-relaxed text-foreground-dim">
+                    <dd className="mt-1.5 text-sm leading-relaxed text-foreground-dim">
                       {item.efeito}
                     </dd>
                   </div>

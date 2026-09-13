@@ -65,11 +65,10 @@ largura 125. Archivo Black saiu — não é mais necessário.
   largura junto. Componente continua escrevendo só `font-display`.
 - Ajuste a largura em `--display-wdth` (125 = máximo; 112.5 = semi-expanded).
 - `font-sans` = Archivo. Texto.
-- **`.wordmark` calibrado em 18cqw.** A face esticada (font-stretch 125%)
-  ocupa mais por caractere que a Archivo Black (24cqw). Medido de 320px a
-  1440px de viewport: MENDES encosta nas duas margens sem estourar. Se trocar
-  `--display-wdth` ou o texto do wordmark, recalibrar de 0,5 em 0,5 com o dev
-  server aberto.
+- **`.wordmark` tem tamanho a calibrar no olho.** A face esticada ocupa ~20% a
+  mais por caractere que a Archivo Black, então o valor caiu de 24cqw para
+  20cqw como ponto de partida. O certo é aquele em que MENDES encosta nas duas
+  margens sem estourar — ajuste de 0,5 em 0,5 com o dev server aberto.
 - `font-mono` = eyebrows, rótulos, dados tabulares (`tabular-nums`).
 - `font-jp` = Noto Sans JP 900, **só** para os dois glifos de 改善 no hero.
   Carregado por `<link>` com subset `&text=` no `layout.tsx` — não trocar por
@@ -115,6 +114,19 @@ As duas pontas → O que eu construí → O que eu resolvo → O que precisa ser
 máquina, verificável) e um EFEITO (o que muda pra quem usa). Nenhum item pode
 existir só com o efeito — benefício sem mecanismo é o que todo "otimizador de
 PC" escreve, e é por isso que ninguém acredita.
+
+**Um fato aparece na página uma vez só.** A seção já teve os mesmos itens duas
+vezes: comprimidos nos recursos dos cards de Serviços e expandidos em "O que
+você ganha". Dava a impressão de ênfase exagerada, mas era só duplicação
+ocupando o dobro do espaço. Por isso os cards não têm lista de recursos: eles
+fazem comparação (nome, descrição, preço, botão) e o detalhe vive em um lugar.
+
+**"O que você ganha" agrupa por MÉTODO, não por produto** — O que sai / O que
+eu ajusto / Como dá pra voltar. Agrupar por produto (Windows / painel / BIOS)
+repete o eixo dos cards e a seção vira uma segunda lista de serviços. Por verbo,
+ela explica como o trabalho é feito, que é o que os cards não dizem.
+Três colunas lado a lado, não blocos empilhados: empilhado ocupava o triplo da
+altura e cada bloco arrastava uma coluna esquerda vazia.
 
 ---
 

@@ -126,113 +126,100 @@ export const statsOtimizacao: StatOtimizacao[] = [
 /*
   "O QUE VOCÊ GANHA"
 
-  Sem as capturas de jogo, a seção corre o risco de virar promessa. A defesa
-  contra isso é uma regra de escrita: cada item tem uma AÇÃO (o que eu faço na
-  máquina, verificável) e um EFEITO (o que muda pra quem usa).
+  Duas regras governam esta seção:
 
-  Nenhum item pode existir só com o efeito. "Máquina mais rápida" sem a ação ao
-  lado é exatamente o que todo "otimizador de PC" escreve — e é por isso que
-  ninguém acredita mais.
+  1. REGRA DE ESCRITA. Cada item tem uma AÇÃO (o que é feito na máquina,
+     verificável) e um EFEITO (o que muda pra quem usa). Nenhum item pode
+     existir só com o efeito — benefício sem mecanismo é o que todo
+     "otimizador de PC" escreve, e é por isso que ninguém acredita.
+
+  2. AGRUPAMENTO POR MÉTODO, NÃO POR PRODUTO. Antes os grupos eram Windows /
+     painel / BIOS, que é o mesmo eixo dos cards de Serviços — então a seção
+     lia como uma segunda versão da lista de serviços, dizendo os mesmos fatos
+     de novo. Agrupado por verbo (sai / ajusto / volta), ela passa a explicar
+     COMO o trabalho é feito, o que os cards não dizem.
+
+  Os cards de Serviços perderam a lista de recursos justamente por isso: o
+  detalhe vive aqui, uma vez só.
 */
 
 export type Ganho = { acao: string; efeito: string };
-export type BlocoGanho = { titulo: string; resumo: string; itens: Ganho[] };
+export type GrupoGanho = { titulo: string; itens: Ganho[] };
 
 export const ganhos = {
   eyebrow: "O que você ganha",
   titulo: "Tudo que eu mexo, você consegue desfazer",
   intro:
     "Existe muito otimizador de PC que promete dobrar FPS e não diz o que faz. Aqui é o contrário: cada alteração é listada, medida e reversível. Se algo não compensar na sua máquina, eu falo antes de mexer.",
-  blocos: [
+  grupos: [
     {
-      titulo: "Windows sem o que sobra",
-      resumo:
-        "Não é limpeza depois. É uma instalação que nunca chega a ter o que atrapalha.",
+      titulo: "O que sai",
       itens: [
         {
-          acao: "Mais de 40 apps de fábrica fora já na instalação",
+          acao: "Mais de 40 apps de fábrica",
           efeito:
-            "Copilot, Cortana, Xbox, Teams e OneDrive nunca chegam a existir na máquina. Não tem o que desinstalar depois.",
+            "Copilot, Cortana, Xbox, Teams e OneDrive nunca chegam a existir na máquina.",
         },
         {
-          acao: "Telemetria desligada desde o primeiro boot",
+          acao: "Telemetria",
+          efeito: "Nada enviando dados em segundo plano enquanto você joga.",
+        },
+        {
+          acao: "Indexação e hibernação",
           efeito:
-            "Nada coletando e enviando dados em segundo plano enquanto você joga ou trabalha.",
+            "O disco para de trabalhar sozinho, e o hiberfil.sys devolve o tamanho da sua RAM.",
         },
         {
-          acao: "Indexação de busca desativada",
-          efeito: "O disco para de trabalhar sozinho no meio da partida.",
-        },
-        {
-          acao: "Hibernação desativada",
+          acao: "Edge, de verdade",
           efeito:
-            "Devolve o espaço do hiberfil.sys, que ocupa o tamanho da sua memória RAM.",
-        },
-        {
-          acao: "Edge removido de verdade, Chrome como padrão",
-          efeito: "Sem o navegador voltando sozinho a cada atualização.",
+            "Sem o navegador voltando sozinho a cada atualização. Chrome como padrão.",
         },
       ],
     },
     {
-      titulo: "O painel que eu desenvolvo",
-      resumo:
-        "Dex Tweaks não é script achado na internet. Toda alteração passa por prévia, snapshot e verificação antes de ser gravada.",
+      titulo: "O que eu ajusto",
       itens: [
         {
-          acao: "Seis perfis prontos",
+          acao: "Perfil pelo uso da máquina",
           efeito:
-            "A máquina é ajustada pro que você faz — competitivo, streaming, notebook ou privacidade — em vez de receber uma configuração genérica.",
+            "Competitivo, streaming, notebook ou privacidade. Nada de configuração genérica.",
         },
+        {
+          acao: "Perfil de memória na BIOS",
+          efeito:
+            "RAM vendida como 3200 MHz costuma rodar a 2133 de fábrica. É desempenho que você já pagou.",
+        },
+        {
+          acao: "Curva de energia e overclock",
+          efeito:
+            "Com teste de estabilidade antes de entregar. Ganho que trava não é ganho.",
+        },
+      ],
+    },
+    {
+      titulo: "Como dá pra voltar",
+      itens: [
         {
           acao: "Snapshot antes de cada alteração",
           efeito:
             "Deu ruim, volta. É o que separa isso de um otimizador que você baixa e reza.",
         },
         {
-          acao: "Histórico de alterações",
-          efeito:
-            "Você vê exatamente o que foi mexido na sua máquina, item por item.",
+          acao: "Histórico item por item",
+          efeito: "Você vê exatamente o que foi mexido na sua máquina.",
         },
         {
-          acao: "Modo Especialista para BCD e Defender",
+          acao: "Modo Especialista",
           efeito:
-            "O que é arriscado fica atrás de uma trava, com confirmação. Nada perigoso é aplicado escondido.",
+            "BCD e Defender ficam atrás de uma trava. Nada perigoso é aplicado escondido.",
         },
         {
-          acao: "Benchmark integrado",
-          efeito:
-            "O ganho é medido antes e depois, na sua máquina. Não é promessa minha, é número seu.",
+          acao: "Benchmark antes e depois",
+          efeito: "Medido na sua máquina. Não é promessa minha, é número seu.",
         },
       ],
     },
-    {
-      titulo: "Ajuste de BIOS",
-      resumo:
-        "A configuração de fábrica é conservadora de propósito. Ela protege a placa, não o seu desempenho.",
-      itens: [
-        {
-          acao: "Perfil de memória ativado",
-          efeito:
-            "Muita RAM vendida como 3200 MHz roda a 2133 direto da caixa. Ativar o perfil é desempenho que você já pagou e não está usando.",
-        },
-        {
-          acao: "Curva de energia da CPU",
-          efeito:
-            "A CPU deixa de ser segurada por um limite conservador de fábrica.",
-        },
-        {
-          acao: "Overclock com teste de estabilidade",
-          efeito: "Ganho que trava não é ganho. Só entrego o que passou no teste.",
-        },
-        {
-          acao: "Diagnóstico de gargalo antes de mexer",
-          efeito:
-            "Onde a máquina está presa — e se compensa mexer. Às vezes a resposta é não, e eu digo.",
-        },
-      ],
-    },
-  ] satisfies BlocoGanho[],
+  ] satisfies GrupoGanho[],
 };
 
 /*
@@ -287,15 +274,19 @@ export type Servico = {
   descricao: string;
   preco: string;
   precoNota?: string;
-  recursos: string[];
 };
 
 /*
-  Preços como âncora ("a partir de"), não como tabela fechada.
-  Referência de mercado 2026: formatação + Windows + drivers fica em
-  R$ 100–200 e limpeza + otimização em R$ 150–300, com teto de mercado
-  perto de R$ 600. O que sai dessa faixa é o Dex Tweaks e a instalação
-  desassistida própria — ninguém mais entrega isso por R$ 150.
+  O card faz o trabalho de comparação: nome, uma descrição, preço e botão.
+  Três coisas comparáveis de relance.
+
+  A lista de recursos saiu de propósito — ela repetia, item por item, o que a
+  seção "O que você ganha" já diz logo abaixo. Detalhe em um lugar só.
+
+  Preços como âncora ("a partir de"), não tabela fechada. Referência de mercado
+  2026: formatação + Windows + drivers em R$ 100–200, limpeza + otimização em
+  R$ 150–300, teto perto de R$ 600. O que sai dessa faixa é o Dex Tweaks e a
+  instalação desassistida própria.
 */
 export const servicos: Servico[] = [
   {
@@ -303,38 +294,19 @@ export const servicos: Servico[] = [
     descricao:
       "Instalação desassistida de Windows 10/11 que eu mesmo configurei, mais o Dex Tweaks aplicado por perfil. A máquina sai leve, previsível e sem telemetria — e com ponto de restauração antes de qualquer ajuste.",
     preco: "R$ 280",
-    recursos: [
-      "Instalação desassistida: Chrome como padrão, Edge removido de verdade",
-      "Mais de 40 apps e serviços de fábrica fora (Copilot, Cortana, Xbox, Teams...)",
-      "Telemetria, indexação e hibernação desativadas desde o primeiro boot",
-      "Perfil do Dex Tweaks escolhido pelo uso da máquina",
-      "Snapshot e ponto de restauração antes de gravar qualquer alteração",
-    ],
   },
   {
     titulo: "Otimização & Overclock",
     descricao:
       "Ajuste de BIOS e overclock de CPU e memória, com teste de estabilidade antes de entregar. Benchmark antes e depois, pra você ver o que mudou em número.",
     preco: "R$ 180",
-    recursos: [
-      "Ajustes de BIOS e curva de energia",
-      "Overclock de CPU/RAM com teste de estabilidade",
-      "Benchmark antes e depois, registrado",
-      "Diagnóstico de gargalo: onde a máquina está presa e por quê",
-    ],
   },
   {
     titulo: "Montagem de PC",
     descricao:
-      "Montagem da máquina, da escolha das peças ao cabeamento. Inclui a instalação do sistema já otimizado.",
+      "Montagem da máquina, da escolha das peças ao cabeamento. Inclui a instalação do sistema já otimizado e teste de temperatura sob carga.",
     preco: "R$ 200",
     precoNota: "Mão de obra. Peças à parte.",
-    recursos: [
-      "Escolha de peças compatíveis pro seu orçamento",
-      "Montagem organizada e cabeamento limpo",
-      "Teste de estabilidade e temperatura sob carga",
-      "Sistema operacional otimizado já incluso",
-    ],
   },
 ];
 
