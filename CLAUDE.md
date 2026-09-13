@@ -9,6 +9,22 @@ uma delas, diga qual é e por quê.
 
 ---
 
+## Divisão de ferramentas
+
+- Claude chat e Cowork: análise, verificação, opinião, decisão conjunta e
+  redação de prompts. Não escrevem em nenhum arquivo deste repositório.
+- Claude Code: única ferramenta que altera código, arquivos e CLAUDE.md.
+- Decisão tomada no chat/Cowork chega aqui como bloco de texto colado pelo
+  Guilherme. Ao receber um bloco desses, grave no CLAUDE.md antes de aplicar
+  no código — o registro vem primeiro, a implementação depois.
+- Se um bloco parecer incompleto ou conflitar com o que já está no CLAUDE.md,
+  pergunte antes de implementar.
+- Registre no CLAUDE.md apenas decisões que valem para todo o projeto
+  (cor, tipografia, voz, acessibilidade, processo). Ajuste pontual de
+  componente não vai para o CLAUDE.md — entra direto no código.
+
+---
+
 ## Design system
 
 **Cor — monocromático total. Não existe cor na página, em nenhum dos temas.**
