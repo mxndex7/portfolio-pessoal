@@ -121,7 +121,8 @@ largura 125. Archivo Black saiu — não é mais necessário.
 Linha do hero: *"Do primeiro commit ao último serviço desativado."*
 
 Títulos de seção formam um conjunto, nesta ordem:
-As duas pontas → O que eu construí → O que eu resolvo → O que precisa ser resolvido?
+As duas pontas → O que eu construí → O que eu resolvo → Como ficaria a sua →
+O que precisa ser resolvido?
 
 **Proibido:** "transformar ideias em", "vamos conversar", "soluções",
 "investimento" como eufemismo de preço, e qualquer adjetivo sem ação ao lado.
@@ -156,6 +157,98 @@ altura e cada bloco arrastava uma coluna esquerda vazia.
 - Projetos: seção aberta de propósito. Dex Tweaks ocupa a primeira posição sem
   definir a seção; `projetosEmProducao` preenche o resto da grade de quatro.
   Projeto que entra em `projetos` toma o lugar de um slot.
+
+**Card do Dex Tweaks — captura real, não mock recriado.** O painel do
+`DexTweaksCard` era um mock em HTML/CSS (grade de menu numerado desenhada com
+tokens `--terminal-*`). Trocado por `next/image` com a captura real do painel
+(`public/casos/dex-tweaks-capa.webp`), pelo mesmo motivo de "Como ficaria a
+sua": real sem cortar informação vale mais que recriado. Proporção nativa do
+painel é ~2,02:1 (bem mais baixa que os 16:10 das outras capas) — mantida sem
+recorte forçado, com `aspect-[519/257]` e `object-contain`.
+
+**Remapeamento de cor da captura.** A paleta de origem do Dex Tweaks (fundo
+`#0c0c0c`, texto `#cccccc`, azul `#3b78ff`, vermelho `#e74856`) não existe nos
+tokens do site — monocromático total não abre exceção pra imagem. Em vez de
+dessaturar genericamente, cada cor da captura é remapeada 1:1 para o token de
+papel mais próximo antes de virar `.webp`: fundo → `--terminal-bg` (preto
+puro), texto branco e vermelho → `--terminal-fg`, azul → `--terminal-dim`. O
+vermelho vira `--terminal-fg` (não um tom mais escuro) porque na imagem de
+origem ele marca só rótulo e cursor, mesmo peso visual do texto branco — dar
+um tom próprio a ele reintroduziria hierarquia por cor, que é o que a regra
+monocromática proíbe.
+
+---
+
+## Seção "Como ficaria a sua"
+
+Seção nova, dedicada ao serviço de landing pages e sites. **Não** fica dentro
+de "O que eu construí" — aquela seção é sobre o que eu construí para mim; esta
+é sobre o que eu faço para cliente. Misturar as duas confunde trabalho próprio
+com peça de demonstração.
+
+**Posição:** logo depois de "O que eu resolvo". A prova chega no momento em
+que o visitante acabou de ler o serviço e está em dúvida.
+
+**Título:** "Como ficaria a sua" — interpela o visitante, no mesmo movimento
+do fechamento interrogativo, e já deixa implícito que são demonstrações, não
+carteira de clientes.
+
+**As três peças** — landing pages fictícias, uma por público-alvo do serviço:
+
+| Peça | Público | A decisão que a peça carrega |
+|---|---|---|
+| Argila | Clínicas | A página explica por que não tem antes e depois (Resolução CFM 2.336/2023) |
+| Renata Bastos | Profissionais autônomos | Não vende nem mostra preço, porque a OAB proíbe — então informa (Provimento 205/2021) |
+| Cerne | Pequenos negócios | Abre admitindo que a madeira se move, em vez de prometer que não |
+
+Cada uma tem identidade visual própria e deliberadamente sem parentesco com as
+outras — paleta, tipografia, arquitetura de página e tipo de peça gráfica são
+diferentes nas três. **Isso é o argumento da seção**: a mesma pessoa entrega
+registros visuais distintos conforme o cliente, sem molde repetido. O estilo
+do portfólio (monocromático, Archivo, kaizen) não influencia nenhuma delas e
+nenhuma delas influencia o portfólio.
+
+**Honestidade — são peças de demonstração, não clientes.** Regra que vale
+para sempre neste projeto: nenhuma das três pode ser apresentada como cliente
+real, em nenhum texto, legenda, alt ou metadata. Três travas, todas
+obrigatórias:
+
+1. O título da seção já diz que é hipótese ("Como ficaria a sua").
+2. Cada peça, quando aberta, carrega uma faixa fixa no topo: "Peça de
+   demonstração — negócio fictício, criada para exemplificar o serviço · por
+   Guilherme Mendes". A faixa fica fixa, visível em qualquer ponto da
+   rolagem, e o nome é link de volta para a raiz do portfólio.
+3. As três páginas são `noindex, nofollow`. Elas têm endereço, telefone e
+   número de registro profissional fictícios — uma clínica de dermatologia
+   indexada no Google pode fazer alguém tentar marcar consulta.
+
+Os dados fictícios (CRM, RQE, OAB, CNPJ) ficam preenchidos com zeros de
+propósito. São placeholders explícitos, não credenciais inventadas que
+parecem reais.
+
+**Formato da seção**
+- Uma faixa por peça, empilhadas, capa em 2:1 ocupando a largura inteira,
+  texto abaixo. Não são três cards lado a lado: em grade de três colunas a
+  capa cai para ~336px e a página vira mancha ilegível a 23% do tamanho real.
+  Na faixa larga ela aparece a 74%, que é o mínimo para o visitante entender
+  do que a página trata antes de decidir clicar.
+- Clique abre a peça ao vivo, em nova aba, em `/exemplos/<nome>.html`. Não
+  existe galeria de prints: a peça navegável é o próprio "livro".
+- No celular, uma segunda captura em proporção de telefone. A captura
+  desktop encolhida vira mancha ilegível, e boa parte do público chega por
+  celular — mostrar a versão mobile também prova que a peça é responsiva.
+- Legenda: nome + público + uma decisão de design. Nunca só nome e público —
+  galeria sem raciocínio é exatamente o que o resto da página evita.
+
+**Hospedagem das peças.** HTML estático em `public/exemplos/`, servido
+direto. Não vira rota React: as três páginas são estáticas, têm CSS global
+próprio (`body`, `*`) que vazaria no site se fosse importado, e carregam as
+próprias fontes do Google Fonts. Converter para JSX seria trabalho grande sem
+ganho nenhum.
+
+A fonte editável de cada peça continua sendo o canvas do Claude Design, no
+Cowork. Se uma peça mudar lá, os arquivos de `public/exemplos/` e as capturas
+precisam ser regerados — eles são cópias publicadas, não a origem.
 
 ---
 

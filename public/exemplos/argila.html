@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Argila — Dermatologia Clínica e Estética (peça de demonstração)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,400;0,8..30,600;0,8..30,700;1,8..30,400;1,8..30,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  *{box-sizing:border-box;}
+  body{margin:0; background:#FAF6F1; color:#231C16; font-family:'Work Sans',sans-serif; -webkit-font-smoothing:antialiased; font-size:15px;}
+  a{color:#231C16; text-decoration:none;}
+  a:hover{color:#AD5A34;}
+  .mono{font-family:'IBM Plex Mono',monospace; letter-spacing:0.07em; text-transform:uppercase; font-feature-settings:"tnum";}
+  .serif{font-family:'Piazzolla',serif; text-wrap:pretty;}
+  .lede{font-size:16px; line-height:1.7; color:#4A3F35;}
+  .note{font-family:'IBM Plex Mono',monospace; font-size:10px; line-height:1.65; color:#8A7A6A; letter-spacing:0.03em;}
+  .rule{border-top:1px solid #DDD0C1;}
+  .sect{display:grid; grid-template-columns:108px minmax(0,1fr) 232px; gap:40px; padding:76px 56px; border-top:1px solid #DDD0C1; scroll-margin-top:62px;}
+  .lbl{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#8A7A6A; line-height:1.6;}
+  h2.sh{font-family:'Piazzolla',serif; font-size:30px; font-weight:700; line-height:1.2; margin:0 0 20px; letter-spacing:-0.01em; max-width:24ch;}
+  h3.ph{font-family:'Piazzolla',serif; font-size:19px; font-weight:600; margin:0 0 6px;}
+  @keyframes riseIn{from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);}}
+  .rise{animation:riseIn .9s cubic-bezier(.2,.7,.2,1) both;}
+  @media (prefers-reduced-motion: reduce){ .rise{animation:none;} }
+  @media (max-width:900px){ .sect{grid-template-columns:1fr; gap:24px; padding:56px 28px;} }
+
+  @media (max-width:860px){
+    [style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+    [style*="display:flex"]{flex-wrap:wrap !important;}
+    [style*="padding:18px 56px"]{padding:14px 20px !important;}
+    [style*="padding:88px 56px 56px"]{padding:44px 20px 36px !important;}
+    [style*="padding:26px 56px 40px"]{padding:22px 20px 30px !important;}
+    [style*="min-height:640px"]{min-height:300px !important;}
+    [style*="position:sticky"]{position:static !important;}
+    [style*="border-left:1px solid #DDD0C1"]{border-left:none !important; border-top:1px solid #DDD0C1 !important;}
+    h1{font-size:34px !important;}
+    h2.sh{font-size:23px !important;}
+    .sect{padding:42px 20px !important;}
+    .lede{font-size:15px !important;}
+  }
+
+  body{padding-top:37px;}
+  #gm-demo a:hover{opacity:.75;}
+  [style*="position:sticky"]{top:37px !important;}
+  @media (max-width:520px){ body{padding-top:56px;} [style*="position:sticky"]{top:56px !important;} }
+</style>
+</head>
+<body>
+<div id="gm-demo" style="position:fixed; top:0; left:0; right:0; z-index:99999; background:#111214; color:#E8E6E1;
+  font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif; font-size:12px; line-height:1.4;
+  padding:8px 16px; display:flex; gap:8px; justify-content:center; align-items:center; flex-wrap:wrap; text-align:center;
+  letter-spacing:0.01em; border-bottom:1px solid #2A2C30;">
+  <span style="color:#9A9D9F;">Peça de demonstração — negócio fictício, criada para exemplificar o serviço.</span>
+  <a href="/" style="color:#E8E6E1; text-decoration:underline; text-underline-offset:2px; border:0; padding:0;">por Guilherme Mendes</a>
+</div>
+
+
+
+<div style="--accent:#AD5A34; background:#FAF6F1; position:relative;">
+
+  <svg style="position:fixed; inset:0; width:100%; height:100%; pointer-events:none; opacity:0.038; mix-blend-mode:multiply; z-index:60;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0"></feColorMatrix></filter>
+    <rect width="100%" height="100%" filter="url(#grain)"></rect>
+  </svg>
+
+  <!-- NAV -->
+  <div style="display:flex; justify-content:space-between; align-items:center; padding:18px 56px; border-bottom:1px solid #DDD0C1; position:sticky; top:0; background:#FAF6F1; z-index:40;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="12.5" stroke="#AD5A34" stroke-width="1"></circle>
+        <path d="M14 8L18.6 19.5H16.5L15.5 17H12.5L11.5 19.5H9.4L14 8Z" stroke="#AD5A34" stroke-width="1" fill="none"></path>
+        <line x1="12.6" y1="15.3" x2="15.4" y2="15.3" stroke="#AD5A34" stroke-width="1"></line>
+      </svg>
+      <div class="mono" style="font-size:12px; letter-spacing:0.2em;">ARGILA</div>
+    </div>
+    <div style="display:flex; gap:26px; align-items:center;">
+      <a href="#consulta" class="mono" style="font-size:11px;">A consulta</a>
+      <a href="#camadas" class="mono" style="font-size:11px;">Camadas</a>
+      <a href="#protocolos" class="mono" style="font-size:11px;">Protocolos</a>
+      <a href="#cronograma" class="mono" style="font-size:11px;">Cronograma</a>
+      <a href="#medica" class="mono" style="font-size:11px;">Quem atende</a>
+      <a href="#transparencia" class="mono" style="font-size:11px;">Transparência</a>
+      <a href="#agendar" class="mono" style="font-size:11px; color:#AD5A34; border-bottom:1px solid #AD5A34; padding-bottom:2px;">Agendar</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="display:grid; grid-template-columns:1.12fr 1fr;">
+    <div class="rise" style="padding:88px 56px 56px; display:flex; flex-direction:column; justify-content:center;">
+      <div class="mono" style="font-size:11px; color:#8A7A6A; margin-bottom:26px;">DERMATOLOGIA CLÍNICA E ESTÉTICA · RECIFE · DESDE 2016</div>
+      <h1 class="serif" style="font-size:56px; line-height:1.04; font-weight:700; letter-spacing:-0.015em; margin:0 0 24px; max-width:12ch;">A pele muda devagar. O cuidado também deveria.</h1>
+      <p class="lede" style="max-width:48ch; margin:0 0 32px;">Argila atende por consulta longa e plano escrito. Nenhum procedimento é indicado no mesmo dia em que a pele é vista pela primeira vez — a leitura vem antes, sempre.</p>
+      <div style="display:flex; gap:14px; align-items:center; margin-bottom:36px;">
+        <a href="#agendar" class="mono" style="font-size:12px; background:#AD5A34; color:#FAF6F1; padding:12px 20px;">Agendar consulta →</a>
+        <a href="#consulta" class="mono" style="font-size:12px; color:#4A3F35; border-bottom:1px solid #C9B9A6; padding-bottom:3px;">Ver como é a consulta</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; border-top:1px solid #DDD0C1; padding-top:20px; max-width:520px;">
+        <div><div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:5px;">DURAÇÃO</div><div class="serif" style="font-size:17px;">50 minutos</div></div>
+        <div><div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:5px;">INCLUI</div><div class="serif" style="font-size:17px;">Dermatoscopia</div></div>
+        <div><div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:5px;">RETORNO</div><div class="serif" style="font-size:17px;">Em 14 dias</div></div>
+      </div>
+    </div>
+
+    <div style="position:relative; border-left:1px solid #DDD0C1; overflow:hidden; min-height:640px;">
+      <div style="position:absolute; inset:0; background:radial-gradient(120% 90% at 22% 14%, #F8EFE1 0%, #F0E4D4 44%, #E3CFB8 100%);"></div>
+      <div style="position:absolute; inset:0; background:radial-gradient(58% 44% at 80% 76%, rgba(173,90,52,0.16), transparent 70%);"></div>
+      <div style="position:relative; height:100%; display:flex; align-items:center; justify-content:center;">
+        <svg viewBox="0 0 400 520" style="width:56%; transform:rotate(-2deg);" fill="none">
+          <path d="M200,500 C198,420 196,340 196,270" stroke="#231C16" stroke-width="1.2" opacity="0.55"></path>
+          <path d="M196,340 C230,320 258,296 268,258" stroke="#231C16" stroke-width="1" opacity="0.5"></path>
+          <path d="M196,300 C164,282 140,256 132,220" stroke="#231C16" stroke-width="1" opacity="0.5"></path>
+          <path d="M196,250 C222,232 240,208 246,178" stroke="#231C16" stroke-width="1" opacity="0.45"></path>
+          <ellipse cx="268" cy="252" rx="17" ry="9" transform="rotate(-28 268 252)" stroke="#231C16" stroke-width="1" opacity="0.5"></ellipse>
+          <ellipse cx="132" cy="215" rx="17" ry="9" transform="rotate(28 132 215)" stroke="#231C16" stroke-width="1" opacity="0.5"></ellipse>
+          <ellipse cx="246" cy="172" rx="15" ry="8" transform="rotate(-24 246 172)" stroke="#231C16" stroke-width="1" opacity="0.45"></ellipse>
+          <circle cx="200" cy="270" r="3" fill="#AD5A34"></circle>
+        </svg>
+        <div class="mono" style="position:absolute; left:0; bottom:36px; background:#FAF6F1; border:1px solid #DDD0C1; border-left:none; padding:9px 15px; font-size:9px; color:#8A7A6A;">FIG. 01 — ESTUDO DE SALA, UNIDADE BOA VISTA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A CONSULTA -->
+  <div id="consulta" class="sect">
+    <div class="lbl">01<br>A consulta</div>
+    <div>
+      <h2 class="sh">Cinquenta minutos, divididos em quatro tempos.</h2>
+      <p class="lede" style="margin:0 0 34px; max-width:60ch;">A primeira consulta não termina com procedimento marcado. Ela termina com um documento: o que foi visto, o que é prioridade clínica, o que é estético, e em que ordem faz sentido tratar. Se nada precisar ser feito agora, é isso que vai estar escrito.</p>
+
+      <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:10px;">FIG. 02 — DISTRIBUIÇÃO DA CONSULTA (MIN)</div>
+      <div style="display:flex; height:38px; border:1px solid #231C16; margin-bottom:4px;">
+        <div style="flex:12; background:#E3CFB8; border-right:1px solid #231C16;"></div>
+        <div style="flex:13; background:#EFE2D0; border-right:1px solid #231C16;"></div>
+        <div style="flex:15; background:#D9BB9C; border-right:1px solid #231C16;"></div>
+        <div style="flex:10; background:#AD5A34;"></div>
+      </div>
+      <div style="display:flex; margin-bottom:26px;">
+        <div style="flex:12;" class="mono"><span style="font-size:9px; color:#8A7A6A;">00–12</span></div>
+        <div style="flex:13;" class="mono"><span style="font-size:9px; color:#8A7A6A;">12–25</span></div>
+        <div style="flex:15;" class="mono"><span style="font-size:9px; color:#8A7A6A;">25–40</span></div>
+        <div style="flex:10;" class="mono"><span style="font-size:9px; color:#8A7A6A;">40–50</span></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:26px 32px;">
+        <div style="border-top:1px solid #DDD0C1; padding-top:14px;">
+          <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">00–12 MIN · ANAMNESE</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">Histórico de saúde, medicações em uso, rotina atual de produtos, exposição solar, tentativas anteriores e o que incomoda — na ordem em que incomoda.</p>
+        </div>
+        <div style="border-top:1px solid #DDD0C1; padding-top:14px;">
+          <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">12–25 MIN · DERMATOSCOPIA</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">Exame com dermatoscópio digital e registro de imagem das áreas relevantes — lesões pigmentadas, textura, vascularização e padrão de poro.</p>
+        </div>
+        <div style="border-top:1px solid #DDD0C1; padding-top:14px;">
+          <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">25–40 MIN · LEITURA CONJUNTA</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">As imagens são vistas na tela junto com você. O que é clínico e o que é estético são separados em voz alta, com o motivo de cada classificação.</p>
+        </div>
+        <div style="border-top:1px solid #DDD0C1; padding-top:14px;">
+          <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">40–50 MIN · PLANO ESCRITO</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">Você sai com o plano impresso: prioridades, sequência sugerida, prazos reais e o que fica fora — com o motivo de ficar fora.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #DDD0C1; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">NOTA DE SALA</strong><br><br>
+        Traga a caixa ou a foto do rótulo de tudo que você usa no rosto hoje, inclusive o que comprou e abandonou. Metade das reações de pele que chegam aqui vem de sobreposição de ativos, não de falta deles.
+      </div>
+    </div>
+  </div>
+
+  <!-- CAMADAS -->
+  <div id="camadas" class="sect">
+    <div class="lbl">02<br>Camadas</div>
+    <div>
+      <h2 class="sh">Cada protocolo age numa profundidade. Nenhum age em todas.</h2>
+      <p class="lede" style="margin:0 0 30px; max-width:60ch;">É por isso que "fazer tudo de uma vez" raramente é a resposta certa: procedimentos que agem na mesma camada competem entre si e somam recuperação sem somar resultado. O corte abaixo é o que está por trás de qualquer plano montado aqui.</p>
+
+      <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:12px;">FIG. 03 — CORTE ESQUEMÁTICO DA PELE E PROFUNDIDADE DE AÇÃO</div>
+
+      <svg viewBox="0 0 700 400" style="width:100%; border:1px solid #231C16; background:#F6EEE3;" fill="none">
+        <defs>
+          <pattern id="hatchA" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+            <line x1="0" y1="0" x2="0" y2="6" stroke="#231C16" stroke-width="0.5" opacity="0.25"></line>
+          </pattern>
+          <pattern id="dotsB" width="8" height="8" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="0.9" fill="#231C16" opacity="0.22"></circle>
+          </pattern>
+          <pattern id="waveC" width="14" height="8" patternUnits="userSpaceOnUse">
+            <path d="M0,6 C3,2 5,2 7,6 C9,10 11,10 14,6" stroke="#231C16" stroke-width="0.5" opacity="0.2" fill="none"></path>
+          </pattern>
+        </defs>
+
+        <!-- bandas -->
+        <rect x="150" y="40" width="420" height="34" fill="#E9DAC6"></rect>
+        <rect x="150" y="40" width="420" height="34" fill="url(#hatchA)"></rect>
+        <rect x="150" y="74" width="420" height="70" fill="#E0CDB4"></rect>
+        <rect x="150" y="74" width="420" height="70" fill="url(#dotsB)"></rect>
+        <rect x="150" y="144" width="420" height="118" fill="#D6BFA2"></rect>
+        <rect x="150" y="144" width="420" height="118" fill="url(#waveC)"></rect>
+        <rect x="150" y="262" width="420" height="96" fill="#C9AE8D"></rect>
+        <circle cx="205" cy="300" r="15" stroke="#231C16" stroke-width="0.6" opacity="0.28"></circle>
+        <circle cx="248" cy="322" r="19" stroke="#231C16" stroke-width="0.6" opacity="0.28"></circle>
+        <circle cx="300" cy="296" r="14" stroke="#231C16" stroke-width="0.6" opacity="0.28"></circle>
+        <circle cx="350" cy="325" r="17" stroke="#231C16" stroke-width="0.6" opacity="0.28"></circle>
+        <circle cx="404" cy="300" r="15" stroke="#231C16" stroke-width="0.6" opacity="0.28"></circle>
+        <circle cx="455" cy="324" r="18" stroke="#231C16" stroke-width="0.6" opacity="0.28"></circle>
+        <circle cx="512" cy="299" r="14" stroke="#231C16" stroke-width="0.6" opacity="0.28"></circle>
+
+        <line x1="150" y1="40" x2="570" y2="40" stroke="#231C16" stroke-width="1"></line>
+        <line x1="150" y1="74" x2="570" y2="74" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="150" y1="144" x2="570" y2="144" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="150" y1="262" x2="570" y2="262" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="150" y1="358" x2="570" y2="358" stroke="#231C16" stroke-width="1"></line>
+
+        <!-- nomes das camadas (esquerda) -->
+        <text x="142" y="61" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="#231C16">EPIDERME</text>
+        <text x="142" y="114" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="#231C16">DERME PAPILAR</text>
+        <text x="142" y="207" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="#231C16">DERME RETICULAR</text>
+        <text x="142" y="314" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="#231C16">SUBCUTÂNEO</text>
+
+        <!-- escala de profundidade (direita) -->
+        <line x1="596" y1="40" x2="596" y2="358" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="592" y1="40" x2="600" y2="40" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="592" y1="74" x2="600" y2="74" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="592" y1="144" x2="600" y2="144" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="592" y1="262" x2="600" y2="262" stroke="#231C16" stroke-width="0.7"></line>
+        <line x1="592" y1="358" x2="600" y2="358" stroke="#231C16" stroke-width="0.7"></line>
+        <text x="606" y="43" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#8A7A6A">0 mm</text>
+        <text x="606" y="77" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#8A7A6A">0,1</text>
+        <text x="606" y="147" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#8A7A6A">0,6</text>
+        <text x="606" y="265" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#8A7A6A">2,4</text>
+        <text x="606" y="361" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#8A7A6A">4,0+</text>
+
+        <!-- marcadores de protocolo -->
+        <circle cx="230" cy="57" r="3.5" fill="#AD5A34"></circle>
+        <line x1="230" y1="57" x2="230" y2="22" stroke="#AD5A34" stroke-width="0.8"></line>
+        <text x="230" y="17" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#AD5A34">PEELING SUPERFICIAL</text>
+
+        <circle cx="390" cy="110" r="3.5" fill="#AD5A34"></circle>
+        <line x1="390" y1="110" x2="390" y2="22" stroke="#AD5A34" stroke-width="0.8"></line>
+        <text x="390" y="17" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#AD5A34">MICROAGULHAMENTO 0,5–1,5</text>
+
+        <circle cx="300" cy="200" r="3.5" fill="#AD5A34"></circle>
+        <line x1="300" y1="200" x2="248" y2="200" stroke="#AD5A34" stroke-width="0.8"></line>
+        <text x="244" y="203" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#AD5A34">BIOESTIMULADOR</text>
+
+        <circle cx="470" cy="305" r="3.5" fill="#AD5A34"></circle>
+        <line x1="470" y1="305" x2="470" y2="382" stroke="#AD5A34" stroke-width="0.8"></line>
+        <text x="470" y="392" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#AD5A34">PREENCHEDOR ESTRUTURAL</text>
+      </svg>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #DDD0C1; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">POR QUE ISSO IMPORTA</strong><br><br>
+        Profundidade define recuperação. Um peeling superficial devolve você ao trabalho no mesmo dia; um bioestimulador na derme reticular trabalha por semanas antes de aparecer.<br><br>
+        Valores em milímetros são referência de literatura e variam por região do rosto, espessura da pele e indicação individual.
+      </div>
+    </div>
+  </div>
+
+  <!-- PROTOCOLOS -->
+  <div id="protocolos" class="sect">
+    <div class="lbl">03<br>Protocolos</div>
+    <div>
+      <h2 class="sh">Quatro protocolos. Cada um com o que faz e o que não faz.</h2>
+      <p class="lede" style="margin:0 0 30px; max-width:60ch;">Nenhum deles é vendido em pacote fechado, e nenhum é indicado sem a consulta de leitura. A coluna da direita de cada bloco existe porque a pergunta mais útil antes de qualquer procedimento é o que ele não resolve.</p>
+
+      <div style="border-top:1px solid #231C16;">
+        <div style="display:grid; grid-template-columns:1.25fr 1fr; gap:28px; padding:22px 0; border-bottom:1px solid #DDD0C1;">
+          <div>
+            <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">A · AVALIAÇÃO DERMATOLÓGICA</div>
+            <h3 class="ph">Consulta de leitura</h3>
+            <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0 0 12px;">Dermatoscopia digital, registro de imagem e plano escrito. É a porta de entrada obrigatória — inclusive para quem chega decidido sobre o que quer fazer.</p>
+            <div class="mono" style="font-size:9px; color:#8A7A6A;">SESSÃO ÚNICA · 50 MIN · RETORNO EM 14 DIAS</div>
+          </div>
+          <div style="border-left:1px solid #DDD0C1; padding-left:20px;">
+            <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:8px;">NÃO RESOLVE</div>
+            <p style="font-size:13px; line-height:1.6; color:#6B5D50; margin:0;">Não substitui exame anatomopatológico. Lesão suspeita é encaminhada para biópsia, não tratada esteticamente.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1.25fr 1fr; gap:28px; padding:22px 0; border-bottom:1px solid #DDD0C1;">
+          <div>
+            <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">B · TEXTURA E MANCHA</div>
+            <h3 class="ph">Peelings e microagulhamento</h3>
+            <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0 0 12px;">Protocolos de superfície e derme papilar para textura irregular, marca de acne e hiperpigmentação pós-inflamatória. Profundidade escolhida por fototipo e histórico de cicatrização.</p>
+            <div class="mono" style="font-size:9px; color:#8A7A6A;">3 A 6 SESSÕES · INTERVALO 21–30 DIAS · RECUPERAÇÃO 1–4 DIAS</div>
+          </div>
+          <div style="border-left:1px solid #DDD0C1; padding-left:20px;">
+            <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:8px;">NÃO RESOLVE</div>
+            <p style="font-size:13px; line-height:1.6; color:#6B5D50; margin:0;">Não corrige flacidez nem perda de volume. Melasma exige manejo contínuo e pode recidivar com sol e hormônio — isso é dito antes, não depois.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1.25fr 1fr; gap:28px; padding:22px 0; border-bottom:1px solid #DDD0C1;">
+          <div>
+            <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">C · SUSTENTAÇÃO</div>
+            <h3 class="ph">Bioestimulação de colágeno</h3>
+            <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0 0 12px;">Estímulo na derme reticular para firmeza e qualidade de pele. Indicado por camada e objetivo funcional, nunca por tabela de pacote.</p>
+            <div class="mono" style="font-size:9px; color:#8A7A6A;">1 A 3 SESSÕES · INTERVALO 30–45 DIAS · RESULTADO EM 8–12 SEMANAS</div>
+          </div>
+          <div style="border-left:1px solid #DDD0C1; padding-left:20px;">
+            <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:8px;">NÃO RESOLVE</div>
+            <p style="font-size:13px; line-height:1.6; color:#6B5D50; margin:0;">Não age em mancha nem em textura superficial. Não tem efeito visível na primeira semana — quem precisa de resultado para um evento em 15 dias não é candidato.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1.25fr 1fr; gap:28px; padding:22px 0; border-bottom:1px solid #DDD0C1;">
+          <div>
+            <div class="mono" style="font-size:9px; color:#AD5A34; margin-bottom:8px;">D · ROTINA</div>
+            <h3 class="ph">Skincare clínico sob prescrição</h3>
+            <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0 0 12px;">Prescrição enxuta, com ordem de aplicação e horário. Revisada a cada seis semanas conforme a resposta real da pele — não conforme lançamento de produto.</p>
+            <div class="mono" style="font-size:9px; color:#8A7A6A;">REVISÃO A CADA 6 SEMANAS · 3 A 5 PRODUTOS EM USO</div>
+          </div>
+          <div style="border-left:1px solid #DDD0C1; padding-left:20px;">
+            <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:8px;">NÃO RESOLVE</div>
+            <p style="font-size:13px; line-height:1.6; color:#6B5D50; margin:0;">Rotina isolada não substitui procedimento quando a indicação é procedimento — e o contrário também vale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #DDD0C1; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">SOBRE PREÇO</strong><br><br>
+        O valor da consulta é informado por telefone e no agendamento, antes de você vir. Valores de procedimento só são fechados depois da leitura, porque dependem de área, número de sessões e indicação.<br><br>
+        Não trabalhamos com pacote fechado nem com desconto por volume de sessões.
+      </div>
+    </div>
+  </div>
+
+  <!-- CRONOGRAMA -->
+  <div id="cronograma" class="sect">
+    <div class="lbl">04<br>Cronograma</div>
+    <div>
+      <h2 class="sh">O que acontece nas primeiras doze semanas.</h2>
+      <p class="lede" style="margin:0 0 34px; max-width:60ch;">Colágeno novo não aparece em uma semana. Este é o calendário real de um plano de sustentação iniciado na consulta — com os pontos em que a rota pode mudar.</p>
+
+      <div style="display:grid; grid-template-columns:74px 1fr; gap:0;">
+        <div class="mono" style="font-size:11px; color:#AD5A34; padding:16px 0; border-top:1px solid #231C16;">SEM 0</div>
+        <div style="padding:16px 0 16px 22px; border-top:1px solid #231C16; border-left:1px solid #DDD0C1;">
+          <div class="serif" style="font-size:17px; font-weight:600; margin-bottom:4px;">Consulta de leitura</div>
+          <p style="font-size:13.5px; line-height:1.6; color:#6B5D50; margin:0;">Dermatoscopia, registro de imagem e plano escrito. Nenhum procedimento é feito neste dia.</p>
+        </div>
+
+        <div class="mono" style="font-size:11px; color:#AD5A34; padding:16px 0; border-top:1px solid #DDD0C1;">SEM 2</div>
+        <div style="padding:16px 0 16px 22px; border-top:1px solid #DDD0C1; border-left:1px solid #DDD0C1;">
+          <div class="serif" style="font-size:17px; font-weight:600; margin-bottom:4px;">Retorno e primeira sessão</div>
+          <p style="font-size:13.5px; line-height:1.6; color:#6B5D50; margin:0;">Dúvidas do plano respondidas com ele impresso na mão. Se a rotina prescrita causou reação, a sessão é adiada — a pele precisa estar calma antes.</p>
+        </div>
+
+        <div class="mono" style="font-size:11px; color:#AD5A34; padding:16px 0; border-top:1px solid #DDD0C1;">SEM 6</div>
+        <div style="padding:16px 0 16px 22px; border-top:1px solid #DDD0C1; border-left:1px solid #DDD0C1;">
+          <div class="serif" style="font-size:17px; font-weight:600; margin-bottom:4px;">Reavaliação com nova dermatoscopia</div>
+          <p style="font-size:13.5px; line-height:1.6; color:#6B5D50; margin:0;">Comparação com as imagens da semana 0, no mesmo enquadramento e na mesma luz. É aqui que a rotina é ajustada ou encurtada.</p>
+        </div>
+
+        <div class="mono" style="font-size:11px; color:#AD5A34; padding:16px 0; border-top:1px solid #DDD0C1;">SEM 12</div>
+        <div style="padding:16px 0 16px 22px; border-top:1px solid #DDD0C1; border-bottom:1px solid #231C16; border-left:1px solid #DDD0C1;">
+          <div class="serif" style="font-size:17px; font-weight:600; margin-bottom:4px;">Leitura de resultado</div>
+          <p style="font-size:13.5px; line-height:1.6; color:#6B5D50; margin:0;">Janela em que o estímulo de colágeno costuma estar visível. Se não estiver, isso é registrado no prontuário e o plano é revisto — inclusive para interromper.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #DDD0C1; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">VARIAÇÃO</strong><br><br>
+        Prazos são medianos de conduta, não promessa de resultado. Cicatrização, idade, tabagismo, sono e uso de fotoprotetor mudam a curva — às vezes bastante.
+      </div>
+    </div>
+  </div>
+
+  <!-- QUEM ATENDE -->
+  <div id="medica" class="sect">
+    <div class="lbl">05<br>Quem atende</div>
+    <div>
+      <h2 class="sh">Uma médica, uma agenda, sem rodízio de profissional.</h2>
+      <div style="display:grid; grid-template-columns:150px 1fr; gap:28px; align-items:start; margin-bottom:26px;">
+        <div style="aspect-ratio:3/4; background:linear-gradient(150deg,#EFE2D0,#D9BB9C); border:1px solid #DDD0C1; position:relative;">
+          <svg viewBox="0 0 100 130" style="position:absolute; inset:0; width:100%; height:100%;" fill="none">
+            <circle cx="50" cy="48" r="21" stroke="#231C16" stroke-width="0.9" opacity="0.45"></circle>
+            <path d="M18,128 C18,96 32,80 50,80 C68,80 82,96 82,128" stroke="#231C16" stroke-width="0.9" opacity="0.45"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="serif" style="font-size:24px; font-weight:700; margin-bottom:4px;">Dra. Helena Arruda</div>
+          <div class="mono" style="font-size:10px; color:#AD5A34; margin-bottom:16px;">CRM-PE 00000 · RQE 0000 — DERMATOLOGIA</div>
+          <p style="font-size:14px; line-height:1.65; color:#4A3F35; margin:0 0 14px;">Graduação em Medicina pela UFPE. Residência em Dermatologia pelo Hospital das Clínicas da UFPE. Membro titular da Sociedade Brasileira de Dermatologia. Atende em Recife desde 2016 e abriu a Argila no mesmo ano, depois de seis anos em clínica de alto volume.</p>
+          <p style="font-size:14px; line-height:1.65; color:#4A3F35; margin:0;">Atende quatro pacientes por turno, no máximo. A agenda é montada para caber conversa, não para caber encaixe.</p>
+        </div>
+      </div>
+      <div style="border-top:1px solid #DDD0C1; padding-top:18px;">
+        <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:10px;">O QUE ELA NÃO FAZ</div>
+        <p style="font-size:14px; line-height:1.65; color:#4A3F35; margin:0; max-width:62ch;">Não aplica em quem chega pedindo procedimento específico sem avaliação. Não indica o que não faria em si mesma. Não atende menor de idade para procedimento estético, mesmo com autorização.</p>
+      </div>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #DDD0C1; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">COMO CONFERIR</strong><br><br>
+        Todo médico com especialidade registrada tem RQE vinculado ao CRM. Você pode conferir o número acima na busca pública do Conselho Federal de Medicina antes de marcar — aqui e em qualquer outro lugar.
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSPARÊNCIA -->
+  <div id="transparencia" class="sect" style="background:#F3ECE3;">
+    <div class="lbl">06<br>Transparência</div>
+    <div>
+      <h2 class="sh">O que você não vai encontrar neste site — e por quê.</h2>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:26px;">
+        <div style="border-top:2px solid #231C16; padding-top:14px;">
+          <div class="serif" style="font-size:17px; font-weight:600; margin-bottom:8px;">Antes e depois</div>
+          <p style="font-size:13.5px; line-height:1.62; color:#4A3F35; margin:0;">A Resolução CFM 2.336/2023 só admite imagem comparativa em contexto educativo, com no mínimo quatro pacientes e incluindo resultados insatisfatórios e complicações. Fora disso, vira isca. Preferimos mostrar o método.</p>
+        </div>
+        <div style="border-top:2px solid #231C16; padding-top:14px;">
+          <div class="serif" style="font-size:17px; font-weight:600; margin-bottom:8px;">Promessa de resultado</div>
+          <p style="font-size:13.5px; line-height:1.62; color:#4A3F35; margin:0;">Garantir resultado é vedado ao médico — e seria mentira. O que existe é conduta com evidência, prazo médio e registro de acompanhamento. Quando não funciona, isso também fica escrito.</p>
+        </div>
+        <div style="border-top:2px solid #231C16; padding-top:14px;">
+          <div class="serif" style="font-size:17px; font-weight:600; margin-bottom:8px;">Pacote e promoção</div>
+          <p style="font-size:13.5px; line-height:1.62; color:#4A3F35; margin:0;">Venda casada e campanha de procedimento estimulam quem não tem indicação a comprar mesmo assim. Aqui o número de sessões sai da leitura da pele, não da tabela.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #C9B9A6; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">RESPONSÁVEL TÉCNICA</strong><br><br>
+        Dra. Helena Arruda — CRM-PE 00000 · RQE 0000.<br><br>
+        Estabelecimento com registro no Conselho Regional de Medicina de Pernambuco, conforme exigido para publicidade de serviço médico.
+      </div>
+    </div>
+  </div>
+
+  <!-- PERGUNTAS -->
+  <div class="sect">
+    <div class="lbl">07<br>Perguntas</div>
+    <div>
+      <h2 class="sh">O que quase todo mundo pergunta na primeira consulta.</h2>
+      <div style="margin-top:24px;">
+        <div style="border-top:1px solid #DDD0C1; padding:18px 0; display:grid; grid-template-columns:1fr 1.35fr; gap:28px;">
+          <div class="serif" style="font-size:17px; font-weight:600;">Dói?</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">Depende do protocolo. Peeling superficial arde por alguns minutos. Microagulhamento e bioestimulador usam anestésico tópico com 30 a 40 minutos de espera — esse tempo já está reservado na agenda, não é atraso.</p>
+        </div>
+        <div style="border-top:1px solid #DDD0C1; padding:18px 0; display:grid; grid-template-columns:1fr 1.35fr; gap:28px;">
+          <div class="serif" style="font-size:17px; font-weight:600;">Consigo trabalhar no dia seguinte?</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">Na maioria dos protocolos de superfície, sim, com vermelhidão discreta. Microagulhamento costuma pedir de dois a quatro dias de descamação visível. Isso é combinado antes de marcar, considerando sua semana.</p>
+        </div>
+        <div style="border-top:1px solid #DDD0C1; padding:18px 0; display:grid; grid-template-columns:1fr 1.35fr; gap:28px;">
+          <div class="serif" style="font-size:17px; font-weight:600;">Quando vejo resultado?</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">Textura e brilho aparecem antes, entre duas e quatro semanas. Firmeza por bioestímulo costuma levar de oito a doze semanas. Quem promete antes disso está vendendo, não tratando.</p>
+        </div>
+        <div style="border-top:1px solid #DDD0C1; border-bottom:1px solid #DDD0C1; padding:18px 0; display:grid; grid-template-columns:1fr 1.35fr; gap:28px;">
+          <div class="serif" style="font-size:17px; font-weight:600;">E se eu não gostar?</div>
+          <p style="font-size:14px; line-height:1.62; color:#4A3F35; margin:0;">Retorno de avaliação está incluso e serve exatamente para isso. Nem todo resultado é reversível — por isso a indicação é conservadora e a primeira sessão costuma ser a mais contida das que estavam disponíveis.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #DDD0C1; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">ANTES DE VIR</strong><br><br>
+        Evite depilação com cera e ácido na área nas 72 horas anteriores. Se estiver usando isotretinoína oral, avise no agendamento — muda o que pode ser feito.
+      </div>
+    </div>
+  </div>
+
+  <!-- VISITA / AGENDAR -->
+  <div id="agendar" class="sect" style="border-bottom:1px solid #DDD0C1;">
+    <div class="lbl">08<br>Visita</div>
+    <div>
+      <h2 class="sh">Agende a consulta de leitura.</h2>
+      <p class="lede" style="margin:0 0 28px; max-width:56ch;">Atendimento por avaliação prévia, sem encaixe de última hora. Confirmação por telefone até 24 horas antes; desmarcação com menos de 12 horas libera o horário para a fila de espera.</p>
+      <a href="#agendar" class="mono" style="display:inline-block; font-size:12px; background:#AD5A34; color:#FAF6F1; padding:13px 22px; margin-bottom:32px;">Agendar por telefone →</a>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; border-top:1px solid #DDD0C1; padding-top:20px;">
+        <div>
+          <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:6px;">ENDEREÇO</div>
+          <p style="font-size:13.5px; line-height:1.6; margin:0; color:#4A3F35;">Rua da Aurora, 738 — sala 402<br>Boa Vista, Recife-PE</p>
+        </div>
+        <div>
+          <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:6px;">ACESSO</div>
+          <p style="font-size:13.5px; line-height:1.6; margin:0; color:#4A3F35;">Elevador e banheiro acessíveis.<br>Estacionamento conveniado no nº 720.</p>
+        </div>
+        <div>
+          <div class="mono" style="font-size:9px; color:#8A7A6A; margin-bottom:6px;">HORÁRIOS</div>
+          <p style="font-size:13.5px; line-height:1.6; margin:0; color:#4A3F35;">Consultas: ter e qui, 14h–18h<br>Procedimentos: seg e qua, 9h–17h</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="note" style="border-left:1px solid #DDD0C1; padding-left:14px;">
+        <strong style="color:#4A3F35; font-weight:500;">CONTATO</strong><br><br>
+        (81) 3222-4190<br>
+        contato@argiladerme.com.br<br>
+        @argila.derme<br><br>
+        Não fazemos diagnóstico nem prescrição por mensagem.
+      </div>
+    </div>
+  </div>
+
+  <!-- COLOFÃO -->
+  <div style="padding:26px 56px 40px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;">
+    <div class="mono" style="font-size:9px; color:#B9AA97;">ARGILA DERMATOLOGIA LTDA · CNPJ 00.000.000/0001-00 · RESPONSÁVEL TÉCNICA: DRA. HELENA ARRUDA, CRM-PE 00000</div>
+    <div class="mono" style="font-size:9px; color:#B9AA97;">PEÇA Nº 003 — RECIFE</div>
+  </div>
+
+</div>
+
+</body>
+</html>

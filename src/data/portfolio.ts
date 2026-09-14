@@ -310,6 +310,66 @@ export const servicos: Servico[] = [
   },
 ];
 
+/*
+  "COMO FICARIA A SUA"
+
+  Três landing pages fictícias, uma por público-alvo do serviço de sites.
+  Regra que vale sempre: nenhuma pode ser apresentada como cliente real — por
+  isso o texto de abertura já chama de "páginas fictícias" e cada peça, ao
+  abrir, carrega sua própria faixa de aviso (fora deste repositório).
+
+  Identidade visual das três é deliberadamente sem parentesco entre si e sem
+  relação com o estilo deste portfólio — isso é o argumento da seção.
+*/
+export type CasoDemonstracao = {
+  nome: string;
+  publico: string;
+  decisao: string;
+  href: string;
+  capa: string;
+  capaMobile: string;
+  alt: string;
+};
+
+export const comoFicariaASua = {
+  eyebrow: "Landing pages",
+  titulo: "Como ficaria a sua",
+  intro:
+    "Três páginas fictícias, uma por público. Cada uma tem identidade própria de propósito — o mesmo molde repintado três vezes provaria o contrário do que eu quero provar. Clique para abrir a peça inteira.",
+  casos: [
+    {
+      nome: "Argila",
+      publico: "Clínicas",
+      decisao:
+        "Paleta de argila, serifa editorial e um corte anatômico da pele desenhado do zero, no lugar do azul-clínico e da foto de banco de imagem. Foi feita para explicar o método antes do agendamento — inclusive por que a clínica não publica antes e depois. Para quem tem consultório, isso significa paciente que chega sabendo como funciona a avaliação, e menos conversa sobre preço na recepção.",
+      href: "/exemplos/argila.html",
+      capa: "/casos/argila-capa.webp",
+      capaMobile: "/casos/argila-mobile.webp",
+      alt: "Página da clínica fictícia Argila, em tons de argila e tipografia serifada, com corte anatômico da pele mostrando a profundidade de cada protocolo.",
+    },
+    {
+      nome: "Renata Bastos",
+      publico: "Profissionais autônomos",
+      decisao:
+        "Tema escuro, uma única família tipográfica e cor usada só como sinal de risco: vermelho no prazo vencido, âmbar no que está em curso. Foi feita para informar em vez de vender, porque a OAB proíbe anunciar honorário e prometer resultado. Para o profissional liberal, é autoridade construída sem infringir o código da profissão — e cliente que chega à primeira reunião com metade das dúvidas já respondidas.",
+      href: "/exemplos/renata-bastos.html",
+      capa: "/casos/renata-bastos-capa.webp",
+      capaMobile: "/casos/renata-bastos-mobile.webp",
+      alt: "Página escura da advogada fictícia Renata Bastos, com gráfico da transição tributária de 2026 a 2033 e números grandes de prazo.",
+    },
+    {
+      nome: "Cerne",
+      publico: "Pequenos negócios",
+      decisao:
+        "Campos de cor nos tons reais das madeiras, tipografia de contraste alto e nenhuma foto: o material é a identidade. Foi feita para vender pelo critério técnico, com espécie, densidade, procedência e prazo aparecendo antes do preço. Para o pequeno negócio, é a página que responde o orçamento sozinha e separa quem quer o serviço de quem só queria saber quanto custa.",
+      href: "/exemplos/cerne.html",
+      capa: "/casos/cerne-capa.webp",
+      capaMobile: "/casos/cerne-mobile.webp",
+      alt: "Página da marcenaria fictícia Cerne, em campos de cor nos tons das madeiras, com as quatro espécies e seus dados técnicos.",
+    },
+  ] satisfies CasoDemonstracao[],
+};
+
 export const contato = {
   chamada: "O que precisa ser resolvido?",
   texto: "Site, sistema, máquina lenta ou PC novo. Manda o caso.",

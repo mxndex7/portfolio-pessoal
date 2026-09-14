@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaGithub } from "react-icons/fa6";
 import { dexTweaks, statsOtimizacao } from "@/data/portfolio";
 
@@ -12,31 +13,20 @@ export default function DexTweaksCard() {
   return (
     <article className="border border-hairline">
       <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr]">
-        {/* Mock do painel */}
-        <div className="border-b border-hairline bg-terminal lg:border-b-0 lg:border-r">
-          <div className="flex items-center gap-3 border-b border-terminal-line px-5 py-3.5">
-            <span className="font-mono text-[0.7rem] text-terminal-dim">
-              {dexTweaks.arquivo}
-            </span>
-            <span className="ml-auto font-mono text-[0.7rem] uppercase tracking-[0.16em] text-terminal-dim">
-              Painel principal
-            </span>
-          </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 p-5 sm:p-6">
-            {dexTweaks.menu.map((item) => (
-              <div
-                key={item.key}
-                className="flex items-baseline gap-2 font-mono text-[0.8rem] text-terminal-fg"
-              >
-                <span className="text-terminal-dim">[{item.key}]</span>
-                <span className="truncate">{item.label}</span>
-              </div>
-            ))}
-          </div>
-          <div className="border-t border-terminal-line px-5 py-3.5 font-mono text-[0.8rem] text-terminal-dim sm:px-6">
-            Escolha uma opção
-            <span className="ml-1 inline-block h-[1em] w-[0.5em] translate-y-[0.12em] bg-terminal-dim" />
-          </div>
+        {/*
+          Captura real do painel, não mock recriado em HTML. Proporção nativa
+          (~2,02:1) mantida sem recorte — real sem cortar informação vale mais
+          que padronizado. Cores remapeadas para os tokens --terminal-* na
+          origem do arquivo (public/casos/dex-tweaks-capa.webp), não aqui.
+        */}
+        <div className="relative aspect-[519/257] w-full overflow-hidden border-b border-hairline bg-terminal lg:border-b-0 lg:border-r">
+          <Image
+            src="/casos/dex-tweaks-capa.webp"
+            alt="Captura real do Dex Tweaks: painel principal em modo texto, com o menu numerado de perfis, otimizações, hardware e backup."
+            fill
+            sizes="(min-width: 1024px) 56vw, 100vw"
+            className="object-contain"
+          />
         </div>
 
         {/* Texto e números */}
