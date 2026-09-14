@@ -154,17 +154,27 @@ altura e cada bloco arrastava uma coluna esquerda vazia.
   visual — quebra leitor de tela e SEO ao mesmo tempo.
 - Todo conteúdo editável vive em `src/data/portfolio.ts`. Componente não tem
   texto hardcoded.
-- Projetos: seção aberta de propósito. Dex Tweaks ocupa a primeira posição sem
-  definir a seção; `projetosEmProducao` preenche o resto da grade de quatro.
-  Projeto que entra em `projetos` toma o lugar de um slot.
+- Projetos: seção aberta de propósito. Os 4 projetos usam o mesmo
+  `ProjectCard`, no mesmo tamanho, em grade 2×2 (`grid-cols-1 sm:grid-cols-2`)
+  — sem card "featured" maior. Dex Tweaks ocupa a primeira posição por ser o
+  mais pronto, não por ganhar tratamento visual diferente; `projetosEmProducao`
+  preenche o resto até quatro. Projeto que entra em `projetos` toma o lugar de
+  um slot.
+- Card de projeto mostra capa, nome, descrição, tags de tecnologia e link do
+  GitHub. Cada projeto carrega `imagens: { src, alt }[]` — capa é a primeira.
+  Com mais de uma imagem, a capa vira botão (`ProjectGallery.tsx`): abre um
+  lightbox com `role="dialog"`, foco preso, Esc/clique-fora fecham, setas de
+  teclado navegam, contador em mono. Com uma imagem só, a capa é estática, sem
+  affordance de clique.
 
-**Card do Dex Tweaks — captura real, não mock recriado.** O painel do
+**Card do Dex Tweaks — captura real, não mock recriado.** O painel do antigo
 `DexTweaksCard` era um mock em HTML/CSS (grade de menu numerado desenhada com
-tokens `--terminal-*`). Trocado por `next/image` com a captura real do painel
-(`public/casos/dex-tweaks-capa.webp`), pelo mesmo motivo de "Como ficaria a
-sua": real sem cortar informação vale mais que recriado. Proporção nativa do
-painel é ~2,02:1 (bem mais baixa que os 16:10 das outras capas) — mantida sem
-recorte forçado, com `aspect-[519/257]` e `object-contain`.
+tokens `--terminal-*`). Trocado por capturas reais do painel — pelo mesmo
+motivo de "Como ficaria a sua": real sem cortar informação vale mais que
+recriado. Hoje o Dex Tweaks é só o primeiro item de `projetos`, com três
+capturas (`dex-tweaks-capa`, `-inicio`, `-toolbox`) navegáveis pela galeria
+comum a todo card, em `aspect-[3/2]` e `object-contain` — sem componente nem
+proporção dedicados.
 
 **Remapeamento de cor da captura.** A paleta de origem do Dex Tweaks (fundo
 `#0c0c0c`, texto `#cccccc`, azul `#3b78ff`, vermelho `#e74856`) não existe nos

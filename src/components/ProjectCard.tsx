@@ -1,21 +1,53 @@
+"use client";
+
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import { Expand, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 import type { Projeto } from "@/data/portfolio";
+import ProjectGallery from "./ProjectGallery";
 
 export default function ProjectCard({ projeto }: { projeto: Projeto }) {
+  const [galeriaAberta, setGaleriaAberta] = useState(false);
+  const botaoCapaRef = useRef<HTMLButtonElement>(null);
+  const imagens = projeto.imagens ?? [];
+  const capa = imagens[0];
+  const temGaleria = imagens.length > 1;
+
   return (
     <article className="flex flex-col border border-hairline transition-colors duration-150 hover:border-control">
-      {projeto.imagem ? (
-        <div className="relative aspect-video w-full overflow-hidden border-b border-hairline bg-surface">
-          <Image
-            src={projeto.imagem}
-            alt={`Captura do projeto ${projeto.titulo}`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover"
-          />
-        </div>
+      {capa ? (
+        temGaleria ? (
+          <button
+            ref={botaoCapaRef}
+            type="button"
+            onClick={() => setGaleriaAberta(true)}
+            aria-label={`Ver imagens do projeto ${projeto.titulo}`}
+            className="group relative aspect-[3/2] w-full overflow-hidden border-b border-hairline bg-surface"
+          >
+            <Image
+              src={capa.src}
+              alt={capa.alt}
+              fill
+              sizes="(min-width: 640px) 50vw, 100vw"
+              className="object-contain"
+            />
+            <span className="absolute bottom-2 right-2 flex items-center gap-1.5 border border-hairline bg-background px-2 py-1 font-mono text-[0.65rem] tabular-nums text-foreground-dim transition-colors duration-150 group-hover:text-foreground">
+              <Expand aria-hidden="true" className="size-3" />
+              1 / {imagens.length}
+            </span>
+          </button>
+        ) : (
+          <div className="relative aspect-[3/2] w-full overflow-hidden border-b border-hairline bg-surface">
+            <Image
+              src={capa.src}
+              alt={capa.alt}
+              fill
+              sizes="(min-width: 640px) 50vw, 100vw"
+              className="object-contain"
+            />
+          </div>
+        )
       ) : null}
 
       <div className="flex flex-1 flex-col gap-4 p-6">
@@ -64,6 +96,17 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
           </div>
         ) : null}
       </div>
+
+      {temGaleria && galeriaAberta ? (
+        <ProjectGallery
+          imagens={imagens}
+          titulo={projeto.titulo}
+          onFechar={() => {
+            setGaleriaAberta(false);
+            botaoCapaRef.current?.focus();
+          }}
+        />
+      ) : null}
     </article>
   );
 }

@@ -60,67 +60,44 @@ export type Projeto = {
   titulo: string;
   descricao: string;
   tecnologias: string[];
-  imagem?: string;
+  imagens?: { src: string; alt: string }[];
   link?: string;
   repositorio?: string;
 };
 
-// Projetos externos entram aqui conforme forem ficando prontos.
-// O Dex Tweaks é renderizado separado, como destaque da seção.
-export const projetos: Projeto[] = [];
+// Os 4 projetos da grade usam o mesmo card, no mesmo tamanho — sem destaque
+// maior. Dex Tweaks ocupa a primeira posição por ser o mais pronto, não por
+// ganhar um tratamento visual diferente.
+export const projetos: Projeto[] = [
+  {
+    titulo: "Dex Tweaks",
+    descricao:
+      "Painel administrativo em Batch para Windows 10 e 11, num arquivo só, sem instalação. Seis perfis prontos — Safe, Balanced, Competitive, Streaming, Laptop e Privacy — mais ajustes de CPU, GPU, rede, memória, serviços e privacidade. Toda alteração passa por prévia, snapshot e verificação antes de ser gravada, com BCD e Defender atrás de um Modo Especialista, com confirmação extra.",
+    tecnologias: ["Batch", "PowerShell", "Windows 10/11"],
+    imagens: [
+      {
+        src: "/casos/dex-tweaks-capa.webp",
+        alt: "Captura real do painel principal do Dex Tweaks, em modo texto, com o menu numerado de perfis, otimizações, hardware e backup.",
+      },
+      {
+        src: "/casos/dex-tweaks-inicio.webp",
+        alt: "Tela inicial do Dex Tweaks com banner ASCII, hardware detectado (GPU e CPU) e o menu completo de otimizações.",
+      },
+      {
+        src: "/casos/dex-tweaks-toolbox.webp",
+        alt: "Submenu Dex Toolbox do Dex Tweaks, com boosters de jogo, agendamento de tarefas, debloat de programas e otimização de captura.",
+      },
+    ],
+    repositorio: "https://github.com/mxndex7/Dex-Tweeks",
+  },
+];
 
-// Slots de produção. Com o Dex Tweaks no destaque, três slots fecham a grade
-// de quatro. Cada projeto que entrar em `projetos` toma o lugar de um slot.
+// Slots de produção. Preenchem o resto da grade de quatro — cada projeto que
+// entrar em `projetos` toma o lugar de um slot.
 export const projetosEmProducao = [
   { rotulo: "Em produção" },
   { rotulo: "Em produção" },
   { rotulo: "Em produção" },
-];
-
-export type DexTweaksMenuItem = { key: string; label: string };
-
-export const dexTweaks = {
-  nome: "Dex Tweaks",
-  arquivo: "Dex-Tweeks.bat",
-  descricao:
-    "Painel administrativo em Batch para Windows 10 e 11, num arquivo só, sem instalação. Seis perfis prontos — Safe, Balanced, Competitive, Streaming, Laptop e Privacy — mais ajustes de CPU, GPU, rede, memória, serviços e privacidade.",
-  metodologia:
-    "Toda alteração passa por prévia, snapshot e verificação antes de ser gravada. BCD e Defender ficam atrás de um Modo Especialista, com confirmação extra.",
-  repositorio: "https://github.com/mxndex7/Dex-Tweeks",
-  tecnologias: ["Batch", "PowerShell", "Windows 10/11"],
-  menu: [
-    { key: "1", label: "Dashboard" },
-    { key: "2", label: "Profiles" },
-    { key: "3", label: "Optimizations" },
-    { key: "4", label: "Hardware" },
-    { key: "5", label: "Windows" },
-    { key: "6", label: "Privacy" },
-    { key: "7", label: "Advanced" },
-    { key: "8", label: "Change Center" },
-    { key: "9", label: "Backup / Restore" },
-    { key: "A", label: "System Health" },
-    { key: "B", label: "Benchmark" },
-    { key: "C", label: "Global Search" },
-    { key: "D", label: "History" },
-    { key: "E", label: "Restart Center" },
-  ] satisfies DexTweaksMenuItem[],
-};
-
-export type StatOtimizacao = { valor: string; label: string; detalhe: string };
-
-// Números reais medidos numa instalação feita com o autounattend.xml + Dex Tweaks.
-export const statsOtimizacao: StatOtimizacao[] = [
-  {
-    valor: "16%",
-    label: "de RAM em repouso",
-    detalhe: "2,6 GB de 15,9 GB em uso logo após a instalação, sem nada aberto",
-  },
-  {
-    valor: "40+",
-    label: "itens removidos na instalação",
-    detalhe:
-      "Copilot, Cortana, Xbox, Teams, OneDrive e outros apps de fábrica, fora",
-  },
 ];
 
 /*
