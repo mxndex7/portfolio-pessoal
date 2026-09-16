@@ -5,7 +5,7 @@ import Section from "./Section";
 export default function ComoFicariaASua() {
   return (
     <Section
-      id="como-ficaria-a-sua"
+      id="criacao-de-sites"
       eyebrow={comoFicariaASua.eyebrow}
       titulo={comoFicariaASua.titulo}
     >

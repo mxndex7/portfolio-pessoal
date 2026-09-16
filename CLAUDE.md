@@ -121,8 +121,8 @@ largura 125. Archivo Black saiu — não é mais necessário.
 Linha do hero: *"Do primeiro commit ao último serviço desativado."*
 
 Títulos de seção formam um conjunto, nesta ordem:
-As duas pontas → O que eu construí → O que eu resolvo → Como ficaria a sua →
-O que precisa ser resolvido?
+As duas pontas → O que eu construí → Plano de Otimização → Criação de Sites →
+Quanto custa → O que precisa ser resolvido?
 
 **Proibido:** "transformar ideias em", "vamos conversar", "soluções",
 "investimento" como eufemismo de preço, e qualquer adjetivo sem ação ao lado.
@@ -154,6 +154,15 @@ altura e cada bloco arrastava uma coluna esquerda vazia.
   visual — quebra leitor de tela e SEO ao mesmo tempo.
 - Todo conteúdo editável vive em `src/data/portfolio.ts`. Componente não tem
   texto hardcoded.
+- Ordem das seções: Hero → Sobre → Projetos → Plano de Otimização → Criação
+  de Sites → Preços → Contato → Footer. Decisão de 16/09/2026 (Cowork):
+  otimização de máquina e criação de sites são dois serviços distintos, cada
+  um com sua própria seção e sua própria prova visual — antes eles viviam
+  misturados numa só "Serviços" (cards de preço + "O que você ganha"), e
+  "Como ficaria a sua" não tinha preço nenhum. Os preços dos dois agora vivem
+  juntos, na seção "Preços", no fim da página: assim o visitante já viu as
+  duas provas antes de comparar valor, e comparar as três opções lado a lado
+  (Montagem, Otimização, Sites) é o que fecha a decisão.
 - Projetos: seção aberta de propósito. Os 4 projetos usam o mesmo
   `ProjectCard`, no mesmo tamanho, em grade 2×2 (`grid-cols-1 sm:grid-cols-2`)
   — sem card "featured" maior. Dex Tweaks ocupa a primeira posição por ser o
@@ -189,19 +198,51 @@ monocromática proíbe.
 
 ---
 
-## Seção "Como ficaria a sua"
+## Seção "Plano de Otimização"
+
+Substitui a antiga `Services.tsx` (eyebrow "Serviços", título "O que eu
+resolvo"). Decisão de 16/09/2026 (Cowork): os 3 cards de preço saíram daqui —
+foram pra "Preços", no fim da página — porque misturar preço com a explicação
+do serviço duplicava o mesmo fato em dois lugares da seção.
+
+- Intro nomeia o Dex Tweaks (a ferramenta própria, já mostrada em Projetos)
+  como o que aplica o ajuste — a otimização não é um script genérico baixado
+  da internet.
+- Cabeçalho próprio "O que você ganha" / "Tudo que eu mexo, você consegue
+  desfazer" saiu: o `<h2>` da seção ("Plano de Otimização", via `Section`) já
+  cobre esse papel. `ganhos` deixou de carregar `eyebrow`/`titulo` — só os
+  `grupos` (O que sai / O que eu ajusto / Como dá pra voltar) continuam, na
+  mesma posição de antes.
+- **Bloco "Windows limpo"** substitui o antigo card de medição de RAM
+  (`medicaoRepouso`) — mesma regra de "um fato aparece na página uma vez só":
+  o número não pode viver em dois lugares. Formato espelha o da capa de
+  "Criação de Sites" (imagem desktop `aspect-[2/1]` largura inteira + imagem
+  mobile `aspect-[390/560]`, borda `hairline`, sem cor) e fica desligado até a
+  imagem existir — mesmo padrão de `provaVisual`. Abaixo da imagem, uma lista
+  de estatísticas (RAM após o boot, nº de serviços desabilitados, nº de apps
+  removidos); cada uma só aparece quando o valor estiver preenchido.
+- Bloco de resultado em jogos (`provaVisual`) mantém posição e formato
+  exatamente como estava — duas imagens lado a lado, desligado até as duas
+  existirem.
+
+---
+
+## Seção "Criação de Sites"
 
 Seção nova, dedicada ao serviço de landing pages e sites. **Não** fica dentro
 de "O que eu construí" — aquela seção é sobre o que eu construí para mim; esta
 é sobre o que eu faço para cliente. Misturar as duas confunde trabalho próprio
 com peça de demonstração.
 
-**Posição:** logo depois de "O que eu resolvo". A prova chega no momento em
-que o visitante acabou de ler o serviço e está em dúvida.
+**Posição:** logo depois de "Plano de Otimização" — o outro serviço da
+página, sob o mesmo eyebrow "Serviços". A prova chega no momento em que o
+visitante acabou de ler um serviço e está em dúvida sobre o outro.
 
-**Título:** "Como ficaria a sua" — interpela o visitante, no mesmo movimento
-do fechamento interrogativo, e já deixa implícito que são demonstrações, não
-carteira de clientes.
+**Título:** era "Como ficaria a sua" — interpelava o visitante e já deixava
+implícito que eram demonstrações, não carteira de clientes. Mudou pra
+"Criação de Sites" na reestruturação de 16/09/2026 (Cowork), pareado com
+"Plano de Otimização" sob o mesmo eyebrow "Serviços". O preço dos dois passou
+a viver junto, na seção "Preços", no fim.
 
 **As três peças** — landing pages fictícias, uma por público-alvo do serviço:
 
@@ -223,7 +264,10 @@ para sempre neste projeto: nenhuma das três pode ser apresentada como cliente
 real, em nenhum texto, legenda, alt ou metadata. Três travas, todas
 obrigatórias:
 
-1. O título da seção já diz que é hipótese ("Como ficaria a sua").
+1. O parágrafo de abertura da seção já diz que são "páginas fictícias" antes
+   de qualquer clique — desde a reestruturação de 16/09/2026 (Cowork) o
+   título da seção é "Criação de Sites" (não mais interrogativo), então essa
+   trava passou a viver no texto de intro, não no `<h2>`.
 2. Cada peça, quando aberta, carrega uma faixa fixa no topo: "Peça de
    demonstração — negócio fictício, criada para exemplificar o serviço · por
    Guilherme Mendes". A faixa fica fixa, visível em qualquer ponto da
@@ -262,6 +306,29 @@ precisam ser regerados — eles são cópias publicadas, não a origem.
 
 ---
 
+## Seção "Preços"
+
+Nova, criada em 16/09/2026 (Cowork). Eyebrow "Orçamento", título "Quanto
+custa". Fica depois de "Criação de Sites" e antes de "Contato" — é a última
+parada antes do fechamento, com as duas provas (otimização e sites) já
+vistas.
+
+Junta os preços que antes viviam espalhados: os 2 cards que saíram de "Plano
+de Otimização" mais "Criação de Sites", que antes não tinha preço nenhum na
+página. Mesmo componente de card usado antes em `Services.tsx` (nome,
+descrição, preço, nota opcional, botão "Pedir orçamento") — só o conteúdo de
+`servicos` mudou:
+
+1. Montagem de PC — sem mudança.
+2. Otimização (fusão de "Sistema Operacional Otimizado" + "Otimização &
+   Overclock") — preço R$ 280 "a partir de", o menor dos dois valores antigos
+   como âncora. Decisão fechada: não soma os dois preços, porque agora é uma
+   entrega só.
+3. Criação de Sites — "Sob consulta", sem valor fixo por enquanto (pendência
+   em aberto).
+
+---
+
 ## Acessibilidade — não regredir
 
 - Nav mobile existe e fecha no Esc (`HeroNav.tsx`). Antes ela simplesmente
@@ -290,22 +357,27 @@ dependências: `next`, `react`, `react-dom`, `lucide-react`, `react-icons`.
 > A regra vale para qualquer arquivo aqui: ler, depois escrever.
 
 **Conteúdo**
-- [ ] `medicaoRepouso.antes` está vazio, esperando a medição de RAM em repouso
-      antes da otimização (restaurar snapshot → reiniciar → Gerenciador de
-      Tarefas).
+- [ ] `provaOtimizacao` está sem imagem — bloco "Windows limpo" desligado até
+      `imagemDesktop`/`imagemMobile` existirem. Estatísticas pendentes: RAM em
+      repouso antes da otimização (restaurar snapshot → reiniciar →
+      Gerenciador de Tarefas), nº de serviços desabilitados, nº de apps
+      removidos.
 - [ ] `provaVisual` está desligado. Renderiza sozinho quando as duas imagens
       forem preenchidas. Requisitos da captura estão comentados no
       `portfolio.ts`.
 - [ ] Domínio, `metadataBase`, OG image e favicon com o monograma GM.
 - [ ] Preços são âncoras iniciais, não tabela fechada.
+- [ ] Preço de "Criação de Sites" está "Sob consulta" — sem valor fixo por
+      enquanto.
 
 **Verificação que só roda na máquina dele**
 - [ ] `npm run dev` e conferir: MENDES encostando nas duas margens, kanji
       discreto, nav mobile abrindo e fechando no Esc, foco visível no Tab,
       largura de 400px sem scroll horizontal.
-- [ ] `npm run build` — o ambiente do Cowork tem o registro npm bloqueado para
-      vários pacotes deste projeto, então o build nunca rodou de verdade lá.
-      Só o typecheck foi validado.
+- [x] `npm run build` — rodado direto pelo Claude Code na máquina dele
+      (16/09/2026), passou limpo. O ambiente do Cowork continua com o
+      registro npm bloqueado para vários pacotes deste projeto, então lá o
+      build segue sem rodar de verdade — só o typecheck é validado nele.
 
 ---
 

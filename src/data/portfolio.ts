@@ -101,6 +101,19 @@ export const projetosEmProducao = [
 ];
 
 /*
+  PLANO DE OTIMIZAÇÃO — cabeçalho e intro da seção.
+
+  O cabeçalho próprio que "O que você ganha" tinha (eyebrow + título) saiu:
+  o <h2> da seção, vindo do Section, já cobre esse papel.
+*/
+export const otimizacao = {
+  eyebrow: "Serviços",
+  titulo: "Plano de Otimização",
+  intro:
+    "Existe muito otimizador de PC que promete dobrar FPS e não diz o que faz. Aqui é o contrário: uso o Dex Tweaks, o painel que eu mesmo escrevo, pra aplicar cada ajuste por perfil — com snapshot antes e benchmark depois. Se algo não compensar na sua máquina, eu falo antes de mexer.",
+};
+
+/*
   "O QUE VOCÊ GANHA"
 
   Duas regras governam esta seção:
@@ -116,104 +129,106 @@ export const projetosEmProducao = [
      de novo. Agrupado por verbo (sai / ajusto / volta), ela passa a explicar
      COMO o trabalho é feito, o que os cards não dizem.
 
-  Os cards de Serviços perderam a lista de recursos justamente por isso: o
-  detalhe vive aqui, uma vez só.
+  Os cards de preço não têm lista de recursos justamente por isso: o detalhe
+  vive aqui, uma vez só.
 */
 
 export type Ganho = { acao: string; efeito: string };
 export type GrupoGanho = { titulo: string; itens: Ganho[] };
 
-export const ganhos = {
-  eyebrow: "O que você ganha",
-  titulo: "Tudo que eu mexo, você consegue desfazer",
-  intro:
-    "Existe muito otimizador de PC que promete dobrar FPS e não diz o que faz. Aqui é o contrário: cada alteração é listada, medida e reversível. Se algo não compensar na sua máquina, eu falo antes de mexer.",
-  grupos: [
-    {
-      titulo: "O que sai",
-      itens: [
-        {
-          acao: "Mais de 40 apps de fábrica",
-          efeito:
-            "Copilot, Cortana, Xbox, Teams e OneDrive nunca chegam a existir na máquina.",
-        },
-        {
-          acao: "Telemetria",
-          efeito: "Nada enviando dados em segundo plano enquanto você joga.",
-        },
-        {
-          acao: "Indexação e hibernação",
-          efeito:
-            "O disco para de trabalhar sozinho, e o hiberfil.sys devolve o tamanho da sua RAM.",
-        },
-        {
-          acao: "Edge, de verdade",
-          efeito:
-            "Sem o navegador voltando sozinho a cada atualização. Chrome como padrão.",
-        },
-      ],
-    },
-    {
-      titulo: "O que eu ajusto",
-      itens: [
-        {
-          acao: "Perfil pelo uso da máquina",
-          efeito:
-            "Competitivo, streaming, notebook ou privacidade. Nada de configuração genérica.",
-        },
-        {
-          acao: "Perfil de memória na BIOS",
-          efeito:
-            "RAM vendida como 3200 MHz costuma rodar a 2133 de fábrica. É desempenho que você já pagou.",
-        },
-        {
-          acao: "Curva de energia e overclock",
-          efeito:
-            "Com teste de estabilidade antes de entregar. Ganho que trava não é ganho.",
-        },
-      ],
-    },
-    {
-      titulo: "Como dá pra voltar",
-      itens: [
-        {
-          acao: "Snapshot antes de cada alteração",
-          efeito:
-            "Deu ruim, volta. É o que separa isso de um otimizador que você baixa e reza.",
-        },
-        {
-          acao: "Histórico item por item",
-          efeito: "Você vê exatamente o que foi mexido na sua máquina.",
-        },
-        {
-          acao: "Modo Especialista",
-          efeito:
-            "BCD e Defender ficam atrás de uma trava. Nada perigoso é aplicado escondido.",
-        },
-        {
-          acao: "Benchmark antes e depois",
-          efeito: "Medido na sua máquina. Não é promessa minha, é número seu.",
-        },
-      ],
-    },
-  ] satisfies GrupoGanho[],
-};
+export const ganhos: GrupoGanho[] = [
+  {
+    titulo: "O que sai",
+    itens: [
+      {
+        acao: "Mais de 40 apps de fábrica",
+        efeito:
+          "Copilot, Cortana, Xbox, Teams e OneDrive nunca chegam a existir na máquina.",
+      },
+      {
+        acao: "Telemetria",
+        efeito: "Nada enviando dados em segundo plano enquanto você joga.",
+      },
+      {
+        acao: "Indexação e hibernação",
+        efeito:
+          "O disco para de trabalhar sozinho, e o hiberfil.sys devolve o tamanho da sua RAM.",
+      },
+      {
+        acao: "Edge, de verdade",
+        efeito:
+          "Sem o navegador voltando sozinho a cada atualização. Chrome como padrão.",
+      },
+    ],
+  },
+  {
+    titulo: "O que eu ajusto",
+    itens: [
+      {
+        acao: "Perfil pelo uso da máquina",
+        efeito:
+          "Competitivo, streaming, notebook ou privacidade. Nada de configuração genérica.",
+      },
+      {
+        acao: "Perfil de memória na BIOS",
+        efeito:
+          "RAM vendida como 3200 MHz costuma rodar a 2133 de fábrica. É desempenho que você já pagou.",
+      },
+      {
+        acao: "Curva de energia e overclock",
+        efeito:
+          "Com teste de estabilidade antes de entregar. Ganho que trava não é ganho.",
+      },
+    ],
+  },
+  {
+    titulo: "Como dá pra voltar",
+    itens: [
+      {
+        acao: "Snapshot antes de cada alteração",
+        efeito:
+          "Deu ruim, volta. É o que separa isso de um otimizador que você baixa e reza.",
+      },
+      {
+        acao: "Histórico item por item",
+        efeito: "Você vê exatamente o que foi mexido na sua máquina.",
+      },
+      {
+        acao: "Modo Especialista",
+        efeito:
+          "BCD e Defender ficam atrás de uma trava. Nada perigoso é aplicado escondido.",
+      },
+      {
+        acao: "Benchmark antes e depois",
+        efeito: "Medido na sua máquina. Não é promessa minha, é número seu.",
+      },
+    ],
+  },
+];
 
 /*
-  Medição de memória em repouso. É a prova mais honesta que existe aqui:
-  mesma máquina, mesmo momento depois do boot, nada aberto. Não tem cena,
-  clima nem placa de vídeo pra atrapalhar — só medir duas vezes.
+  Bloco "Windows limpo" — mesma casca visual da capa de "Criação de Sites"
+  (imagem desktop 2:1 largura inteira + imagem mobile 390:560), desligado até
+  as duas imagens existirem. Substitui o antigo card isolado de medição de RAM
+  — o mesmo número não pode viver em dois lugares da página.
 
-  Preencha `antes` com o valor medido ANTES da otimização (restaure o snapshot
-  pelo Dex Tweaks, reinicie, e olhe o Gerenciador de Tarefas). Enquanto estiver
-  vazio, o bloco não renderiza.
+  `estatisticas` é uma lista solta: cada item só aparece quando `valor`
+  estiver preenchido. Preencha o "antes" restaurando o snapshot pelo próprio
+  Dex Tweaks, reiniciando e olhando o Gerenciador de Tarefas.
 */
-export const medicaoRepouso = {
-  rotulo: "Memória em uso após o boot, sem nada aberto",
-  antes: "",
-  depois: "2,6 GB",
-  total: "15,9 GB",
-  nota: "Medido numa instalação feita com o autounattend.xml + Dex Tweaks.",
+export type EstatisticaOtimizacao = { rotulo: string; valor: string };
+
+export const provaOtimizacao = {
+  titulo: "Windows limpo",
+  imagemDesktop: "",
+  imagemMobile: "",
+  alt: "",
+  estatisticas: [
+    { rotulo: "RAM em uso após o boot — antes", valor: "" },
+    { rotulo: "RAM em uso após o boot — depois", valor: "2,6 GB de 15,9 GB" },
+    { rotulo: "Serviços desabilitados", valor: "" },
+    { rotulo: "Apps removidos", valor: "" },
+  ] satisfies EstatisticaOtimizacao[],
 };
 
 /*
@@ -250,15 +265,20 @@ export type Servico = {
   titulo: string;
   descricao: string;
   preco: string;
+  // Rótulo acima do preço. Default "A partir de" quando omitido; "" some com
+  // o rótulo — não faz sentido em cima de "Sob consulta".
+  precoRotulo?: string;
   precoNota?: string;
 };
 
 /*
   O card faz o trabalho de comparação: nome, uma descrição, preço e botão.
-  Três coisas comparáveis de relance.
+  Três coisas comparáveis de relance. Vivem na seção "Preços", no fim da
+  página — não mais dentro de "Plano de Otimização", pra "Criação de Sites"
+  ter preço no mesmo lugar que os outros dois.
 
   A lista de recursos saiu de propósito — ela repetia, item por item, o que a
-  seção "O que você ganha" já diz logo abaixo. Detalhe em um lugar só.
+  seção "O que você ganha" já diz. Detalhe em um lugar só.
 
   Preços como âncora ("a partir de"), não tabela fechada. Referência de mercado
   2026: formatação + Windows + drivers em R$ 100–200, limpeza + otimização em
@@ -267,33 +287,36 @@ export type Servico = {
 */
 export const servicos: Servico[] = [
   {
-    titulo: "Sistema Operacional Otimizado",
-    descricao:
-      "Instalação desassistida de Windows 10/11 que eu mesmo configurei, mais o Dex Tweaks aplicado por perfil. A máquina sai leve, previsível e sem telemetria — e com ponto de restauração antes de qualquer ajuste.",
-    preco: "R$ 280",
-  },
-  {
-    titulo: "Otimização & Overclock",
-    descricao:
-      "Ajuste de BIOS e overclock de CPU e memória, com teste de estabilidade antes de entregar. Benchmark antes e depois, pra você ver o que mudou em número.",
-    preco: "R$ 180",
-  },
-  {
     titulo: "Montagem de PC",
     descricao:
       "Montagem da máquina, da escolha das peças ao cabeamento. Inclui a instalação do sistema já otimizado e teste de temperatura sob carga.",
     preco: "R$ 200",
     precoNota: "Mão de obra. Peças à parte.",
   },
+  {
+    titulo: "Otimização Completa",
+    descricao:
+      "Instalação desassistida de Windows 10/11 que eu mesmo configurei, com o Dex Tweaks aplicado por perfil, mais ajuste de BIOS e overclock de CPU e memória com teste de estabilidade. Sai leve, sem telemetria, com benchmark antes e depois — e ponto de restauração antes de qualquer ajuste.",
+    preco: "R$ 280",
+  },
+  {
+    titulo: "Criação de Sites",
+    descricao:
+      "Landing page ou site sob medida, do design ao deploy. Preço varia com escopo — veja os exemplos em Criação de Sites.",
+    preco: "Sob consulta",
+    precoRotulo: "",
+  },
 ];
 
 /*
-  "COMO FICARIA A SUA"
+  "CRIAÇÃO DE SITES" (era "Como ficaria a sua" — renomeada em 16/09/2026)
 
   Três landing pages fictícias, uma por público-alvo do serviço de sites.
   Regra que vale sempre: nenhuma pode ser apresentada como cliente real — por
   isso o texto de abertura já chama de "páginas fictícias" e cada peça, ao
-  abrir, carrega sua própria faixa de aviso (fora deste repositório).
+  abrir, carrega sua própria faixa de aviso (fora deste repositório). Essa
+  frase de abertura é a trava #1 de honestidade agora que o título da seção
+  deixou de ser interrogativo.
 
   Identidade visual das três é deliberadamente sem parentesco entre si e sem
   relação com o estilo deste portfólio — isso é o argumento da seção.
@@ -309,8 +332,8 @@ export type CasoDemonstracao = {
 };
 
 export const comoFicariaASua = {
-  eyebrow: "Landing pages",
-  titulo: "Como ficaria a sua",
+  eyebrow: "Serviços",
+  titulo: "Criação de Sites",
   intro:
     "Três páginas fictícias, uma por público. Cada uma tem identidade própria de propósito — o mesmo molde repintado três vezes provaria o contrário do que eu quero provar. Clique para abrir a peça inteira.",
   casos: [
