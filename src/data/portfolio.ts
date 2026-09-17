@@ -4,14 +4,14 @@ export const perfil = {
   nome: "Guilherme Mendes",
   // O hero usa só o sobrenome. Seis letras cabem em qualquer largura.
   sobrenome: "Mendes",
-  monograma: "GM",
+  monograma: "",
   titulo: "Desenvolvedor & Técnico de TI",
   local: "Recife — PE",
   // Usado na metadata da página (título da aba e descrição no Google).
   resumo:
     "Desenvolvedor e técnico de TI em Recife. Sistemas web, otimização de Windows e montagem de máquinas.",
   // Linha embaixo do MENDES.
-  posicionamento: "Do primeiro commit ao último serviço desativado.",
+  posicionamento: "Invista no seu negócio ou melhore sua máquina.",
   email: "mendex.dev@gmail.com",
 };
 
@@ -30,13 +30,12 @@ export const redesSociais = [
 ] as const;
 
 export const sobre = {
-  titulo: "As duas pontas",
-  texto: `Tecnólogo em Análise e Desenvolvimento de Sistemas, cursando bacharelado
-em Engenharia de Software. 19 anos, Recife.
+  titulo: "Quem sou",
+  texto: `Me chamo Guilherme Mendes, Tecnólogo formado em Análise e Desenvolvimento de Sistemas, cursando bacharelado em Engenharia de Software. 19 anos, Recife.
 
-Escrevo o software e mexo na máquina que roda ele. São duas rotinas diferentes
-— uma termina em deploy, a outra em benchmark — mas o trabalho é o mesmo:
-achar o que está no caminho e tirar.`,
+Escrevo o software e mexo na máquina que roda ele. São duas rotinas diferentes que no fim tem o mesmo propósito: achar o que está no caminho e tirar.
+
+Atualmente sou estagiário de TI na Fundação CAS - Centro de Assistência social à PMPE.`,
 };
 
 export type Habilidade = {
@@ -72,7 +71,7 @@ export const projetos: Projeto[] = [
   {
     titulo: "Dex Tweaks",
     descricao:
-      "Painel administrativo em Batch para Windows 10 e 11, num arquivo só, sem instalação. Seis perfis prontos — Safe, Balanced, Competitive, Streaming, Laptop e Privacy — mais ajustes de CPU, GPU, rede, memória, serviços e privacidade. Toda alteração passa por prévia, snapshot e verificação antes de ser gravada, com BCD e Defender atrás de um Modo Especialista, com confirmação extra.",
+      "Painel administrativo em Batch para Windows 10 e 11, num arquivo só, sem instalação. Seis perfis prontos: Safe, Balanced, Competitive, Streaming, Laptop e Privacy. Ajustes de CPU, GPU, rede, memória, serviços e privacidade. Toda alteração passa por prévia, snapshot e verificação antes de ser gravada, com BCD e Defender atrás de um Modo Especialista, com confirmação extra.",
     tecnologias: ["Batch", "PowerShell", "Windows 10/11"],
     imagens: [
       {
@@ -110,7 +109,7 @@ export const otimizacao = {
   eyebrow: "Serviços",
   titulo: "Plano de Otimização",
   intro:
-    "Existe muito otimizador de PC que promete dobrar FPS e não diz o que faz. Aqui é o contrário: uso o Dex Tweaks, o painel que eu mesmo escrevo, pra aplicar cada ajuste por perfil — com snapshot antes e benchmark depois. Se algo não compensar na sua máquina, eu falo antes de mexer.",
+    "Existe muito otimizador de PC que promete dobrar FPS e não diz o que faz. Aqui é o contrário: uso o Dex Tweaks, o painel que eu mesmo escrevo, pra aplicar cada ajuste por perfil com snapshot antes e benchmark depois + Ajuste na BIOS. Além da opção de realizar uma instalação limpa sem bloatware do sistema operacional. Se algo não compensar na sua máquina, eu falo antes de mexer.",
 };
 
 /*
@@ -296,8 +295,8 @@ export const servicos: Servico[] = [
   {
     titulo: "Otimização Completa",
     descricao:
-      "Instalação desassistida de Windows 10/11 que eu mesmo configurei, com o Dex Tweaks aplicado por perfil, mais ajuste de BIOS e overclock de CPU e memória com teste de estabilidade. Sai leve, sem telemetria, com benchmark antes e depois — e ponto de restauração antes de qualquer ajuste.",
-    preco: "R$ 280",
+      "Instalação desassistida de Windows 10/11 que eu mesmo configurei, com o Dex Tweaks aplicado por perfil, mais ajuste de BIOS e overclock de CPU e memória com teste de estabilidade. Sai leve, sem telemetria, com benchmark antes e depois e ponto de restauração antes de qualquer ajuste.",
+    preco: "R$ 130",
   },
   {
     titulo: "Criação de Sites",
@@ -335,13 +334,13 @@ export const comoFicariaASua = {
   eyebrow: "Serviços",
   titulo: "Criação de Sites",
   intro:
-    "Três páginas fictícias, uma por público. Cada uma tem identidade própria de propósito — o mesmo molde repintado três vezes provaria o contrário do que eu quero provar. Clique para abrir a peça inteira.",
+    "Três páginas fictícias, uma por público. Cada uma tem identidade própria de propósito, o mesmo molde repintado três vezes provaria o contrário do que eu quero provar. Clique para abrir a peça inteira.",
   casos: [
     {
       nome: "Argila",
       publico: "Clínicas",
       decisao:
-        "Paleta de argila, serifa editorial e um corte anatômico da pele desenhado do zero, no lugar do azul-clínico e da foto de banco de imagem. Foi feita para explicar o método antes do agendamento — inclusive por que a clínica não publica antes e depois. Para quem tem consultório, isso significa paciente que chega sabendo como funciona a avaliação, e menos conversa sobre preço na recepção.",
+        "Paleta de argila, serifa editorial e um corte anatômico da pele desenhado do zero, no lugar do azul-clínico e da foto de banco de imagem. Foi feita para explicar o método antes do agendamento, inclusive porque a clínica não publica antes e depois. Para quem tem consultório, isso significa paciente que chega sabendo como funciona a avaliação, e menos conversa sobre preço na recepção.",
       href: "/exemplos/argila.html",
       capa: "/casos/argila-capa.webp",
       capaMobile: "/casos/argila-mobile.webp",
@@ -351,7 +350,7 @@ export const comoFicariaASua = {
       nome: "Renata Bastos",
       publico: "Profissionais autônomos",
       decisao:
-        "Tema escuro, uma única família tipográfica e cor usada só como sinal de risco: vermelho no prazo vencido, âmbar no que está em curso. Foi feita para informar em vez de vender, porque a OAB proíbe anunciar honorário e prometer resultado. Para o profissional liberal, é autoridade construída sem infringir o código da profissão — e cliente que chega à primeira reunião com metade das dúvidas já respondidas.",
+        "Tema escuro, uma única família tipográfica e cor usada só como sinal de risco: vermelho no prazo vencido, âmbar no que está em curso. Foi feita para informar em vez de vender, porque a OAB proíbe anunciar honorário e prometer resultado. Para o profissional liberal, é autoridade construída sem infringir o código da profissão e cliente que chega à primeira reunião com metade das dúvidas já respondidas.",
       href: "/exemplos/renata-bastos.html",
       capa: "/casos/renata-bastos-capa.webp",
       capaMobile: "/casos/renata-bastos-mobile.webp",
@@ -372,5 +371,5 @@ export const comoFicariaASua = {
 
 export const contato = {
   chamada: "O que precisa ser resolvido?",
-  texto: "Site, sistema, máquina lenta ou PC novo. Manda o caso.",
+  texto: "Site, sistema, máquina lenta ou PC novo. Entre em contato comigo que resolvo.",
 };

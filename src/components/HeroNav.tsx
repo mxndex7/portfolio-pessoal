@@ -34,13 +34,15 @@ export default function HeroNav({
       aria-label="Navegação principal"
       className="relative z-20 flex items-center justify-between"
     >
-      <a
-        href="#topo"
-        aria-label={`${monograma} — ir para o topo`}
-        className="font-display text-sm tracking-tight text-foreground"
-      >
-        {monograma}
-      </a>
+      {monograma ? (
+        <a
+          href="#topo"
+          aria-label={`${monograma} — ir para o topo`}
+          className="font-display text-sm tracking-tight text-foreground"
+        >
+          {monograma}
+        </a>
+      ) : null}
 
       {/* Desktop */}
       <div className="hidden items-center gap-8 md:flex">
@@ -88,9 +90,11 @@ export default function HeroNav({
         className="fixed inset-0 z-50 flex flex-col bg-background px-5 pb-10 pt-5 md:hidden"
       >
         <div className="flex items-center justify-between">
-          <span className="font-display text-sm tracking-tight text-foreground">
-            {monograma}
-          </span>
+          {monograma ? (
+            <span className="font-display text-sm tracking-tight text-foreground">
+              {monograma}
+            </span>
+          ) : null}
           <button
             type="button"
             onClick={() => setAberto(false)}
