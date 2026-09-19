@@ -178,6 +178,11 @@ export const ganhos: GrupoGanho[] = [
         efeito:
           "Com teste de estabilidade antes de entregar. Ganho que trava não é ganho.",
       },
+      {
+        acao: "Otimização de disco",
+        efeito:
+          "Limpeza de cache, temporários e resíduos de instalação. Mais espaço livre e menos disco cheio disputando leitura com o sistema.",
+      },
     ],
   },
   {
@@ -231,33 +236,15 @@ export const provaOtimizacao = {
 };
 
 /*
-  PROVA VISUAL — desligada até existir captura legítima.
-
-  Renderiza só quando as duas imagens estiverem preenchidas. O slot já está
-  montado e posicionado; é só apontar os arquivos.
-
-  O que a captura precisa ter, pra valer como prova em vez de ilustração:
-
-  1. MESMA CENA nos dois lados. Use o benchmark integrado do RDR2 — cinco
-     cenas, sendo a quinta (assalto + cavalgada pela cidade, 130s) a única
-     pesada e a única representativa. Clima, horário e câmera ficam travados.
-  2. MESMO INSTANTE da sequência. Grave as duas rodadas em vídeo e extraia o
-     frame do mesmo timestamp — acertar o print na mão não funciona.
-  3. DOIS ARQUIVOS separados, não uma imagem composta. O layout empilha no
-     celular e separa no desktop.
-  4. Sem lupa no print. O número grande vive aqui na interface; o contador
-     pequeno do jogo fica na imagem como comprovante.
-  5. Preset e resolução no campo `cena`, pra fechar a brecha do "e se ele
-     baixou os gráficos?".
-
-  Pra ter o estado "antes": restaure o snapshot pelo Backup/Restore do próprio
-  Dex Tweaks, rode o benchmark, aplique o perfil, rode de novo.
+  PROVA VISUAL — Black Myth: Wukong, 52 → 89 FPS. Ver CLAUDE.md, seção "Plano
+  de Otimização" (decisão de 19/09/2026): capturas entregues sem metodologia
+  de benchmark com cena fixa, por isso `cena` fica vazio.
 */
 export const provaVisual = {
-  jogo: "Red Dead Redemption 2",
-  cena: "", // ex.: "Benchmark integrado · cena 5 · Preset Alto · 1080p"
-  antes: { imagem: "", fps: 0 },
-  depois: { imagem: "", fps: 0 },
+  jogo: "Black Myth: Wukong",
+  cena: "",
+  antes: { imagem: "/casos/otimizacao-jogo-antes.webp", fps: 52 },
+  depois: { imagem: "/casos/otimizacao-jogo-depois.webp", fps: 89 },
 };
 
 export type Servico = {

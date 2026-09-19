@@ -225,6 +225,15 @@ do serviço duplicava o mesmo fato em dois lugares da seção.
   exatamente como estava — duas imagens lado a lado, desligado até as duas
   existirem.
 
+**`provaVisual` preenchido — decisão de 19/09/2026.** O jogo mudou de Red Dead
+Redemption 2 (planejado originalmente, com metodologia de benchmark integrado
+— cena 5, mesmo timestamp nas duas rodadas) para **Black Myth: Wukong**, sem
+essa metodologia: as capturas entregues não vêm de um benchmark com cena fixa,
+então o campo `cena` fica vazio. 52 FPS antes → 89 FPS depois, capturas em
+`public/casos/`. A forma do bloco não mudou — sem legenda textual combinada
+tipo "ANTES — 52 FPS" e sem linha de delta (`+37 FPS`): o número grande já
+cobre isso, e a regra fechada é não alterar a forma do `provaVisual`.
+
 ---
 
 ## Seção "Criação de Sites"
