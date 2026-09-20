@@ -13,7 +13,7 @@ export default function Otimizacao() {
     provaVisual.antes.imagem !== "" && provaVisual.depois.imagem !== "";
 
   return (
-    <Section id="servicos" eyebrow={otimizacao.eyebrow} titulo={otimizacao.titulo}>
+    <Section id="servicos" eyebrow={otimizacao.eyebrow} titulo={otimizacao.titulo} fade>
       <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground-muted">
         {otimizacao.intro}
       </p>

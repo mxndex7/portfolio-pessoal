@@ -3,7 +3,7 @@ import Section from "./Section";
 
 export default function Precos() {
   return (
-    <Section id="precos" eyebrow="Orçamento" titulo="Quanto custa">
+    <Section id="precos" eyebrow="Orçamento" titulo="Quanto custa" fade>
       {/*
         O card faz o trabalho de comparação: nome, descrição, preço, botão.
         Junta os preços de "Plano de Otimização" e "Criação de Sites" num

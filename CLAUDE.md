@@ -96,9 +96,42 @@ largura 125. Archivo Black saiu — não é mais necessário.
 - Nem tudo é card. Listas com fio divisório são o padrão preferido.
 
 **Movimento**
-- Uma entrada, uma vez, no carregamento (`.reveal`). Nada dispara no scroll.
-- Nada roda em loop. Hover muda cor, nunca posição — sem `translate-y`, sem `scale`.
+- Nada roda em loop.
 - `prefers-reduced-motion` desliga tudo. Já está no `globals.css`.
+
+**Fade de seção no scroll — decisão de 19/09/2026, reformulada em
+19/09/2026 (Cowork).** Substitui, para as seções listadas abaixo, a regra
+antiga de "entrada única no carregamento, nada dispara no scroll". O Hero
+continua com `.reveal` como estava — entrada única no load, sem fade por
+scroll, por ficar visível assim que a página carrega. Cada bloco de seção
+principal (heading + conteúdo tratados como unidade só, não card por card)
+faz fade in ao entrar na viewport e fade out ao sair, nas duas direções do
+scroll: se o bloco some rolando pra cima, ele volta ao estado oculto e refaz
+o fade ao reentrar. Hero fica de fora — já visível no load.
+- Versão inicial usava `opacity` + `transform: translateY(12px)`. O
+  deslocamento vertical saiu — o conteúdo já "some" só pela opacidade, o
+  movimento de subir/descer era redundante. Troca: `opacity` + `filter:
+  blur(Npx)`, sem transform.
+- `IntersectionObserver` por bloco de seção, sem flag "once" — adiciona/
+  remove a classe de estado a cada mudança de interseção.
+- `threshold` ~0.15, `rootMargin` `-5% 0px -5% 0px` (era `-10%` — reduzido em
+  19/09/2026 porque as seções sumiam cedo demais, antes de tocar a borda de
+  fato) — fade começa só perto da borda da viewport.
+- Oculto: `opacity: 0; filter: blur(8px)`. Visível: `opacity: 1; filter:
+  blur(0)`. Transição CSS, ~220ms `ease-out` — curto de propósito, o site é
+  "preciso", não lento.
+- `prefers-reduced-motion: reduce` desativa o efeito inteiro: blocos sempre
+  em `opacity: 1` / `filter: none`, sem transição.
+- Componente `<FadeSection>` (client) reutilizável, aplicado em todas as
+  seções exceto o Hero: Sobre, "O que eu construí", Serviços, "Criação de
+  Sites", Preços e Contato.
+
+**Hover de "marca de canto" — revertido em 19/09/2026.** Chegou a ser
+implementado (decisão de 19/09/2026, Cowork) e foi removido no mesmo dia, a
+pedido do Guilherme, junto com a reformulação do fade acima. Não existe mais
+`<CornerHover>` nem classe `.corner-hover`/`.corner-mark` no projeto. Hover
+de card e de CTA voltou a ser só mudança de cor, como a regra de Movimento
+sempre pediu.
 
 ---
 

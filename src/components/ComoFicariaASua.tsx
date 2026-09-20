@@ -8,6 +8,7 @@ export default function ComoFicariaASua() {
       id="criacao-de-sites"
       eyebrow={comoFicariaASua.eyebrow}
       titulo={comoFicariaASua.titulo}
+      fade
     >
       <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground-muted">
         {comoFicariaASua.intro}
