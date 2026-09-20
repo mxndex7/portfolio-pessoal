@@ -9,7 +9,7 @@ export default function Projects() {
   );
 
   return (
-    <Section id="projetos" eyebrow="Projetos" titulo="O que eu construí" fade>
+    <Section id="projetos" eyebrow="Projetos" titulo="O que eu construí">
       <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
         {projetos.map((projeto) => (
           <ProjectCard key={projeto.titulo} projeto={projeto} />

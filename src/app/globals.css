@@ -198,9 +198,8 @@
 
 /* ===============================================================
    MOVIMENTO
-   Nada roda em loop. O Hero tem entrada única no carregamento
-   (.reveal); as demais seções fazem fade in/out reversível no
-   scroll, via opacidade + blur (.fade-section). Ver CLAUDE.md.
+   Uma entrada, uma vez, no carregamento. Nada dispara no scroll e
+   nada roda em loop. Hover muda cor, nunca posição.
    =============================================================== */
 
 @keyframes reveal {
@@ -222,17 +221,6 @@
 .reveal-2 { animation-delay: 120ms; }
 .reveal-3 { animation-delay: 180ms; }
 
-.fade-section {
-  opacity: 0;
-  filter: blur(8px);
-  transition: opacity 220ms ease-out, filter 220ms ease-out;
-}
-
-.fade-section.is-visible {
-  opacity: 1;
-  filter: blur(0);
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -244,10 +232,6 @@
   }
   html {
     scroll-behavior: auto;
-  }
-  .fade-section {
-    opacity: 1;
-    filter: none;
   }
 }
 

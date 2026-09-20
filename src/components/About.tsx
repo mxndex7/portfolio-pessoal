@@ -3,7 +3,7 @@ import Section from "./Section";
 
 export default function About() {
   return (
-    <Section id="sobre" eyebrow="Sobre" titulo={sobre.titulo} fade>
+    <Section id="sobre" eyebrow="Sobre" titulo={sobre.titulo}>
       <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
         {/* A idade aparece uma vez só, dentro do texto. */}
         <p className="whitespace-pre-line text-base leading-[1.75] text-foreground-muted sm:text-lg">

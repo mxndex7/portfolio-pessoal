@@ -2,7 +2,6 @@ import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { contato, perfil, redesSociais } from "@/data/portfolio";
-import FadeSection from "./FadeSection";
 
 const iconesRedes: Record<string, IconType> = {
   GitHub: FaGithub,
@@ -20,44 +19,42 @@ export default function Contact() {
   return (
     <section id="contato" className="border-t border-rule">
       <div className="mx-auto w-full max-w-6xl px-5 py-28 sm:px-8 sm:py-40 lg:px-10 lg:py-52">
-        <FadeSection>
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-foreground-dim">
-            Contato
-          </p>
-          <h2 className="mt-4 max-w-3xl font-display text-4xl uppercase leading-[0.92] tracking-[-0.035em] text-foreground sm:text-6xl lg:text-7xl">
-            {contato.chamada}
-          </h2>
-          <p className="mt-7 max-w-lg text-base leading-relaxed text-foreground-muted sm:text-lg">
-            {contato.texto}
-          </p>
+        <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-foreground-dim">
+          Contato
+        </p>
+        <h2 className="mt-4 max-w-3xl font-display text-4xl uppercase leading-[0.92] tracking-[-0.035em] text-foreground sm:text-6xl lg:text-7xl">
+          {contato.chamada}
+        </h2>
+        <p className="mt-7 max-w-lg text-base leading-relaxed text-foreground-muted sm:text-lg">
+          {contato.texto}
+        </p>
 
-          <a
-            href={`mailto:${perfil.email}`}
-            className="mt-12 inline-flex min-h-11 items-center gap-3 border-b border-control pb-2 text-lg font-semibold text-foreground transition-colors duration-150 hover:border-foreground sm:text-2xl"
-          >
-            <Mail aria-hidden="true" className="size-5 shrink-0" />
-            {perfil.email}
-          </a>
+        <a
+          href={`mailto:${perfil.email}`}
+          className="mt-12 inline-flex min-h-11 items-center gap-3 border-b border-control pb-2 text-lg font-semibold text-foreground transition-colors duration-150 hover:border-foreground sm:text-2xl"
+        >
+          <Mail aria-hidden="true" className="size-5 shrink-0" />
+          {perfil.email}
+        </a>
 
-          <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3 border-t border-hairline pt-8">
-            {redesSociais.map((rede) => {
-              const Icone = iconesRedes[rede.nome];
-              return (
-                <li key={rede.nome}>
-                  <a
-                    href={rede.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim transition-colors duration-150 hover:text-foreground"
-                  >
-                    {Icone ? <Icone aria-hidden="true" className="size-4" /> : null}
-                    {rede.nome}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </FadeSection>
+        <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3 border-t border-hairline pt-8">
+          {redesSociais.map((rede) => {
+            const Icone = iconesRedes[rede.nome];
+            return (
+              <li key={rede.nome}>
+                <a
+                  href={rede.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim transition-colors duration-150 hover:text-foreground"
+                >
+                  {Icone ? <Icone aria-hidden="true" className="size-4" /> : null}
+                  {rede.nome}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
