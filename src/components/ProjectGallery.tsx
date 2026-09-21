@@ -15,13 +15,15 @@ type Imagem = { src: string; alt: string };
 export default function ProjectGallery({
   imagens,
   titulo,
+  indiceInicial = 0,
   onFechar,
 }: {
   imagens: Imagem[];
   titulo: string;
+  indiceInicial?: number;
   onFechar: () => void;
 }) {
-  const [indice, setIndice] = useState(0);
+  const [indice, setIndice] = useState(indiceInicial);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

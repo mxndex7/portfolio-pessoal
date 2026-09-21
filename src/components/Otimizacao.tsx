@@ -1,5 +1,9 @@
+"use client";
+
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { ganhos, otimizacao, provaOtimizacao, provaVisual } from "@/data/portfolio";
+import { ganhos, otimizacao, provaOtimizacao, provasVisuais } from "@/data/portfolio";
+import ProjectGallery from "./ProjectGallery";
 import Section from "./Section";
 
 export default function Otimizacao() {
@@ -9,8 +13,36 @@ export default function Otimizacao() {
     (estatistica) => estatistica.valor !== "",
   );
 
-  const temProvaVisual =
-    provaVisual.antes.imagem !== "" && provaVisual.depois.imagem !== "";
+  const provasVisuaisPreenchidas = provasVisuais.filter(
+    (prova) => prova.antes.imagem !== "" && prova.depois.imagem !== "",
+  );
+
+  /*
+    As 4 imagens (antes/depois de cada jogo) formam uma sequência lógica —
+    achatadas numa lista só, o lightbox reaproveitado navega entre as 4 sem
+    fechar e reabrir.
+  */
+  const imagensAmpliadas = provasVisuaisPreenchidas.flatMap((prova) => [
+    {
+      src: prova.antes.imagem,
+      alt: `${prova.jogo}, antes da otimização — ${prova.antes.fps} FPS`,
+    },
+    {
+      src: prova.depois.imagem,
+      alt: `${prova.jogo}, depois da otimização — ${prova.depois.fps} FPS`,
+    },
+  ]);
+
+  const [indiceAberto, setIndiceAberto] = useState<number | null>(null);
+  const botoesRef = useRef<Array<HTMLButtonElement | null>>([]);
+
+  function fecharGaleria() {
+    const indiceFocado = indiceAberto;
+    setIndiceAberto(null);
+    if (indiceFocado !== null) {
+      botoesRef.current[indiceFocado]?.focus();
+    }
+  }
 
   return (
     <Section id="servicos" eyebrow={otimizacao.eyebrow} titulo={otimizacao.titulo}>
@@ -65,19 +97,19 @@ export default function Otimizacao() {
       ) : null}
 
       {/*
-        Prova visual em jogos. O slot já está montado — renderiza assim que
-        as duas imagens existirem em `provaVisual`. Ver o comentário no
-        portfolio.ts para o que a captura precisa ter.
+        Provas visuais em jogos, uma por título — empilhadas. O slot de cada
+        uma renderiza assim que as duas imagens existirem em `provasVisuais`.
+        Ver o comentário no portfolio.ts para o que a captura precisa ter.
       */}
-      {temProvaVisual ? (
-        <figure className="mt-6 border border-hairline">
+      {provasVisuaisPreenchidas.map((prova, provaIndex) => (
+        <figure key={prova.jogo} className="mt-6 border border-hairline">
           <figcaption className="flex flex-wrap items-baseline justify-between gap-3 border-b border-hairline px-6 py-4">
             <span className="font-display text-base uppercase tracking-[-0.01em] text-foreground">
-              {provaVisual.jogo}
+              {prova.jogo}
             </span>
-            {provaVisual.cena ? (
+            {prova.cena ? (
               <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-foreground-dim">
-                {provaVisual.cena}
+                {prova.cena}
               </span>
             ) : null}
           </figcaption>
@@ -85,46 +117,67 @@ export default function Otimizacao() {
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {(
               [
-                ["Antes", provaVisual.antes],
-                ["Depois", provaVisual.depois],
+                ["Antes", prova.antes],
+                ["Depois", prova.depois],
               ] as const
-            ).map(([rotulo, dados], i) => (
-              <div
-                key={rotulo}
-                className={
-                  i === 0
-                    ? "border-b border-hairline sm:border-b-0 sm:border-r"
-                    : ""
-                }
-              >
-                {/*
-                  O número vive na interface, em tipo grande — não dentro da
-                  imagem. O contador do jogo fica no print como comprovante.
-                */}
-                <div className="flex items-end justify-between gap-4 px-6 pt-5">
-                  <span className="pb-1 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-foreground-dim">
-                    {rotulo}
-                  </span>
-                  <span className="font-display text-4xl leading-none tabular-nums text-foreground">
-                    {dados.fps}
-                    <span className="ml-1.5 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-foreground-dim">
-                      FPS
+            ).map(([rotulo, dados], i) => {
+              const indiceGlobal = provaIndex * 2 + i;
+
+              return (
+                <div
+                  key={rotulo}
+                  className={
+                    i === 0
+                      ? "border-b border-hairline sm:border-b-0 sm:border-r"
+                      : ""
+                  }
+                >
+                  {/*
+                    O número vive na interface, em tipo grande — não dentro da
+                    imagem. O contador do jogo fica no print como comprovante.
+                  */}
+                  <div className="flex items-end justify-between gap-4 px-6 pt-5">
+                    <span className="pb-1 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-foreground-dim">
+                      {rotulo}
                     </span>
-                  </span>
+                    <span className="font-display text-4xl leading-none tabular-nums text-foreground">
+                      {dados.fps}
+                      <span className="ml-1.5 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-foreground-dim">
+                        FPS
+                      </span>
+                    </span>
+                  </div>
+                  <button
+                    ref={(el) => {
+                      botoesRef.current[indiceGlobal] = el;
+                    }}
+                    type="button"
+                    onClick={() => setIndiceAberto(indiceGlobal)}
+                    aria-label={`Ver ampliada: ${prova.jogo}, ${rotulo.toLowerCase()}, ${dados.fps} FPS`}
+                    className="relative mt-6 block aspect-video w-full overflow-hidden border border-hairline bg-surface transition-colors duration-150 hover:border-control focus-visible:border-control"
+                  >
+                    <Image
+                      src={dados.imagem}
+                      alt={`${prova.jogo}, ${rotulo.toLowerCase()} da otimização — ${dados.fps} FPS`}
+                      fill
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="object-cover object-left-top"
+                    />
+                  </button>
                 </div>
-                <div className="relative m-6 aspect-video overflow-hidden bg-surface">
-                  <Image
-                    src={dados.imagem}
-                    alt={`${provaVisual.jogo}, ${rotulo.toLowerCase()} da otimização — ${dados.fps} FPS`}
-                    fill
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </figure>
+      ))}
+
+      {indiceAberto !== null ? (
+        <ProjectGallery
+          imagens={imagensAmpliadas}
+          titulo="Resultados de otimização"
+          indiceInicial={indiceAberto}
+          onFechar={fecharGaleria}
+        />
       ) : null}
 
       {/*

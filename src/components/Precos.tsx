@@ -18,9 +18,23 @@ export default function Precos() {
             <h3 className="font-display text-lg uppercase leading-tight tracking-[-0.02em] text-foreground">
               {servico.titulo}
             </h3>
-            <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground-dim">
-              {servico.descricao}
+            <p className="mt-4 text-sm leading-relaxed text-foreground-dim">
+              {servico.resumo}
             </p>
+
+            <ul className="mt-5 flex flex-1 flex-col gap-2.5">
+              {servico.pontos.map((ponto) => (
+                <li
+                  key={ponto}
+                  className="flex items-baseline gap-2.5 text-sm leading-snug text-foreground-muted"
+                >
+                  <span aria-hidden="true" className="text-foreground-floor">
+                    •
+                  </span>
+                  {ponto}
+                </li>
+              ))}
+            </ul>
 
             <div className="mt-8 border-t border-hairline pt-6">
               {(servico.precoRotulo ?? "A partir de") !== "" ? (

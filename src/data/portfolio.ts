@@ -236,20 +236,38 @@ export const provaOtimizacao = {
 };
 
 /*
-  PROVA VISUAL — Black Myth: Wukong, 52 → 89 FPS. Ver CLAUDE.md, seção "Plano
-  de Otimização" (decisão de 19/09/2026): capturas entregues sem metodologia
-  de benchmark com cena fixa, por isso `cena` fica vazio.
+  PROVAS VISUAIS — uma por jogo, empilhadas na seção "Plano de Otimização".
+  Ver CLAUDE.md (decisão de 19/09/2026): Black Myth: Wukong veio sem
+  metodologia de benchmark com cena fixa, por isso `cena` fica vazio.
+  Decisão de 20/09/2026 (Cowork): passou de item único pra lista — os jogos
+  se somam, não se substituem.
 */
-export const provaVisual = {
-  jogo: "Black Myth: Wukong",
-  cena: "",
-  antes: { imagem: "/casos/otimizacao-jogo-antes.webp", fps: 52 },
-  depois: { imagem: "/casos/otimizacao-jogo-depois.webp", fps: 89 },
+type ProvaJogo = {
+  jogo: string;
+  cena: string;
+  antes: { imagem: string; fps: number };
+  depois: { imagem: string; fps: number };
 };
+
+export const provasVisuais: ProvaJogo[] = [
+  {
+    jogo: "Black Myth: Wukong",
+    cena: "",
+    antes: { imagem: "/casos/otimizacao-jogo-antes.webp", fps: 52 },
+    depois: { imagem: "/casos/otimizacao-jogo-depois.webp", fps: 89 },
+  },
+  {
+    jogo: "Marvel's Spider-Man 2",
+    cena: "",
+    antes: { imagem: "/casos/otimizacao-spiderman2-antes.webp", fps: 56 },
+    depois: { imagem: "/casos/otimizacao-spiderman2-depois.webp", fps: 91 },
+  },
+];
 
 export type Servico = {
   titulo: string;
-  descricao: string;
+  resumo: string;
+  pontos: [string, string, string];
   preco: string;
   // Rótulo acima do preço. Default "A partir de" quando omitido; "" some com
   // o rótulo — não faz sentido em cima de "Sob consulta".
@@ -258,13 +276,16 @@ export type Servico = {
 };
 
 /*
-  O card faz o trabalho de comparação: nome, uma descrição, preço e botão.
+  O card faz o trabalho de comparação: nome, resumo, 3 pontos, preço e botão.
   Três coisas comparáveis de relance. Vivem na seção "Preços", no fim da
   página — não mais dentro de "Plano de Otimização", pra "Criação de Sites"
   ter preço no mesmo lugar que os outros dois.
 
-  A lista de recursos saiu de propósito — ela repetia, item por item, o que a
-  seção "O que você ganha" já diz. Detalhe em um lugar só.
+  Decisão de 20/09/2026 (Cowork): o card estava raso demais (nome + preço +
+  uma frase corrida). `descricao` virou `resumo` (1 frase de abertura) e
+  ganhou `pontos`, exatamente 3 frases curtas com bolinha, sem rótulo antes
+  da frase. Os pontos não repetem "O que você ganha" item por item — são o
+  resumo de cada serviço, não a lista completa do que é mexido.
 
   Preços como âncora ("a partir de"), não tabela fechada. Referência de mercado
   2026: formatação + Windows + drivers em R$ 100–200, limpeza + otimização em
@@ -274,21 +295,36 @@ export type Servico = {
 export const servicos: Servico[] = [
   {
     titulo: "Montagem de PC",
-    descricao:
-      "Montagem da máquina, da escolha das peças ao cabeamento. Inclui a instalação do sistema já otimizado e teste de temperatura sob carga.",
+    resumo:
+      "Montagem da máquina, da escolha de peças até o cabeamento. Já inclui o sistema otimizado.",
+    pontos: [
+      "Curadoria de peças",
+      "Montagem e cabeamento",
+      "Windows limpo, sem bloatware, com Dex Tweaks aplicado",
+    ],
     preco: "R$ 200",
     precoNota: "Mão de obra. Peças à parte.",
   },
   {
     titulo: "Otimização Completa",
-    descricao:
-      "Instalação desassistida de Windows 10/11 que eu mesmo configurei, com o Dex Tweaks aplicado por perfil, mais ajuste de BIOS e overclock de CPU e memória com teste de estabilidade. Sai leve, sem telemetria, com benchmark antes e depois e ponto de restauração antes de qualquer ajuste.",
+    resumo:
+      "Instalação desassistida do Windows 10/11, otimizado, mais ajustes do Dex Tweaks.",
+    pontos: [
+      "Sistema operacional sem bloatware",
+      "Ajustes de GPU, CPU e RAM",
+      "Ponto de restauração antes de qualquer ajuste",
+    ],
     preco: "R$ 130",
   },
   {
     titulo: "Criação de Sites",
-    descricao:
-      "Landing page ou site sob medida, do design ao deploy. Preço varia com escopo — veja os exemplos em Criação de Sites.",
+    resumo:
+      "Criação de landing page e site sob medida, atendendo à necessidade de cada empresa e cliente.",
+    pontos: [
+      "Protótipo navegável antes de aprovar",
+      "Identidade própria, sem molde genérico",
+      "Suporte e manutenção pós-venda",
+    ],
     preco: "Sob consulta",
     precoRotulo: "",
   },
