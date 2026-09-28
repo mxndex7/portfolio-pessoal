@@ -3,9 +3,16 @@ import HeroNav from "./HeroNav";
 
 export default function Hero() {
   return (
+    /*
+      Abaixo de md a altura também é limitada pela largura. MENDES e o kanji
+      escalam em cqw; se só a viewport mandasse, o vão do meio cresceria quanto
+      mais estreita a tela (416px em 390×830). 130vw deixa o vão perto da
+      proporção do desktop (~15–20% da altura do hero contra ~13%).
+      No desktop 130vw é sempre maior que a altura, então nada muda.
+    */
     <section
       id="topo"
-      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden px-5 pb-7 pt-5 sm:px-8 sm:pb-9 lg:px-10"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden px-5 pb-7 pt-5 max-md:min-h-[min(100svh,130vw)] sm:px-8 sm:pb-9 lg:px-10"
     >
       <div className="relative z-10 flex flex-1 flex-col">
         <HeroNav links={heroNav.links} monograma={perfil.monograma} />
