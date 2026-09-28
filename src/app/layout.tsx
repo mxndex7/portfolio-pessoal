@@ -1,23 +1,39 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { perfil } from "@/data/portfolio";
 
 /*
   Uma família só, dois eixos.
 
-  O Archivo é variável e tem eixo de largura (wdth, 62 a 125). Pedindo o eixo
-  aqui, o display deixa de precisar do Archivo Black: vira o mesmo Archivo em
-  peso 900 e largura 125 — literalmente "a mesma fonte, esticada".
+  O Archivo é variável e tem eixo de largura (wdth, 62 a 125). O display não
+  precisa do Archivo Black: é o mesmo Archivo em peso 900 e largura 125 —
+  literalmente "a mesma fonte, esticada".
 
-  `axes` exige fonte variável, então não se passa `weight` junto: vem a faixa
-  inteira de pesos.
+  As fontes moram em ./fonts e não dependem de rede em momento nenhum.
+  O font-stretch precisa ser declarado: sem a faixa no @font-face, o
+  navegador trava a largura em 100% e a face esticada nunca aparece.
 */
-const archivo = Archivo({
+const archivo = localFont({
+  src: "./fonts/archivo-latin-variable.woff2",
   variable: "--font-archivo",
-  subsets: ["latin"],
-  axes: ["wdth"],
+  weight: "100 900",
+  style: "normal",
+  declarations: [{ prop: "font-stretch", value: "62% 125%" }],
   display: "swap",
+});
+
+/*
+  Noto Sans JP 900 só com os dois glifos de 改善 (U+6539 U+5584): 1,3 KB em
+  vez da família inteira, que passa de 4 MB.
+*/
+const notoJp = localFont({
+  src: "./fonts/noto-sans-jp-900-kaizen.woff2",
+  variable: "--font-noto-jp",
+  weight: "900",
+  style: "normal",
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -38,23 +54,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${archivo.variable} h-full`}
+      className={`${archivo.variable} ${notoJp.variable} h-full`}
       // O script acima mexe no data-theme antes da hidratação, então o HTML do
       // servidor e o do cliente divergem de propósito.
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: scriptTema }} />
-        {/*
-          Noto Sans JP só para os dois glifos de 改善 (U+6539 U+5584).
-          O parâmetro `text` devolve um arquivo de poucos KB em vez da
-          família inteira, que passa de 4 MB. next/font não aceita esse
-          parâmetro, por isso o link é manual.
-        */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&text=%E6%94%B9%E5%96%84&display=swap"
-        />
       </head>
       <body className="flex min-h-full flex-col bg-background text-foreground antialiased">
         {children}

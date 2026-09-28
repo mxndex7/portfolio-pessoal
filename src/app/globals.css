@@ -134,7 +134,7 @@
   --color-terminal-line: var(--terminal-line);
 
   --font-sans:    var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-jp:      "Noto Sans JP", "Yu Gothic", "Hiragino Sans", Meiryo, sans-serif;
+  --font-jp:      var(--font-noto-jp), "Yu Gothic", "Hiragino Sans", Meiryo, sans-serif;
 
   --radius-none: 0;
   --radius-pill: 9999px;

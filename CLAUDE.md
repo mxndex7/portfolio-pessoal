@@ -87,8 +87,30 @@ largura 125. Archivo Black saiu — não é mais necessário.
   margens sem estourar — ajuste de 0,5 em 0,5 com o dev server aberto.
 - `font-mono` = eyebrows, rótulos, dados tabulares (`tabular-nums`).
 - `font-jp` = Noto Sans JP 900, **só** para os dois glifos de 改善 no hero.
-  Carregado por `<link>` com subset `&text=` no `layout.tsx` — não trocar por
-  `next/font`, que baixaria a família inteira (4 MB+).
+  O arquivo contém apenas U+6539 e U+5584 (1,3 KB) — nunca a família
+  inteira, que passa de 4 MB.
+
+**Fontes vivem no repositório — nenhuma dependência externa.** Decisão de
+27/09/2026: o `next/font/google` falhou ao baixar o Archivo no `npm run dev`
+e a página caiu em fonte de sistema, com MENDES fora de calibração. Fonte
+não pode depender de rede, nem no dev, nem no build, nem no visitante.
+- Os `.woff2` ficam em `src/app/fonts/` e são carregados com
+  `next/font/local` no `layout.tsx`. Proibido voltar para `next/font/google`
+  ou para `<link>` do Google Fonts.
+- `archivo-latin-variable.woff2`: Archivo variável, subset latin (cobre
+  português), eixos `wght` 100–900 e `wdth` 62–125. O `font-stretch: 62% 125%`
+  é declarado no `localFont` — sem ele o navegador trava a largura em 100% e
+  o `font-display` perde a face esticada.
+- `noto-sans-jp-900-kaizen.woff2`: só os dois glifos de 改善.
+- Trocar ou atualizar uma fonte = substituir o arquivo em `src/app/fonts/` e
+  recalibrar o `.wordmark`.
+- Vale também para as peças de `public/exemplos/`, sem exceção. As fontes
+  de cada peça ficam em `public/exemplos/fonts/` e entram por `@font-face`
+  escrito direto no `<style>` da página, com caminho relativo
+  (`url('fonts/…')`). Nenhum `@import` nem `<link>` do Google Fonts.
+  Ao regerar uma peça a partir do canvas do Claude Design, o HTML exportado
+  volta com o `@import` do Google: troque pelos `@font-face` locais antes de
+  publicar.
 
 **Forma**
 - Cantos retos. `--radius: 0`. Pílula só em chip social.
@@ -306,7 +328,7 @@ parecem reais.
 **Hospedagem das peças.** HTML estático em `public/exemplos/`, servido
 direto. Não vira rota React: as três páginas são estáticas, têm CSS global
 próprio (`body`, `*`) que vazaria no site se fosse importado, e carregam as
-próprias fontes do Google Fonts. Converter para JSX seria trabalho grande sem
+próprias fontes, hospedadas em `public/exemplos/fonts/`. Converter para JSX seria trabalho grande sem
 ganho nenhum.
 
 A fonte editável de cada peça continua sendo o canvas do Claude Design, no
