@@ -75,19 +75,40 @@ export const projetos: Projeto[] = [
     tecnologias: ["Batch", "PowerShell", "Windows 10/11"],
     imagens: [
       {
-        src: "/casos/dex-tweaks-capa.webp",
-        alt: "Captura real do painel principal do Dex Tweaks, em modo texto, com o menu numerado de perfis, otimizações, hardware e backup.",
+        src: "/casos/dex-tweaks-menu.webp",
+        alt: "Menu principal do Dex Tweaks no console, com o status de Defender, rede e reinício e as opções agrupadas em Manage, Tweak e Tools.",
       },
       {
-        src: "/casos/dex-tweaks-inicio.webp",
-        alt: "Tela inicial do Dex Tweaks com banner ASCII, hardware detectado (GPU e CPU) e o menu completo de otimizações.",
+        src: "/casos/dex-tweaks-otimizacoes.webp",
+        alt: "Menu Optimizations do Dex Tweaks, com os 12 ajustes, o que cada um faz e o selo de risco de cada um (MOD, HIGH, CRIT).",
       },
       {
-        src: "/casos/dex-tweaks-toolbox.webp",
-        alt: "Submenu Dex Toolbox do Dex Tweaks, com boosters de jogo, agendamento de tarefas, debloat de programas e otimização de captura.",
+        src: "/casos/dex-tweaks-avancado.webp",
+        alt: "Menu Advanced do Dex Tweaks, com Dex Toolbox, Game Boosters, Scheduled Tasks, Program Debloat e os demais ajustes, cada um com o selo de risco.",
       },
     ],
     repositorio: "https://github.com/mxndex7/Dex-Tweeks",
+  },
+  {
+    titulo: "PC Check Painel",
+    descricao:
+      "Painel de diagnóstico, reparo e utilitários para Windows num arquivo .bat só, sem instalação. Quatro menus: Diagnóstico de saúde e segurança, Reparos, Utilitários de rede e sistema, e atalhos para as ferramentas do Windows. Diagnósticos e utilitários só leem; todo reparo exige administrador e confirmação antes de mexer no sistema. Sem telemetria: não envia dados para lugar nenhum.",
+    tecnologias: ["Batch", "PowerShell", "Windows"],
+    imagens: [
+      {
+        src: "/casos/pc-check-painel-menu.webp",
+        alt: "Menu principal do PC Check Painel v1.0 no console, com Diagnóstico, Reparos, Utilitários e Ferramentas do Windows.",
+      },
+      {
+        src: "/casos/pc-check-painel-saude.webp",
+        alt: "Final do relatório de Saúde do PC no console: rede, bateria, atualizações do Windows e eventos, terminando no resumo de itens Críticos e de Atenção.",
+      },
+      {
+        src: "/casos/pc-check-painel-reparos.webp",
+        alt: "Menu de Reparos do PC Check Painel, com ponto de restauração, DISM e SFC, verificação de disco e reset de rede.",
+      },
+    ],
+    repositorio: "https://github.com/mxndex7/Pc-Check-Painel",
   },
 ];
 

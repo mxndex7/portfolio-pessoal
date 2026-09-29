@@ -29,6 +29,12 @@ uma delas, diga qual é e por quê.
 
 **Cor — monocromático total. Não existe cor na página, em nenhum dos temas.**
 
+> **Exceção — decisão de 29/09/2026:** captura real de projeto (console do
+> Dex Tweaks, do PC Check Painel e afins) entra com as **cores originais do
+> programa**, sem remapeamento. A regra monocromática vale para tudo que o
+> site desenha — texto, fundo, fio, controle, mock —, não para print de
+> software real. Ver "Capturas de projeto" em Estrutura.
+
 Duas escalas de cinza (`--l-*` clara, `--d-*` escura), ambas sempre declaradas
 em `globals.css`. O que troca entre temas é só a **atribuição dos papéis**.
 
@@ -203,20 +209,26 @@ altura e cada bloco arrastava uma coluna esquerda vazia.
 tokens `--terminal-*`). Trocado por capturas reais do painel — pelo mesmo
 motivo de "Como ficaria a sua": real sem cortar informação vale mais que
 recriado. Hoje o Dex Tweaks é só o primeiro item de `projetos`, com três
-capturas (`dex-tweaks-capa`, `-inicio`, `-toolbox`) navegáveis pela galeria
+capturas (`dex-tweaks-menu`, `-otimizacoes`, `-avancado`) navegáveis pela galeria
 comum a todo card, em `aspect-[3/2]` e `object-contain` — sem componente nem
 proporção dedicados.
 
-**Remapeamento de cor da captura.** A paleta de origem do Dex Tweaks (fundo
-`#0c0c0c`, texto `#cccccc`, azul `#3b78ff`, vermelho `#e74856`) não existe nos
-tokens do site — monocromático total não abre exceção pra imagem. Em vez de
-dessaturar genericamente, cada cor da captura é remapeada 1:1 para o token de
-papel mais próximo antes de virar `.webp`: fundo → `--terminal-bg` (preto
-puro), texto branco e vermelho → `--terminal-fg`, azul → `--terminal-dim`. O
-vermelho vira `--terminal-fg` (não um tom mais escuro) porque na imagem de
-origem ele marca só rótulo e cursor, mesmo peso visual do texto branco — dar
-um tom próprio a ele reintroduziria hierarquia por cor, que é o que a regra
-monocromática proíbe.
+**Capturas de projeto — cores originais (decisão de 29/09/2026).** Substitui
+a regra antiga de remapeamento, em que cada cor da captura (fundo `#0c0c0c`,
+texto `#cccccc`, azul `#3b78ff`, vermelho `#e74856` no Dex Tweaks) era trocada
+1:1 por um token `--terminal-*` antes de virar `.webp`. Agora a captura entra
+como o programa pinta: é print de software real, e a cor faz parte do que
+está sendo mostrado. Vale para todos os cards de projeto ao mesmo tempo —
+um card colorido ao lado de um cinza pareceria erro, não escolha.
+- Só recorte (conteúdo + margem) e exportação `.webp` sem perda; nenhum
+  filtro, dessaturação ou troca de paleta.
+- Console em Consolas nas capturas de todos os projetos. O `chcp` que os
+  painéis rodam derruba o conhost para a fonte raster "Terminal"; a fonte é
+  reposta antes de cada captura, pra os cards terem a mesma cara.
+- Dex Tweaks recapturado em 29/09/2026 no layout novo (commit `cf75c35` do
+  repositório dele + correção do `:DexHeader`), com a cor de destaque salva
+  no painel. Se o layout do Dex mudar de novo, as capturas precisam ser
+  refeitas — são cópias publicadas, não a origem.
 
 ---
 
@@ -426,7 +438,6 @@ dependências: `next`, `react`, `react-dom`, `lucide-react`, `react-icons`.
 - [ ] Preços são âncoras iniciais, não tabela fechada.
 - [ ] Preço de "Criação de Sites" está "Sob consulta" — sem valor fixo por
       enquanto.
-
 **Verificação que só roda na máquina dele**
 - [ ] `npm run dev` e conferir: MENDES encostando nas duas margens, kanji
       discreto, nav mobile abrindo e fechando no Esc, foco visível no Tab,
