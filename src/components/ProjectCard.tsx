@@ -14,8 +14,31 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
   const capa = imagens[0];
   const temGaleria = imagens.length > 1;
 
+  /*
+    A caixa da imagem mantém 16:9 sempre — nunca é esticada pela altura do
+    texto. Quem estica (a partir de lg) é a moldura em volta, em --surface,
+    com a caixa centralizada: o texto é mais alto que a capa entre 1024 e
+    ~1300px, e sem a moldura sobrava um vão embaixo da captura.
+  */
+  const molduraCapa =
+    "relative flex w-full items-center overflow-hidden border-b border-hairline bg-surface lg:self-stretch lg:border-b-0 lg:border-r";
+  const caixaCapa = capa ? (
+    <span className="relative block aspect-[16/9] w-full">
+      <Image
+        src={capa.src}
+        alt={capa.alt}
+        fill
+        sizes="(min-width: 1152px) 640px, (min-width: 1024px) 60vw, 100vw"
+        // Captura de console: o otimizador recomprime o .webp sem perda em
+        // q=75 e redimensiona, o que borra texto fino. Serve o arquivo como está.
+        unoptimized
+        className="object-contain"
+      />
+    </span>
+  ) : null;
+
   return (
-    <article className="flex flex-col border border-hairline transition-colors duration-150 hover:border-control">
+    <article className="grid grid-cols-1 items-start border border-hairline transition-colors duration-150 hover:border-control lg:grid-cols-[3fr_2fr]">
       {capa ? (
         temGaleria ? (
           <button
@@ -23,38 +46,24 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
             type="button"
             onClick={() => setGaleriaAberta(true)}
             aria-label={`Ver imagens do projeto ${projeto.titulo}`}
-            className="group relative aspect-[3/2] w-full overflow-hidden border-b border-hairline bg-surface"
+            className={`group ${molduraCapa}`}
           >
-            <Image
-              src={capa.src}
-              alt={capa.alt}
-              fill
-              sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-contain"
-            />
+            {caixaCapa}
             <span className="absolute bottom-2 right-2 flex items-center gap-1.5 border border-hairline bg-background px-2 py-1 font-mono text-[0.65rem] tabular-nums text-foreground-dim transition-colors duration-150 group-hover:text-foreground">
               <Expand aria-hidden="true" className="size-3" />
               1 / {imagens.length}
             </span>
           </button>
         ) : (
-          <div className="relative aspect-[3/2] w-full overflow-hidden border-b border-hairline bg-surface">
-            <Image
-              src={capa.src}
-              alt={capa.alt}
-              fill
-              sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-contain"
-            />
-          </div>
+          <div className={molduraCapa}>{caixaCapa}</div>
         )
       ) : null}
 
-      <div className="flex flex-1 flex-col gap-4 p-6">
+      <div className="flex flex-col gap-4 p-6 sm:p-8 lg:self-center">
         <h3 className="font-display text-lg uppercase leading-none tracking-[-0.02em] text-foreground">
           {projeto.titulo}
         </h3>
-        <p className="flex-1 text-sm leading-relaxed text-foreground-dim">
+        <p className="text-sm leading-relaxed text-foreground-dim">
           {projeto.descricao}
         </p>
 

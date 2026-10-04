@@ -89,6 +89,8 @@ export default function ProjectGallery({
             alt={atual.alt}
             fill
             sizes="(min-width: 1024px) 60vw, 100vw"
+            // Mesmo motivo do ProjectCard: sem recompressão em captura de console.
+            unoptimized
             className="object-contain transition-opacity duration-150"
           />
 

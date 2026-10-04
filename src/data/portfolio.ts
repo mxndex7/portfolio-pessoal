@@ -64,7 +64,7 @@ export type Projeto = {
   repositorio?: string;
 };
 
-// Os 4 projetos da grade usam o mesmo card, no mesmo tamanho — sem destaque
+// Os 4 projetos da lista usam o mesmo card, no mesmo tamanho — sem destaque
 // maior. Dex Tweaks ocupa a primeira posição por ser o mais pronto, não por
 // ganhar um tratamento visual diferente.
 export const projetos: Projeto[] = [
@@ -101,7 +101,7 @@ export const projetos: Projeto[] = [
       },
       {
         src: "/casos/pc-check-painel-saude.webp",
-        alt: "Final do relatório de Saúde do PC no console: rede, bateria, atualizações do Windows e eventos, terminando no resumo de itens Críticos e de Atenção.",
+        alt: "Final do relatório de Saúde do PC no console: atualizações do Windows e eventos críticos das últimas 24 h, terminando no resumo de itens Críticos e de Atenção.",
       },
       {
         src: "/casos/pc-check-painel-reparos.webp",
@@ -112,13 +112,19 @@ export const projetos: Projeto[] = [
   },
 ];
 
-// Slots de produção. Preenchem o resto da grade de quatro — cada projeto que
+// Slots de produção. Preenchem o resto da lista de quatro — cada projeto que
 // entrar em `projetos` toma o lugar de um slot.
 export const projetosEmProducao = [
   { rotulo: "Em produção" },
   { rotulo: "Em produção" },
   { rotulo: "Em produção" },
 ];
+
+// Linha de texto abaixo dos 4 itens — não é card nem slot. A URL vem de
+// `redesSociais`, pra não existir em dois lugares.
+export const projetosTodos = {
+  rotulo: "Ver todos os repositórios no GitHub",
+};
 
 /*
   PLANO DE OTIMIZAÇÃO — cabeçalho e intro da seção.
@@ -324,7 +330,6 @@ export const servicos: Servico[] = [
       "Windows limpo, sem bloatware, com Dex Tweaks aplicado",
     ],
     preco: "R$ 200",
-    precoNota: "Mão de obra. Peças à parte.",
   },
   {
     titulo: "Otimização Completa",

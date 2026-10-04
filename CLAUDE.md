@@ -192,11 +192,23 @@ altura e cada bloco arrastava uma coluna esquerda vazia.
   duas provas antes de comparar valor, e comparar as três opções lado a lado
   (Montagem, Otimização, Sites) é o que fecha a decisão.
 - Projetos: seção aberta de propósito. Os 4 projetos usam o mesmo
-  `ProjectCard`, no mesmo tamanho, em grade 2×2 (`grid-cols-1 sm:grid-cols-2`)
-  — sem card "featured" maior. Dex Tweaks ocupa a primeira posição por ser o
-  mais pronto, não por ganhar tratamento visual diferente; `projetosEmProducao`
-  preenche o resto até quatro. Projeto que entra em `projetos` toma o lugar de
-  um slot.
+  `ProjectCard`, no mesmo tamanho, em **lista de uma coluna** — sem card
+  "featured" maior. Dex Tweaks ocupa a primeira posição por ser o mais pronto,
+  não por ganhar tratamento visual diferente; `projetosEmProducao` preenche o
+  resto até quatro. Projeto que entra em `projetos` toma o lugar de um slot.
+- **Lista de 1 coluna, não grade 2×2 — decisão de 03/10/2026 (chat).** Em duas
+  colunas a capa recebia pouco mais de metade da largura e captura de terminal
+  virava mancha cinza — o mesmo problema já resolvido em "Criação de Sites".
+  A partir de `lg` o card é capa à esquerda (~60%, `lg:grid-cols-[3fr_2fr]`) e
+  texto à direita; abaixo, empilhado. Capa **sempre** à esquerda — zigue-zague
+  é padrão de template. A grade usa `items-start`: `stretch` esticava a caixa
+  da imagem até a altura do texto e quebrava o aspect-ratio (o "vão" antigo).
+  Mesma proporção de caixa nos 4 (16:9), `object-contain`, sem cortar a
+  captura. Entre 1024 e ~1300px o texto fica mais alto que a capa: quem estica
+  é a moldura em `--surface` em volta da caixa, nunca a caixa.
+  Slots "Em produção" repetem a estrutura (capa tracejada + texto) para a
+  lista não pular de altura. Abaixo dos 4, uma linha de texto para o perfil
+  do GitHub — não é card nem slot.
 - Card de projeto mostra capa, nome, descrição, tags de tecnologia e link do
   GitHub. Cada projeto carrega `imagens: { src, alt }[]` — capa é a primeira.
   Com mais de uma imagem, a capa vira botão (`ProjectGallery.tsx`): abre um
@@ -225,6 +237,17 @@ um card colorido ao lado de um cinza pareceria erro, não escolha.
 - Console em Consolas nas capturas de todos os projetos. O `chcp` que os
   painéis rodam derruba o conhost para a fonte raster "Terminal"; a fonte é
   reposta antes de cada captura, pra os cards terem a mesma cara.
+- **Resolução — decisão de 03/10/2026.** As capturas de ~750px borravam no
+  card (tela com escala de 125–150% e celular pedem mais pixels do que
+  isso). Captura nova sai com a **maior fonte Consolas que cabe no monitor**
+  para aquela tela (37–54px em 1080p), direto da janela do conhost
+  (`PrintWindow`, sem captura de tela redimensionada) — resultado entre
+  ~1400 e ~1900px de largura, 20–40 KB em `.webp` sem perda.
+- A margem em volta do conteúdo é o próprio fundo do console (`#0c0c0c`)
+  estendido — não é cor desenhada pelo site.
+- `next/image` com `unoptimized` nos cards e na galeria de projeto: o
+  otimizador recomprimia o `.webp` sem perda em `q=75` e redimensionava, o que
+  borra texto de console. Não remover.
 - Dex Tweaks recapturado em 29/09/2026 no layout novo (commit `cf75c35` do
   repositório dele + correção do `:DexHeader`), com a cor de destaque salva
   no painel. Se o layout do Dex mudar de novo, as capturas precisam ser
