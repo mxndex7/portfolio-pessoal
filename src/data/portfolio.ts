@@ -90,6 +90,35 @@ export const projetos: Projeto[] = [
     repositorio: "https://github.com/mxndex7/Dex-Tweeks",
   },
   {
+    titulo: "Sistema de Processos",
+    descricao:
+      "Sistema web de protocolo e tramitação de processos administrativos, feito para a Fundação CAS. Documentos com editor e papel timbrado, assinatura eletrônica, tramitação entre setores com despacho público ou restrito, controle de leitura e trilha de auditoria. Login por CPF com senha em scrypt, bloqueio por tentativas e permissão por perfil e setor. As capturas são da versão de demonstração, com dados fictícios.",
+    tecnologias: ["React", "TypeScript", "Express", "PostgreSQL", "Docker"],
+    imagens: [
+      {
+        src: "/casos/sistema-processos-mesa.webp",
+        alt: "Mesa de processos do SGI FCAS no tema escuro, com os processos recebidos e gerados pela unidade de T.I., cada um com número de protocolo, setor de origem, situação e etiquetas.",
+      },
+      {
+        src: "/casos/sistema-processos-processo.webp",
+        alt: "Detalhe de um processo: árvore de documentos à esquerda, metadados e número de protocolo no centro, registro de quem abriu o envio e painel de comentários à direita.",
+      },
+      {
+        src: "/casos/sistema-processos-documento.webp",
+        alt: "Memorando aberto no visualizador, com papel timbrado, número de protocolo e o selo de assinatura eletrônica com data e hora.",
+      },
+      {
+        src: "/casos/sistema-processos-tramitacao.webp",
+        alt: "Diálogo de tramitação, com a busca da unidade de destino e a escolha do nível de acesso do despacho: público ou restrito.",
+      },
+      {
+        src: "/casos/sistema-processos-auditoria.webp",
+        alt: "Aba Auditoria Geral do painel de T.I., com contadores de acessos, alterações, exclusões e logins recusados acima da trilha de eventos registrada pelo servidor.",
+      },
+    ],
+    repositorio: "https://github.com/mxndex7/SistemadeProcessos",
+  },
+  {
     titulo: "PC Check Painel",
     descricao:
       "Painel de diagnóstico, reparo e utilitários para Windows num arquivo .bat só, sem instalação. Quatro menus: Diagnóstico de saúde e segurança, Reparos, Utilitários de rede e sistema, e atalhos para as ferramentas do Windows. Diagnósticos e utilitários só leem; todo reparo exige administrador e confirmação antes de mexer no sistema. Sem telemetria: não envia dados para lugar nenhum.",

@@ -245,6 +245,13 @@ um card colorido ao lado de um cinza pareceria erro, não escolha.
   ~1400 e ~1900px de largura, 20–40 KB em `.webp` sem perda.
 - A margem em volta do conteúdo é o próprio fundo do console (`#0c0c0c`)
   estendido — não é cor desenhada pelo site.
+- **Sistema web (Sistema de Processos, 03/10/2026):** captura da versão de
+  demonstração (`docker compose`, dados fictícios, faixa amarela "AMBIENTE
+  DE DEMONSTRAÇÃO" visível) num Chrome headless em **1600×900 a 2x**
+  (3200×1800) — 16:9, a mesma proporção da caixa da capa, então a capa
+  preenche sem faixa. Tema escuro do próprio sistema, pra conversar com os
+  cards de console. Nunca capturar o repositório institucional
+  (`fundacaocas/sistema-processos`), só o de demonstração (`mxndex7`).
 - `next/image` com `unoptimized` nos cards e na galeria de projeto: o
   otimizador recomprimia o `.webp` sem perda em `q=75` e redimensionava, o que
   borra texto de console. Não remover.
