@@ -22,7 +22,12 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
   */
   const molduraCapa =
     "relative flex w-full items-center overflow-hidden border-b border-hairline bg-surface lg:self-stretch lg:border-b-0 lg:border-r";
-  const imagemCapa = (ajuste: string) =>
+  // Com `capaFundo`, a moldura pinta a cor da borda da própria captura no
+  // lugar de --surface: a sobra do `contain` some sem cortar nada.
+  const fundoCapa = projeto.capaFundo
+    ? { backgroundColor: projeto.capaFundo }
+    : undefined;
+  const imagemCapa = (ajuste: string, posicao?: string) =>
     capa ? (
       <Image
         src={capa.src}
@@ -33,18 +38,18 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
         // q=75 e redimensiona, o que borra texto fino. Serve o arquivo como está.
         unoptimized
         className={ajuste}
+        style={posicao ? { objectPosition: `${posicao} top` } : undefined}
       />
     ) : null;
   // Com `capaPreenche`, a caixa 16:9 vira só calço de altura e a imagem
   // cobre a moldura inteira — inclusive quando ela estica a partir de lg.
   // Entre 1024 e ~1300px a moldura é mais alta que a captura e o corte vai
-  // para as laterais: ancorar em 25% preserva o logo e sacrifica o canto
-  // direito do cabeçalho.
+  // para as laterais; o valor é a âncora horizontal que decide o que sobra.
   const caixaCapa = capa ? (
     projeto.capaPreenche ? (
       <>
         <span aria-hidden="true" className="block aspect-[16/9] w-full" />
-        {imagemCapa("object-cover object-[25%_top]")}
+        {imagemCapa("object-cover", projeto.capaPreenche)}
       </>
     ) : (
       <span className="relative block aspect-[16/9] w-full">
@@ -63,6 +68,7 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
             onClick={() => setGaleriaAberta(true)}
             aria-label={`Ver imagens do projeto ${projeto.titulo}`}
             className={`group ${molduraCapa}`}
+            style={fundoCapa}
           >
             {caixaCapa}
             <span className="absolute bottom-2 right-2 flex items-center gap-1.5 border border-hairline bg-background px-2 py-1 font-mono text-[0.65rem] tabular-nums text-foreground-dim transition-colors duration-150 group-hover:text-foreground">
@@ -71,7 +77,9 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
             </span>
           </button>
         ) : (
-          <div className={molduraCapa}>{caixaCapa}</div>
+          <div className={molduraCapa} style={fundoCapa}>
+            {caixaCapa}
+          </div>
         )
       ) : null}
 

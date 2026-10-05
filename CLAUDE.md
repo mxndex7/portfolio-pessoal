@@ -206,11 +206,17 @@ altura e cada bloco arrastava uma coluna esquerda vazia.
   Mesma proporção de caixa nos 4 (16:9), `object-contain`, sem cortar a
   captura. Entre 1024 e ~1300px o texto fica mais alto que a capa: quem estica
   é a moldura em `--surface` em volta da caixa, nunca a caixa.
-  **Exceção (04/10/2026):** captura de app de tema claro (hoje só o Dupex)
-  usa `capaPreenche` — `object-cover` cobrindo a moldura inteira, ancorado no
-  topo e a 25% na horizontal. Em `contain`, a faixa em `--surface` ao redor
-  de uma imagem clara parecia borda. Custa ~12% de baixo no celular e um
-  pouco das laterais entre 1024 e ~1300px; o logo do cabeçalho fica inteiro.
+  **Capa sem faixa (04–05/10/2026):** a faixa em `--surface` em volta da
+  captura parecia borda dela. Nenhum card mostra mais essa faixa:
+  - App web (Dupex, Sistema de Processos): `capaPreenche` — `object-cover`
+    cobrindo a moldura inteira, ancorado no topo; o valor é a âncora
+    horizontal do corte (25% no Dupex, 10% no Sistema), escolhida pra manter
+    logo e menu lateral. Custa um pouco de baixo no celular e das laterais
+    entre 1024 e ~1300px.
+  - Console (Dex Tweaks, PC Check Painel): `capaFundo: "#0c0c0c"` — continua
+    `contain`, mas a moldura pinta o fundo do próprio console. Cortar não
+    serve: o texto encosta nas margens da captura. É a mesma cor da margem
+    que já faz parte da captura, não cor desenhada pelo site.
   Slots "Em produção" repetem a estrutura (capa tracejada + texto) para a
   lista não pular de altura. Abaixo dos 4, uma linha de texto para o perfil
   do GitHub — não é card nem slot.

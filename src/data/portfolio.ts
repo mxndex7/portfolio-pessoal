@@ -62,10 +62,13 @@ export type Projeto = {
   origem?: string;
   tecnologias: string[];
   imagens?: { src: string; alt: string }[];
-  // Capa preenche a moldura inteira (cortando a sobra, ancorada no topo) em
-  // vez de caber nela com faixas. Para captura de app claro, em que a faixa
-  // em --surface ao redor fica parecendo borda.
-  capaPreenche?: boolean;
+  // Capa sem faixa em --surface ao redor, que parecia borda da captura.
+  // App web: `capaPreenche` cobre a moldura (corta a sobra, ancorada no topo);
+  // o valor é a âncora horizontal do corte. Console: `capaFundo` pinta a
+  // moldura com a cor da borda da própria captura, sem cortar o texto que
+  // encosta nas margens.
+  capaPreenche?: string;
+  capaFundo?: string;
   link?: string;
   repositorio?: string;
 };
@@ -93,6 +96,7 @@ export const projetos: Projeto[] = [
         alt: "Menu Advanced do Dex Tweaks, com Dex Toolbox, Game Boosters, Scheduled Tasks, Program Debloat e os demais ajustes, cada um com o selo de risco.",
       },
     ],
+    capaFundo: "#0c0c0c",
     repositorio: "https://github.com/mxndex7/Dex-Tweeks",
   },
   {
@@ -122,6 +126,7 @@ export const projetos: Projeto[] = [
         alt: "Aba Auditoria Geral do painel de T.I., com contadores de acessos, alterações, exclusões e logins recusados acima da trilha de eventos registrada pelo servidor.",
       },
     ],
+    capaPreenche: "10%",
     repositorio: "https://github.com/mxndex7/SistemadeProcessos",
   },
   {
@@ -153,7 +158,7 @@ export const projetos: Projeto[] = [
         alt: "Painel do Dupex no celular: lista de duplicatas em cartões, com o botão de emitir e os filtros por situação.",
       },
     ],
-    capaPreenche: true,
+    capaPreenche: "25%",
     repositorio: "https://github.com/mxndex7/Dupex",
   },
   {
@@ -175,6 +180,7 @@ export const projetos: Projeto[] = [
         alt: "Menu de Reparos do PC Check Painel, com ponto de restauração, DISM e SFC, verificação de disco e reset de rede.",
       },
     ],
+    capaFundo: "#0c0c0c",
     repositorio: "https://github.com/mxndex7/Pc-Check-Painel",
   },
 ];
