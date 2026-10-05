@@ -62,6 +62,10 @@ export type Projeto = {
   origem?: string;
   tecnologias: string[];
   imagens?: { src: string; alt: string }[];
+  // Capa preenche a moldura inteira (cortando a sobra, ancorada no topo) em
+  // vez de caber nela com faixas. Para captura de app claro, em que a faixa
+  // em --surface ao redor fica parecendo borda.
+  capaPreenche?: boolean;
   link?: string;
   repositorio?: string;
 };
@@ -149,6 +153,7 @@ export const projetos: Projeto[] = [
         alt: "Painel do Dupex no celular: lista de duplicatas em cartões, com o botão de emitir e os filtros por situação.",
       },
     ],
+    capaPreenche: true,
     repositorio: "https://github.com/mxndex7/Dupex",
   },
   {

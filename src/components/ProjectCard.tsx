@@ -22,8 +22,8 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
   */
   const molduraCapa =
     "relative flex w-full items-center overflow-hidden border-b border-hairline bg-surface lg:self-stretch lg:border-b-0 lg:border-r";
-  const caixaCapa = capa ? (
-    <span className="relative block aspect-[16/9] w-full">
+  const imagemCapa = (ajuste: string) =>
+    capa ? (
       <Image
         src={capa.src}
         alt={capa.alt}
@@ -32,9 +32,25 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
         // Captura de console: o otimizador recomprime o .webp sem perda em
         // q=75 e redimensiona, o que borra texto fino. Serve o arquivo como está.
         unoptimized
-        className="object-contain"
+        className={ajuste}
       />
-    </span>
+    ) : null;
+  // Com `capaPreenche`, a caixa 16:9 vira só calço de altura e a imagem
+  // cobre a moldura inteira — inclusive quando ela estica a partir de lg.
+  // Entre 1024 e ~1300px a moldura é mais alta que a captura e o corte vai
+  // para as laterais: ancorar em 25% preserva o logo e sacrifica o canto
+  // direito do cabeçalho.
+  const caixaCapa = capa ? (
+    projeto.capaPreenche ? (
+      <>
+        <span aria-hidden="true" className="block aspect-[16/9] w-full" />
+        {imagemCapa("object-cover object-[25%_top]")}
+      </>
+    ) : (
+      <span className="relative block aspect-[16/9] w-full">
+        {imagemCapa("object-contain")}
+      </span>
+    )
   ) : null;
 
   return (

@@ -206,6 +206,11 @@ altura e cada bloco arrastava uma coluna esquerda vazia.
   Mesma proporção de caixa nos 4 (16:9), `object-contain`, sem cortar a
   captura. Entre 1024 e ~1300px o texto fica mais alto que a capa: quem estica
   é a moldura em `--surface` em volta da caixa, nunca a caixa.
+  **Exceção (04/10/2026):** captura de app de tema claro (hoje só o Dupex)
+  usa `capaPreenche` — `object-cover` cobrindo a moldura inteira, ancorado no
+  topo e a 25% na horizontal. Em `contain`, a faixa em `--surface` ao redor
+  de uma imagem clara parecia borda. Custa ~12% de baixo no celular e um
+  pouco das laterais entre 1024 e ~1300px; o logo do cabeçalho fica inteiro.
   Slots "Em produção" repetem a estrutura (capa tracejada + texto) para a
   lista não pular de altura. Abaixo dos 4, uma linha de texto para o perfil
   do GitHub — não é card nem slot.
