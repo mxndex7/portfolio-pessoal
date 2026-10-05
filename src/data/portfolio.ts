@@ -31,11 +31,11 @@ export const redesSociais = [
 
 export const sobre = {
   titulo: "Quem sou",
-  texto: `Me chamo Guilherme Mendes, Tecnólogo formado em Análise e Desenvolvimento de Sistemas, cursando bacharelado em Engenharia de Software. 19 anos, Recife.
+  texto: `Me chamo Guilherme Mendes. Ingressei aos 16 anos no curso de Análise e Desenvolvimento de Sistemas, no qual me formei. Hoje, aos 19, curso o bacharelado em Engenharia de Software.
 
-Escrevo o software e mexo na máquina que roda ele. São duas rotinas diferentes que no fim tem o mesmo propósito: achar o que está no caminho e tirar.
+Escrevo o software e mexo na máquina que roda ele. São duas rotinas diferentes que no fim têm o mesmo propósito: achar o que está no caminho e tirar.
 
-Atualmente sou estagiário de TI na Fundação CAS - Centro de Assistência social à PMPE.`,
+Atualmente sou estagiário de TI na Fundação CAS - Centro de Assistência Social à PMPE.`,
 };
 
 export type Habilidade = {
