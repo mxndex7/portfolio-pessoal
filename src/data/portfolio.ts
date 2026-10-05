@@ -58,6 +58,8 @@ export const habilidades: Habilidade[] = [
 export type Projeto = {
   titulo: string;
   descricao: string;
+  // Linha curta de onde o projeto veio, entre a descrição e as tags.
+  origem?: string;
   tecnologias: string[];
   imagens?: { src: string; alt: string }[];
   link?: string;
@@ -117,6 +119,37 @@ export const projetos: Projeto[] = [
       },
     ],
     repositorio: "https://github.com/mxndex7/SistemadeProcessos",
+  },
+  {
+    titulo: "Dupex",
+    descricao:
+      "API RESTful para duplicatas escriturais: a empresa emite, o cliente aceita e o título é liquidado, ou cancelado antes disso. Autenticação com JWT, cada usuário vê só as próprias duplicatas, valores em centavos inteiros, migrações versionadas e testes automatizados, com painel web incluído.",
+    origem:
+      "Da época de ADS: minha avaliação de Desenvolvimento Back-End, reestruturado em 2026.",
+    tecnologias: [
+      "Python",
+      "FastAPI",
+      "SQLAlchemy",
+      "Alembic",
+      "SQLite",
+      "JWT",
+      "Docker",
+    ],
+    imagens: [
+      {
+        src: "/casos/dupex-capa.webp",
+        alt: "Painel do Dupex com a lista de duplicatas: abas por situação (todas, emitidas, aceitas, liquidadas e canceladas) e tabela com número, sacado, vencimento, valor e barra de situação.",
+      },
+      {
+        src: "/casos/dupex-detalhe.webp",
+        alt: "Gaveta de detalhes da duplicata DUP-2026-0004 aberta sobre a lista, mostrando valor, situação aceita, partes, datas e as ações de liquidar, cancelar e excluir.",
+      },
+      {
+        src: "/casos/dupex-mobile.webp",
+        alt: "Painel do Dupex no celular: lista de duplicatas em cartões, com o botão de emitir e os filtros por situação.",
+      },
+    ],
+    repositorio: "https://github.com/mxndex7/Dupex",
   },
   {
     titulo: "PC Check Painel",

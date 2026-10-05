@@ -66,6 +66,11 @@ export default function ProjectCard({ projeto }: { projeto: Projeto }) {
         <p className="text-sm leading-relaxed text-foreground-dim">
           {projeto.descricao}
         </p>
+        {projeto.origem ? (
+          <p className="text-xs leading-relaxed text-foreground-dim">
+            {projeto.origem}
+          </p>
+        ) : null}
 
         <div className="flex flex-wrap gap-2">
           {projeto.tecnologias.map((tech) => (
