@@ -60,18 +60,20 @@ textual. Para eyebrow e rótulo pequeno use `--foreground-dim`.
 - Terminal do Dex Tweaks usa `--terminal-*`, que **não** trocam de tema.
   Console é escuro nos dois; inverter seria inventar algo que não existe.
 
-**Mecânica do tema**
-- Claro é o padrão do `:root`. `@media (prefers-color-scheme: dark)` com
-  `:root:not([data-theme="light"])` cobre o SO escuro. `:root[data-theme="dark"]`
-  cobre a escolha explícita.
+**Mecânica do tema — decisão de 05/10/2026 (Guilherme, direto no Claude
+Code).** Substitui o controle de três estados (Auto / Claro / Escuro), em que
+Auto seguia o SO e claro era o padrão do `:root`.
+- **Escuro é o padrão para todo visitante, independente do SO.** O `:root`
+  carrega os papéis escuros; `:root[data-theme="light"]` troca para claro.
+  Não existe mais `@media (prefers-color-scheme)` atribuindo papel.
+- A escolha fica salva em `localStorage` (`tema`). Sem nada salvo, é escuro.
 - O script inline no `<head>` do `layout.tsx` roda **antes da primeira pintura**
   e é obrigatório. Sem ele a página pinta no tema errado e vira depois da
   hidratação — com 19:1 de contraste esse flash é violento. Não mova para um
   `useEffect` nem para arquivo externo.
 - `suppressHydrationWarning` no `<html>` é proposital: o script diverge o HTML
   do servidor do cliente de propósito.
-- O controle tem três estados (Auto / Claro / Escuro), não dois. Auto respeita
-  o SO, que é o que a maioria quer sem tocar em nada.
+- O controle tem dois estados (Escuro / Claro). Sem Auto.
 - O rótulo é palavra, não ícone de sol e lua. A nav inteira é texto em
   caixa-alta pequena; um ícone seria o único da página.
 

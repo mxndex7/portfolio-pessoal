@@ -10,15 +10,15 @@
    As duas escalas ficam sempre declaradas. O que troca é só a
    atribuição dos papéis, no fim deste bloco.
 
+   Escuro é o padrão para todo visitante, independente do SO.
    Estados possíveis:
-     sem atributo + SO claro   -> claro   (:root)
-     sem atributo + SO escuro  -> escuro  (@media)
-     data-theme="light"        -> claro   (o :not() no @media protege)
-     data-theme="dark"         -> escuro  (regra explícita)
+     sem atributo              -> escuro  (:root)
+     data-theme="dark"         -> escuro  (:root)
+     data-theme="light"        -> claro   (regra explícita)
    =============================================================== */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 
   /* --- escala CLARA (referência) ------------------------------- */
   --l-0:   #ffffff;
@@ -57,48 +57,13 @@
   --terminal-dim:    #8a8a8a;
   --terminal-line:   #262626;
 
-  /* ===== PAPÉIS — claro é o padrão do documento ================
-     Contraste medido contra #fafafa:
-       950 #0a0a0a  18,97:1  AAA
-       700 #404040   9,93:1  AAA
-       600 #525252   7,49:1  AAA
-       500 #737373   4,54:1  AA   <- PISO DO TEXTO (apertado)
-       400 #a3a3a3   2,42:1  reprova — nunca texto
+  /* ===== PAPÉIS — escuro é o padrão do documento ==============
+     Contraste medido contra #0a0a0a:
+       950 #fafafa  18,97:1  AAA
+       700 #d4d4d4  13,36:1  AAA
+       600 #a3a3a3   7,85:1  AAA
+       500 #8a8a8a   5,73:1  AA   <- PISO DO TEXTO
      ============================================================ */
-  --background:       var(--l-50);
-  --surface:          var(--l-100);
-  --foreground:       var(--l-950);
-  --foreground-muted: var(--l-700);
-  --foreground-dim:   var(--l-600);
-  --foreground-floor: var(--l-500);
-  --hairline:         var(--l-200);
-  --rule:             var(--l-300);
-  --control-border:   var(--l-500);
-  --ring:             var(--l-950);
-  --watermark:        #f2f2f2;
-
-  --radius: 0rem;
-}
-
-/* Sistema no escuro, sem escolha explícita de claro. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --background:       var(--d-50);
-    --surface:          var(--d-100);
-    --foreground:       var(--d-950);
-    --foreground-muted: var(--d-700);
-    --foreground-dim:   var(--d-600);
-    --foreground-floor: var(--d-500);
-    --hairline:         var(--d-200);
-    --rule:             var(--d-300);
-    --control-border:   var(--d-500);
-    --ring:             var(--d-950);
-    --watermark:        #101010;
-  }
-}
-
-/* Escolha explícita de escuro — vence o sistema em claro. */
-:root[data-theme="dark"] {
   --background:       var(--d-50);
   --surface:          var(--d-100);
   --foreground:       var(--d-950);
@@ -110,10 +75,32 @@
   --control-border:   var(--d-500);
   --ring:             var(--d-950);
   --watermark:        #101010;
+
+  --radius: 0rem;
 }
 
-:root[data-theme="dark"] { color-scheme: dark; }
-:root[data-theme="light"] { color-scheme: light; }
+/* Escolha explícita de claro.
+   Contraste medido contra #fafafa:
+     950 #0a0a0a  18,97:1  AAA
+     700 #404040   9,93:1  AAA
+     600 #525252   7,49:1  AAA
+     500 #737373   4,54:1  AA   <- PISO DO TEXTO (apertado)
+     400 #a3a3a3   2,42:1  reprova — nunca texto */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --background:       var(--l-50);
+  --surface:          var(--l-100);
+  --foreground:       var(--l-950);
+  --foreground-muted: var(--l-700);
+  --foreground-dim:   var(--l-600);
+  --foreground-floor: var(--l-500);
+  --hairline:         var(--l-200);
+  --rule:             var(--l-300);
+  --control-border:   var(--l-500);
+  --ring:             var(--l-950);
+  --watermark:        #f2f2f2;
+}
 
 @theme inline {
   --color-background:       var(--background);
