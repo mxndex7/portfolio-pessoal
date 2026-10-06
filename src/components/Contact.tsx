@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { contato, perfil, redesSociais } from "@/data/portfolio";
 
@@ -7,6 +7,11 @@ const iconesRedes: Record<string, IconType> = {
   GitHub: FaGithub,
   LinkedIn: FaLinkedin,
 };
+
+// E-mail e WhatsApp: mesmo peso visual, lado a lado a partir de `sm`.
+// `whitespace-nowrap` impede o número de quebrar nos espaços.
+const classeCanal =
+  "inline-flex min-h-11 items-center gap-3 whitespace-nowrap border-b border-control pb-2 text-lg font-semibold text-foreground transition-colors duration-150 hover:border-foreground sm:text-2xl";
 
 /**
  * Não usa <Section> de propósito: é a última seção antes do rodapé e ganha um
@@ -29,13 +34,22 @@ export default function Contact() {
           {contato.texto}
         </p>
 
-        <a
-          href={`mailto:${perfil.email}`}
-          className="mt-12 inline-flex min-h-11 items-center gap-3 border-b border-control pb-2 text-lg font-semibold text-foreground transition-colors duration-150 hover:border-foreground sm:text-2xl"
-        >
-          <Mail aria-hidden="true" className="size-5 shrink-0" />
-          {perfil.email}
-        </a>
+        <div className="mt-12 flex flex-col items-start gap-y-3 sm:flex-row sm:flex-wrap sm:gap-x-10">
+          <a href={`mailto:${perfil.email}`} className={classeCanal}>
+            <Mail aria-hidden="true" className="size-5 shrink-0" />
+            {perfil.email}
+          </a>
+          <a
+            href={`https://wa.me/${perfil.whatsapp.numero}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Conversar no WhatsApp: ${perfil.whatsapp.exibido}`}
+            className={classeCanal}
+          >
+            <FaWhatsapp aria-hidden="true" className="size-5 shrink-0" />
+            {perfil.whatsapp.exibido}
+          </a>
+        </div>
 
         <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3 border-t border-hairline pt-8">
           {redesSociais.map((rede) => {

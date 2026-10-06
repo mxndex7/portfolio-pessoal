@@ -13,6 +13,12 @@ export const perfil = {
   // Linha embaixo do MENDES.
   posicionamento: "Invista no seu negócio ou melhore sua máquina.",
   email: "mendex.dev@gmail.com",
+  // Só no Contato, ao lado do e-mail. `numero` é só dígitos (DDI + DDD) para
+  // o link do wa.me; `exibido` é o texto na página.
+  whatsapp: {
+    exibido: "+55 81 99745-6459",
+    numero: "5581997456459",
+  },
 };
 
 export const heroNav = {
