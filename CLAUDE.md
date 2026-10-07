@@ -429,8 +429,10 @@ descrição, preço, nota opcional, botão "Pedir orçamento") — só o conteú
 
 Publicado na Vercel desde 27/09/2026, conta do Guilherme (plano Hobby),
 projeto `portfolio-pessoal`, ligado ao repositório `mxndex7/portfolio-pessoal`.
-Endereço atual: https://portfolio-pessoal-two-lac.vercel.app (gerado pela
-Vercel — domínio próprio segue em Pendências).
+Endereço atual: https://mendes-ti.vercel.app (escolhido em 06/10/2026 no
+painel da Vercel; substitui o gerado `portfolio-pessoal-two-lac.vercel.app`).
+Continua sendo subdomínio da Vercel — domínio próprio segue em Pendências.
+O README aponta para esse endereço: se ele mudar, atualize os dois.
 
 **`git push` na `master` é publicação.** A Vercel builda e troca o site no ar
 sozinha, em um ou dois minutos, sem nenhum passo manual. Consequências:
