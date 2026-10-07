@@ -9,10 +9,14 @@ export default function Hero() {
       mais estreita a tela (416px em 390×830). 130vw deixa o vão perto da
       proporção do desktop (~15–20% da altura do hero contra ~13%).
       No desktop 130vw é sempre maior que a altura, então nada muda.
+
+      Tablet em pé tinha o mesmo vão (41–46% do hero em 768×1024 e 1024×1366).
+      Lá o teto é 100vw: o conteúdo é maior em proporção à largura que no
+      celular. `portrait:` deixa desktop e tablet deitado intocados.
     */
     <section
       id="topo"
-      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden px-5 pb-7 pt-5 max-md:min-h-[min(100svh,130vw)] sm:px-8 sm:pb-9 lg:px-10"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden px-5 pb-7 pt-5 max-md:min-h-[min(100svh,130vw)] sm:px-8 sm:pb-9 md:portrait:min-h-[min(100svh,100vw)] lg:px-10"
     >
       <div className="relative z-10 flex flex-1 flex-col">
         <HeroNav links={heroNav.links} monograma={perfil.monograma} />
@@ -33,10 +37,15 @@ export default function Hero() {
           {/* Só o sobrenome. Seis letras cabem em qualquer largura — o nome
               completo está na fileira de meta, abaixo. */}
           <h1 className="wordmark">{perfil.sobrenome}</h1>
+
+          {/* Reserva no fluxo a altura do kanji (que é absoluto). Sem ela, com
+              o celular deitado, o kanji descia por cima da frase e da meta. */}
+          <span aria-hidden="true" className="kanji-room" />
         </div>
 
-        {/* O vazio. É o elemento mais importante da composição. */}
-        <div className="flex-1" />
+        {/* O vazio. É o elemento mais importante da composição.
+            `min-h-6` garante respiro entre o kanji e a frase quando falta altura. */}
+        <div className="min-h-6 flex-1" />
 
         {perfil.posicionamento ? (
           <p className="reveal reveal-2 max-w-[34ch] text-lg font-semibold leading-[1.2] tracking-[-0.01em] text-foreground sm:text-2xl">

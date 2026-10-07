@@ -67,7 +67,9 @@ export default function HeroNav({
         onClick={() => setAberto((v) => !v)}
         aria-expanded={aberto}
         aria-controls="menu-mobile"
-        className="-mr-2 inline-flex h-11 w-11 items-center justify-center md:hidden"
+        // `ml-auto`: sem o monograma, o botão é o único filho visível da nav e
+        // o justify-between o deixava colado à esquerda.
+        className="-mr-2 ml-auto inline-flex h-11 w-11 items-center justify-center md:hidden"
       >
         <span className="sr-only">{aberto ? "Fechar menu" : "Abrir menu"}</span>
         <span aria-hidden="true" className="relative block h-3 w-5">
@@ -87,7 +89,9 @@ export default function HeroNav({
       <div
         id="menu-mobile"
         hidden={!aberto}
-        className="fixed inset-0 z-50 flex flex-col bg-background px-5 pb-10 pt-5 md:hidden"
+        // `overflow-y-auto`: com o celular deitado (375px de altura) a lista e
+        // o tema passam da tela, e o fundo está travado.
+        className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background px-5 pb-10 pt-5 md:hidden"
       >
         <div className="flex items-center justify-between">
           {monograma ? (
@@ -98,7 +102,7 @@ export default function HeroNav({
           <button
             type="button"
             onClick={() => setAberto(false)}
-            className="-mr-2 inline-flex h-11 w-11 items-center justify-center"
+            className="-mr-2 ml-auto inline-flex h-11 w-11 items-center justify-center"
           >
             <span className="sr-only">Fechar menu</span>
             <span aria-hidden="true" className="relative block h-3 w-5">

@@ -82,7 +82,12 @@ export default function ProjectGallery({
         onClick={(e) => e.stopPropagation()}
         className="flex w-full max-w-4xl flex-col gap-4 outline-none"
       >
-        <div className="relative aspect-[3/2] w-full overflow-hidden border border-hairline bg-surface">
+        {/*
+          `max-h`: com o celular deitado a caixa 3:2 na largura inteira passava
+          da altura da tela e o botão de fechar ficava fora dela. A imagem é
+          `contain`, então a caixa achatada só ganha faixa nas laterais.
+        */}
+        <div className="relative aspect-[3/2] max-h-[calc(100svh-7rem)] w-full overflow-hidden border border-hairline bg-surface">
           <Image
             key={atual.src}
             src={atual.src}

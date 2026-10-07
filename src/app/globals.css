@@ -233,15 +233,27 @@
   container-type: inline-size;
   /* Contêiner de posicionamento do kanji: é daqui que a distância é medida. */
   position: relative;
+  /* Usados pelo kanji e pela reserva dele. O cqw resolve onde a variável é
+     lida (nos filhos), então mede este contêiner. */
+  --kanji-gap: clamp(10px, 3cqw, 44px);
+  --kanji-size: min(40cqw, 38svh);
 }
 
 /* ---------------------------------------------------------------
    改善
 
-   Ancorado no RODAPÉ DO WORDMARK (`top: 100%`), não na altura da
-   viewport. Antes era `top: 66%` da tela — por isso no celular, com
-   852px de altura, ele descia muito e abria um vão enorme: a
-   distância não era medida a partir do nome.
+   Ancorado no RODAPÉ DO WORDMARK, não na altura da viewport. Antes
+   era `top: 66%` da tela — por isso no celular, com 852px de altura,
+   ele descia muito e abria um vão enorme: a distância não era medida
+   a partir do nome.
+
+   O kanji é absoluto, então não ocupa espaço: com o celular deitado
+   (375–430px de altura) a frase e a meta subiam por baixo dele. A
+   `.kanji-room`, logo abaixo do MENDES, reserva no fluxo exatamente
+   `--kanji-gap + --kanji-size`, e o kanji senta no fundo dela
+   (`bottom: 0`) — mesma posição de antes, agora com altura real.
+   Onde já sobrava espaço (desktop, celular em pé) nada se move: a
+   reserva sai do vão flexível, não soma a ele.
 
    Tamanho em `cqw` pelo mesmo motivo: escala junto com o MENDES, que
    também é cqw. A trava em `svh` só evita que ele estoure a tela em
@@ -251,14 +263,19 @@
    cabem numa linha só em qualquer tela — não precisa quebrar no
    celular.
    --------------------------------------------------------------- */
+.kanji-room {
+  display: block;
+  height: calc(var(--kanji-gap) + var(--kanji-size));
+}
+
 .kanji-mark {
   position: absolute;
-  top: calc(100% + clamp(10px, 3cqw, 44px));
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-jp);
   font-weight: 900;
-  font-size: min(40cqw, 38svh);
+  font-size: var(--kanji-size);
   line-height: 1;
   white-space: nowrap;
   color: var(--watermark);

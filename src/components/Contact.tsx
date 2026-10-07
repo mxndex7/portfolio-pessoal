@@ -27,7 +27,8 @@ export default function Contact() {
         <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-foreground-dim">
           Contato
         </p>
-        <h2 className="mt-4 max-w-3xl font-display text-4xl uppercase leading-[0.92] tracking-[-0.035em] text-foreground sm:text-6xl lg:text-7xl">
+        {/* `min(…, 10vw)`: em 320px, "RESOLVIDO?" a 36px passava 9px da margem. */}
+        <h2 className="mt-4 max-w-3xl font-display text-[length:min(2.25rem,10vw)] uppercase leading-[0.92] tracking-[-0.035em] text-foreground sm:text-6xl lg:text-7xl">
           {contato.chamada}
         </h2>
         <p className="mt-7 max-w-lg text-base leading-relaxed text-foreground-muted sm:text-lg">
