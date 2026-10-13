@@ -6,9 +6,18 @@ export default function About() {
     <Section id="sobre" eyebrow="Sobre" titulo={sobre.titulo}>
       <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
         {/* A idade aparece uma vez só, dentro do texto. */}
-        <p className="whitespace-pre-line text-base leading-[1.75] text-foreground-muted sm:text-lg">
-          {sobre.texto}
-        </p>
+        <div>
+          <p className="whitespace-pre-line text-base leading-[1.75] text-foreground-muted sm:text-lg">
+            {sobre.texto}
+          </p>
+          <a
+            href={sobre.curriculo.arquivo}
+            download
+            className="mt-6 inline-flex min-h-11 items-center font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim underline underline-offset-4 transition-colors duration-150 hover:text-foreground"
+          >
+            {sobre.curriculo.rotulo}
+          </a>
+        </div>
 
         {/*
           Seis cards para seis frases de três palavras era card demais para
