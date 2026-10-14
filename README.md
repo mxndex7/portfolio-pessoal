@@ -40,7 +40,7 @@ para mim e o que eu faço para cliente, com preço no fim.
 
 | Projeto | O que faz | Stack |
 |---|---|---|
-| [Dex Tweaks](https://github.com/mxndex7/Dex-Tweeks) | Painel de otimização para Windows 10 e 11 num arquivo só, com prévia, snapshot e verificação antes de gravar cada ajuste | Batch, PowerShell |
+| [Dex Tweaks](https://github.com/mxndex7/Dex-Tweaks) | Painel de otimização para Windows 10 e 11 num arquivo só, com prévia, snapshot e verificação antes de gravar cada ajuste | Batch, PowerShell |
 | [Sistema de Processos](https://github.com/mxndex7/SistemadeProcessos) | Protocolo e tramitação de processos administrativos, com assinatura eletrônica e trilha de auditoria | React, Express, PostgreSQL, Docker |
 | [Dupex](https://github.com/mxndex7/Dupex) | API REST de duplicatas escriturais: emissão, aceite, liquidação e cancelamento | Python, FastAPI, SQLAlchemy, JWT |
 | [PC Check Painel](https://github.com/mxndex7/Pc-Check-Painel) | Diagnóstico, reparo e utilitários para Windows, sem telemetria | Batch, PowerShell |

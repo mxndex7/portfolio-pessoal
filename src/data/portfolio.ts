@@ -108,7 +108,7 @@ export const projetos: Projeto[] = [
       },
     ],
     capaFundo: "#0c0c0c",
-    repositorio: "https://github.com/mxndex7/Dex-Tweeks",
+    repositorio: "https://github.com/mxndex7/Dex-Tweaks",
   },
   {
     titulo: "Sistema de Processos",
