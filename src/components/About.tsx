@@ -10,13 +10,6 @@ export default function About() {
           <p className="whitespace-pre-line text-base leading-[1.75] text-foreground-muted sm:text-lg">
             {sobre.texto}
           </p>
-          <a
-            href={sobre.curriculo.arquivo}
-            download
-            className="mt-6 inline-flex min-h-11 items-center font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground-dim underline underline-offset-4 transition-colors duration-150 hover:text-foreground"
-          >
-            {sobre.curriculo.rotulo}
-          </a>
         </div>
 
         {/*

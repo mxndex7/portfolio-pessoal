@@ -42,11 +42,6 @@ export const sobre = {
 Escrevo software, de apps desktop e APIs a automações e ferramentas para Windows, e mexo na máquina que roda ele. São duas rotinas diferentes que no fim têm o mesmo propósito: achar o que está no caminho e tirar.
 
 Atualmente sou estagiário de TI na Fundação CAS - Centro de Assistência Social à PMPE.`,
-  // PDF em public/. Fonte editável em curriculo/curriculo.html.
-  curriculo: {
-    rotulo: "Baixar currículo (PDF)",
-    arquivo: "/Curriculo-Guilherme-Mendes.pdf",
-  },
 };
 
 export type Habilidade = {
